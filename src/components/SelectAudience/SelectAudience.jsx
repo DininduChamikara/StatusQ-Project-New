@@ -30,9 +30,23 @@ function SelectAudience() {
     ageGroup_13_15: false,
     ageGroup_16_18: false,
     ageGroup_19_25: false,
-    ageGroup_26_35:false,
-    ageGroup_36_60:false,
-    ageGroup_over_60:false,
+    ageGroup_26_35: false,
+    ageGroup_36_60: false,
+    ageGroup_over_60: false,
+    western: false,
+    uva: false,
+    sabaragamuwa: false,
+    central: false,
+    nothern: false,
+    northernWestern: false,
+    southern: false,
+    eastern: false,
+    northCentral: false,
+    sinhala: false,
+    tamil: false,
+    english: false,
+    male:false,
+    female:false,
   });
 
   const handleChange = (event) => {
@@ -60,6 +74,20 @@ function SelectAudience() {
     ageGroup_26_35,
     ageGroup_36_60,
     ageGroup_over_60,
+    western,
+    uva,
+    sabaragamuwa,
+    central,
+    nothern,
+    northernWestern,
+    southern,
+    eastern,
+    northCentral,
+    sinhala,
+    tamil,
+    english,
+    male,
+    female,
   } = state;
 
   return (
@@ -308,6 +336,177 @@ function SelectAudience() {
                 />
               }
               label="Over 60 Years"
+            />
+          </FormGroup>
+          <FormHelperText></FormHelperText>
+          <Divider />
+          <FormLabel sx={{ mt: 1 }} component="legend">
+            Region
+          </FormLabel>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={western}
+                  onChange={handleChange}
+                  name="western"
+                />
+              }
+              label="Western Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox checked={uva} onChange={handleChange} name="uva" />
+              }
+              label="Uva Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={sabaragamuwa}
+                  onChange={handleChange}
+                  name="sabaragamuwa"
+                />
+              }
+              label="Sabaragamuwa Province"
+            />
+          </FormGroup>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={central}
+                  onChange={handleChange}
+                  name="central"
+                />
+              }
+              label="Central Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={nothern}
+                  onChange={handleChange}
+                  name="nothern"
+                />
+              }
+              label="Nothern Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={northernWestern}
+                  onChange={handleChange}
+                  name="northernWestern"
+                />
+              }
+              label="Northern Western Province"
+            />
+          </FormGroup>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={southern}
+                  onChange={handleChange}
+                  name="southern"
+                />
+              }
+              label="Southern Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={eastern}
+                  onChange={handleChange}
+                  name="eastern"
+                />
+              }
+              label="Eastern Province"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={northCentral}
+                  onChange={handleChange}
+                  name="northCentral"
+                />
+              }
+              label="North Central Province"
+            />
+          </FormGroup>
+          <FormHelperText></FormHelperText>
+          <Divider />
+          <FormLabel sx={{ mt: 1 }} component="legend">
+            Language
+          </FormLabel>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={sinhala}
+                  onChange={handleChange}
+                  name="sinhala"
+                />
+              }
+              label="Sinhala"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={tamil}
+                  onChange={handleChange}
+                  name="tamil"
+                />
+              }
+              label="Tamil"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={english}
+                  onChange={handleChange}
+                  name="english"
+                />
+              }
+              label="English"
+            />
+          </FormGroup>
+          <FormHelperText></FormHelperText>
+          <Divider />
+          <FormLabel sx={{ mt: 1 }} component="legend">
+            Gender
+          </FormLabel>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox checked={male} onChange={handleChange} name="male" />
+              }
+              label="For Male"
+            />
+            <FormControlLabel
+              sx={{ mr: 4, width: 250 }}
+              control={
+                <Checkbox
+                  checked={female}
+                  onChange={handleChange}
+                  name="female"
+                />
+              }
+              label="For Female"
             />
           </FormGroup>
           <FormHelperText></FormHelperText>
