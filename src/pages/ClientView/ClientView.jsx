@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import CreateCampaignBanner from "../../components/CreateCampaignBanner/CreateCampaignBanner";
 
 function ClientView() {
   return (
-    <div>ClientView</div>
-  )
+    <CreateCampaignBanner/>
+  );
 }
 
-export default ClientView
+export default ClientView;

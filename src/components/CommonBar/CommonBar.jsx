@@ -13,9 +13,8 @@ import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems, secondaryListItems } from "../../lib/ListItems";
+import { mainListItems } from "../../lib/ListItems";
 import PopoverView from "../PopoverView/PopoverView";
 import { KeyboardDoubleArrowLeft } from "@mui/icons-material";
 
