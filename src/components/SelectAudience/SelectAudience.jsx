@@ -26,7 +26,13 @@ function SelectAudience() {
     subArt: false,
     subTechnology: false,
     undergraduateCat: false,
-    postgraduateCat:false,
+    postgraduateCat: false,
+    ageGroup_13_15: false,
+    ageGroup_16_18: false,
+    ageGroup_19_25: false,
+    ageGroup_26_35:false,
+    ageGroup_36_60:false,
+    ageGroup_over_60:false,
   });
 
   const handleChange = (event) => {
@@ -47,7 +53,13 @@ function SelectAudience() {
     subArt,
     subTechnology,
     undergraduateCat,
-    postgraduateCat
+    postgraduateCat,
+    ageGroup_13_15,
+    ageGroup_16_18,
+    ageGroup_19_25,
+    ageGroup_26_35,
+    ageGroup_36_60,
+    ageGroup_over_60,
   } = state;
 
   return (
@@ -226,6 +238,79 @@ function SelectAudience() {
               <Divider />
             </Box>
           )}
+
+          <FormLabel sx={{ mt: 1 }} component="legend">
+            Age Level
+          </FormLabel>
+          <FormGroup row name="row-radio-buttonsMuiFormGroup-row">
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_13_15}
+                  onChange={handleChange}
+                  name="ageGroup_13_15"
+                />
+              }
+              label="13 - 15 Years"
+            />
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_16_18}
+                  onChange={handleChange}
+                  name="ageGroup_16_18"
+                />
+              }
+              label="16 - 18 Years"
+            />
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_19_25}
+                  onChange={handleChange}
+                  name="ageGroup_19_25"
+                />
+              }
+              label="19 - 25 Years"
+            />
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_26_35}
+                  onChange={handleChange}
+                  name="ageGroup_26_35"
+                />
+              }
+              label="26 - 35 Years"
+            />
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_36_60}
+                  onChange={handleChange}
+                  name="ageGroup_36_60"
+                />
+              }
+              label="36 - 60 Years"
+            />
+            <FormControlLabel
+              sx={{ mr: 4 }}
+              control={
+                <Checkbox
+                  checked={ageGroup_over_60}
+                  onChange={handleChange}
+                  name="ageGroup_over_60"
+                />
+              }
+              label="Over 60 Years"
+            />
+          </FormGroup>
+          <FormHelperText></FormHelperText>
         </Paper>
       </FormControl>
     </Box>
