@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import SelectAudience from "../SelectAudience/SelectAudience";
+import UploadAdvertisement from "../UploadAdvertisement/UploadAdvertisement";
 
 const steps = [
   "Select campaign audience",
@@ -111,7 +112,7 @@ function CreateCampaignStepper() {
             {/* Active Step */}
             <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
             {activeStep === 0 && <SelectAudience />}
-            
+            {activeStep === 1 && <UploadAdvertisement />}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"
