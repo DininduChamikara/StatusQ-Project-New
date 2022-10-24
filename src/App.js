@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Payments from "./pages/Payments/Payments.jsx";
 import PromoterView from "./pages/PromoterView/PromoterView.jsx";
+import Register from "./pages/Register/Register.jsx";
 import Settings from "./pages/SettingsView/Settings.jsx";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login/>} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/home" element={<CommonBar title={"Home"} component={<Home/>} />} />
           <Route path="/client-view" element={<CommonBar title={"Client View"} component={<ClientView/>} />} />
           <Route path="/promoter-view" element={<CommonBar title={"Promoter View"} component={<PromoterView/>} />} />
