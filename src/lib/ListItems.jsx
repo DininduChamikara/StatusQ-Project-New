@@ -3,10 +3,8 @@ import SidebarItem from "../components/SidebarItem/SidebarItem";
 import {
   AccountBox,
   Campaign,
-  Dashboard,
   ExitToApp,
   Help,
-  HelpCenter,
   Home,
   Payments,
   Reviews,
@@ -20,7 +18,7 @@ export const mainListItems = (
       {
         name: "Home",
         icon: <Home />,
-        link: "/",
+        link: "/home",
       },
       {
         name: "Client View",

@@ -8,7 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import CampaignPayment from "../CampaignPayment/CampaignPayment";
 import SelectAudience from "../SelectAudience/SelectAudience";
+import SelectPromoters from "../SelectPromoters/SelectPromoters";
 import UploadAdvertisement from "../UploadAdvertisement/UploadAdvertisement";
 
 const steps = [
@@ -113,6 +115,8 @@ function CreateCampaignStepper() {
             <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
             {activeStep === 0 && <SelectAudience />}
             {activeStep === 1 && <UploadAdvertisement />}
+            {activeStep === 2 && <SelectPromoters/>}
+            {activeStep === 3 && <CampaignPayment/>}
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"

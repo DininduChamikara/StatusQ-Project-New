@@ -4,6 +4,7 @@ import ClientView from "./pages/ClientView/ClientView.jsx";
 import Feedback from "./pages/Feedback/Feedback.jsx";
 import Help from "./pages/Help/Help.jsx";
 import Home from "./pages/Home/Home.jsx";
+import Login from "./pages/Login/Login.jsx";
 import Payments from "./pages/Payments/Payments.jsx";
 import PromoterView from "./pages/PromoterView/PromoterView.jsx";
 import Settings from "./pages/SettingsView/Settings.jsx";
@@ -13,7 +14,8 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<CommonBar title={"Home"} component={<Home/>} />} />
+          <Route path="/" element={<Login/>} />
+          <Route path="/home" element={<CommonBar title={"Home"} component={<Home/>} />} />
           <Route path="/client-view" element={<CommonBar title={"Client View"} component={<ClientView/>} />} />
           <Route path="/promoter-view" element={<CommonBar title={"Promoter View"} component={<PromoterView/>} />} />
           <Route path="/payments" element={<CommonBar title={"Payments"} component={<Payments/>} />} />
