@@ -1,6 +1,6 @@
-import { Stars } from "@mui/icons-material";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import ThemeImage from "../../images/statusq-main-image.png";
 
 function Login() {
@@ -42,7 +42,7 @@ function Login() {
               p: 3,
             }}
           >
-            <Typography sx={{ fontSize: "2rem", fontWeight: "bold", my:5 }}>
+            <Typography sx={{ fontSize: "2rem", fontWeight: "bold", my: 5 }}>
               Sign In
             </Typography>
             <Box sx={{ width: "100%" }}>
@@ -68,7 +68,7 @@ function Login() {
                 placeholder=""
               />
             </Box>
-            <Button sx={{mt:5}} variant="contained" fullWidth>
+            <Button sx={{ mt: 5 }} variant="contained" fullWidth>
               Sign In
             </Button>
             <Box
@@ -76,11 +76,20 @@ function Login() {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "center",
-                my:1
+                my: 1,
               }}
             >
               <Typography>Don't have an account?</Typography>
-              <Typography color="secondary" sx={{mx:1, fontWeight:'bold', cursor:'pointer'}}>Sign Up</Typography>
+              <Typography
+                sx={{ mx: 1, fontWeight: "bold", cursor: "pointer" }}
+              >
+                <Link
+                  to={"/register"}
+                  style={{ textDecoration: "none", color: "secondary" }}
+                >
+                  Sign Up
+                </Link>
+              </Typography>
             </Box>
           </Box>
         </Box>
