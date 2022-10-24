@@ -1,9 +1,13 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import DialogBox from "../../components/DialogBox/DialogBox";
 import ThemeImage from "../../images/statusq-main-image.png";
 
 function Login() {
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
     <Box
       sx={{

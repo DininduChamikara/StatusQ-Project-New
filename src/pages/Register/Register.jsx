@@ -3,8 +3,15 @@ import React, { useState } from "react";
 import ThemeImage from "../../images/statusq-main-image.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import DialogBox from "../../components/DialogBox/DialogBox";
 
 function Register() {
+
+  // Alert Box
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+
   const [userInfo, setUserInfo] = useState({
     fname: null,
     lname: null,
@@ -62,6 +69,9 @@ function Register() {
       })
       .then((res) => {
         console.log(res.data);
+        setTitle("Successfully Registered");
+        setDescription("Your account is created successfully. Welcome to the StatusQ!!!")
+        setDialogOpen(true);
       })
       .catch((err) => {
         console.log(err);
@@ -210,6 +220,7 @@ function Register() {
           </Box>
         </Box>
       </Paper>
+      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen}/>
     </Box>
   );
 }
