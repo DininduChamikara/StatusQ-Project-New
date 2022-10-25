@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, D
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function DialogBox({title, description, dialogOpen, setDialogOpen}) {
+function DialogBox({title, description, dialogOpen, setDialogOpen, navigateLink}) {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -10,7 +10,7 @@ function DialogBox({title, description, dialogOpen, setDialogOpen}) {
 
   const handleClose = () => {
     setDialogOpen(false);
-    navigate("/");
+    navigate(navigateLink);
   };
 
   return (

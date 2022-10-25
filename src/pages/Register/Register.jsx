@@ -220,7 +220,7 @@ function Register() {
           </Box>
         </Box>
       </Paper>
-      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen}/>
+      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} navigateLink={"/"}/>
     </Box>
   );
 }
