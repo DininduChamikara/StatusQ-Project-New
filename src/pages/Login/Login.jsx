@@ -1,4 +1,5 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DialogBox from "../../components/DialogBox/DialogBox";
@@ -6,7 +7,54 @@ import ThemeImage from "../../images/statusq-main-image.png";
 
 function Login() {
 
-  const [dialogOpen, setDialogOpen] = useState(false);
+   // Alert Box
+   const [dialogOpen, setDialogOpen] = useState(false);
+   const [title, setTitle] = useState();
+   const [description, setDescription] = useState();
+   const [navigateLink, setNavigateLink] = useState();
+
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: null,
+    password: null,
+  });
+
+  const handleOnChangeEmail = (event) => {
+    setLoginCredentials({
+      ...loginCredentials,
+      email: event.target.value,
+    });
+  };
+
+  const handleOnChangePassword = (event) => {
+    setLoginCredentials({
+      ...loginCredentials,
+      password: event.target.value,
+    });
+  };
+
+  const loginUser = () => {
+    axios
+      .get(
+        `http://localhost:8080/api/v1/user/getUser/${loginCredentials.email}/${loginCredentials.password}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.userType === "NORMAL_USER") {
+          setTitle("Loging Successfull");
+          setDescription("You are logged successfully. Welcome to StatusQ!!!");
+          setNavigateLink("/home");
+          setDialogOpen(true);
+          // navigate("/home");
+        } 
+      })
+      .catch((err) => {
+        console.log(err);
+        setTitle("Can't Log")
+        setDescription("Invalid email or password");
+        setNavigateLink("/");
+        setDialogOpen(true);
+      });
+  };
 
   return (
     <Box
@@ -59,6 +107,8 @@ function Login() {
                 type="email"
                 name="name"
                 placeholder="Email"
+                onChange={handleOnChangeEmail}
+                value={loginCredentials.email}
               />
 
               <TextField
@@ -70,9 +120,11 @@ function Login() {
                 type="password"
                 name="password"
                 placeholder=""
+                onChange={handleOnChangePassword}
+                value={loginCredentials.password}
               />
             </Box>
-            <Button sx={{ mt: 5 }} variant="contained" fullWidth>
+            <Button onClick={loginUser} sx={{ mt: 5 }} variant="contained" fullWidth>
               Sign In
             </Button>
             <Box
@@ -84,9 +136,7 @@ function Login() {
               }}
             >
               <Typography>Don't have an account?</Typography>
-              <Typography
-                sx={{ mx: 1, fontWeight: "bold", cursor: "pointer" }}
-              >
+              <Typography sx={{ mx: 1, fontWeight: "bold", cursor: "pointer" }}>
                 <Link
                   to={"/register"}
                   style={{ textDecoration: "none", color: "secondary" }}
@@ -98,6 +148,7 @@ function Login() {
           </Box>
         </Box>
       </Paper>
+      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} navigateLink={navigateLink}/>
     </Box>
   );
 }
