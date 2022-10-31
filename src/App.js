@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CommonBar from "./components/CommonBar/CommonBar.jsx"
 import ClientView from "./pages/ClientView/ClientView.jsx";
@@ -11,11 +12,23 @@ import Register from "./pages/Register/Register.jsx";
 import Settings from "./pages/SettingsView/Settings.jsx";
 
 function App() {
+
+  const [userInfo, setUserInfo] = useState({
+    fname: null,
+    lname: null,
+    email: null,
+    profileImgUrl:null,
+    userType: null,
+    state: null,
+  })
+
+  console.log("User first name from app js firl is " + userInfo.fname);
+
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login/>} />
+          <Route path="/" element={<Login setUserInfo={setUserInfo} />} />
           <Route path="/register" element={<Register/>} />
           <Route path="/home" element={<CommonBar title={"Home"} component={<Home/>} />} />
           <Route path="/client-view" element={<CommonBar title={"Client View"} component={<ClientView/>} />} />
@@ -23,7 +36,7 @@ function App() {
           <Route path="/payments" element={<CommonBar title={"Payments"} component={<Payments/>} />} />
           <Route path="/settings" element={<CommonBar title={"Settings"} component={<Settings/>} />} />
           <Route path="/help" element={<CommonBar title={"Help"} component={<Help/>} />} />
-          <Route path="/feedback" element={<CommonBar title={"Feedback"} component={<Feedback/>} />} />
+          <Route path="/feedback" element={<CommonBar title={"Feedback"} component={<Feedback userInfo={userInfo}/>} />} />
         </Routes>
       </BrowserRouter>
     

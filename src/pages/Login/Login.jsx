@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import DialogBox from "../../components/DialogBox/DialogBox";
 import ThemeImage from "../../images/statusq-main-image.png";
 
-function Login() {
+function Login({setUserInfo}) {
 
    // Alert Box
    const [dialogOpen, setDialogOpen] = useState(false);
@@ -42,6 +42,11 @@ function Login() {
         if (res.data.userType === "NORMAL_USER") {
           setTitle("Loging Successfull");
           setDescription("You are logged successfully. Welcome to StatusQ!!!");
+
+          setUserInfo({
+            fname: res.data.fname,
+          })
+
           setNavigateLink("/home");
           setDialogOpen(true);
           // navigate("/home");
