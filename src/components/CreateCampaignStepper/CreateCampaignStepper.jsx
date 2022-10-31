@@ -68,7 +68,7 @@ function CreateCampaignStepper() {
   };
 
   return (
-    <Paper
+    <Paper className="CreateCampaignStepper"
       sx={{
         p: 3,
         width: "100%",
