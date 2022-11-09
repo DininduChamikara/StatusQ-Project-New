@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CommonBar from "./components/CommonBar/CommonBar.jsx"
 import ClientView from "./pages/ClientView/ClientView.jsx";
@@ -22,7 +23,11 @@ function App() {
     state: null,
   })
 
-  console.log("User first name from app js firl is " + userInfo.fname);
+  // console.log("User first name from app js firl is " + userInfo.fname);
+
+  const {firstName} = useSelector((state) => state.login)
+
+  console.log("first name from app js using redux ", firstName )
 
   return (
     <div>
