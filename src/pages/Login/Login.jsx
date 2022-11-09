@@ -1,17 +1,18 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import DialogBox from "../../components/DialogBox/DialogBox";
 import ThemeImage from "../../images/statusq-main-image.png";
+import { login } from "../../store/reducers/login.slice";
 
-function Login({setUserInfo}) {
-
-   // Alert Box
-   const [dialogOpen, setDialogOpen] = useState(false);
-   const [title, setTitle] = useState();
-   const [description, setDescription] = useState();
-   const [navigateLink, setNavigateLink] = useState();
+function Login({ setUserInfo }) {
+  // Alert Box
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [navigateLink, setNavigateLink] = useState();
 
   const [loginCredentials, setLoginCredentials] = useState({
     email: null,
@@ -38,28 +39,61 @@ function Login({setUserInfo}) {
         `http://localhost:8080/api/v1/user/getUser/${loginCredentials.email}/${loginCredentials.password}`
       )
       .then((res) => {
-        console.log(res.data);
-        if (res.data.userType === "NORMAL_USER") {
-          setTitle("Loging Successfull");
-          setDescription("You are logged successfully. Welcome to StatusQ!!!");
+        if (res) {
+          res = res.data;
 
-          setUserInfo({
-            fname: res.data.fname,
-          })
+          dispatch(
+            login({
+              isLoggedIn: true,
+              userId: res.userId,
+              firstName: res.firstname,
+              lastName: res.lastname,
+              email: res.email,
+              userType: res.userType,
+              profileImageurl: res.profileImageurl,
+            })
+          );
 
-          setNavigateLink("/home");
-          setDialogOpen(true);
-          // navigate("/home");
-        } 
+          if (res.userType === "NORMAL_USER") {
+            setTitle("Loging Successfull");
+            setDescription(
+              "You are logged successfully. Welcome to StatusQ!!!"
+            );
+
+            setNavigateLink("/home");
+            setDialogOpen(true);
+          }
+        }
+
+        // temperary commented until check redux
+        // console.log(res.data);
+        // if (res.data.userType === "NORMAL_USER") {
+        //   setTitle("Loging Successfull");
+        //   setDescription("You are logged successfully. Welcome to StatusQ!!!");
+
+        //   setUserInfo({
+        //     fname: res.data.fname,
+        //   })
+
+        //   setNavigateLink("/home");
+        //   setDialogOpen(true);
+        //   // navigate("/home");
+        // }
       })
       .catch((err) => {
         console.log(err);
-        setTitle("Can't Log")
+        setTitle("Can't Log");
         setDescription("Invalid email or password");
         setNavigateLink("/");
         setDialogOpen(true);
       });
   };
+
+  ////////
+  const dispatch = useDispatch();
+  const userDetails = useSelector((state) => state.login);
+  const [loggedIn, setLoggedIn] = useState(false);
+  ////////
 
   return (
     <Box
@@ -129,7 +163,12 @@ function Login({setUserInfo}) {
                 value={loginCredentials.password}
               />
             </Box>
-            <Button onClick={loginUser} sx={{ mt: 5 }} variant="contained" fullWidth>
+            <Button
+              onClick={loginUser}
+              sx={{ mt: 5 }}
+              variant="contained"
+              fullWidth
+            >
               Sign In
             </Button>
             <Box
@@ -153,7 +192,13 @@ function Login({setUserInfo}) {
           </Box>
         </Box>
       </Paper>
-      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} navigateLink={navigateLink}/>
+      <DialogBox
+        title={title}
+        description={description}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        navigateLink={navigateLink}
+      />
     </Box>
   );
 }

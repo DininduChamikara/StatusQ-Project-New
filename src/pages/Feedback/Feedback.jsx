@@ -10,22 +10,34 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import ReviewService from "../../api/services/ReviewService";
 import RateUsImage from "../../images/rate_us.png";
 
-function Feedback({userInfo}) {
-
+function Feedback({ userInfo }) {
   const current = new Date();
-  const currentDate = `${current.getFullYear()}-${current.getMonth()+1}-${current.getDate()}` 
+  const currentDate = `${current.getFullYear()}-${
+    current.getMonth() + 1
+  }-${current.getDate()}`;
+
+  let date = new Date().toISOString().split("T")[0];
+
+  console.log("new date format is " + date);
+
+
+  const { userId } = useSelector((state) => state.login);
 
   const [review, setReview] = useState({
-    userId: null,
-    date: currentDate,
+    userId: userId,
+    // date: currentDate,
+    date: date,
     ratingCount: 1,
     description: "",
+    state: "ACTIVE",
   });
 
   const handleOnChangeDescription = (event) => {
-    console.log('user info from feedback ' + userInfo.fname);
+    console.log("user info from feedback " + userInfo.fname);
     setReview({
       ...review,
       description: event.target.value,
@@ -36,14 +48,23 @@ function Feedback({userInfo}) {
     setReview({
       ...review,
       ratingCount: event.target.value,
-    })
-  }
+    });
+  };
+
+  const sendReview = () => {
+    let apiCall = ReviewService.saveReview(review);
+    apiCall.then((response) => {
+      if (response) {
+        response = response.data;
+      }
+    });
+  };
 
   return (
     <Paper
       sx={{
         p: 3,
-        py:8,
+        py: 8,
         width: "100%",
         display: "flex",
         alignItems: "center",
@@ -124,7 +145,11 @@ function Feedback({userInfo}) {
               <Button variant="outlined" startIcon={<RestartAlt />}>
                 Cancel
               </Button>
-              <Button variant="contained" endIcon={<Send />}>
+              <Button
+                onClick={sendReview}
+                variant="contained"
+                endIcon={<Send />}
+              >
                 Send
               </Button>
             </Stack>
