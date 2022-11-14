@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CommonBar from "./components/CommonBar/CommonBar.jsx"
+import SnackBar from "./components/SnackBar/SnackBar.jsx";
 import ClientView from "./pages/ClientView/ClientView.jsx";
 import Feedback from "./pages/Feedback/Feedback.jsx";
 import Help from "./pages/Help/Help.jsx";
@@ -25,12 +26,11 @@ function App() {
 
   // console.log("User first name from app js firl is " + userInfo.fname);
 
-  const {firstName} = useSelector((state) => state.login)
-
-  console.log("first name from app js using redux ", firstName )
+  // const {firstName} = useSelector((state) => state.login)
 
   return (
     <div>
+      <SnackBar/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login setUserInfo={setUserInfo} />} />

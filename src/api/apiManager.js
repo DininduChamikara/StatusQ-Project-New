@@ -1,22 +1,51 @@
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Store } from "@mui/icons-material";
+import {store} from '../store/store'; 
+import { showAlert } from "../store/reducers/alert.slice";
+import { hide, show } from "../store/reducers/loader.slice";
+import { useDispatch } from "react-redux";
+
 
 const errorHandling = (error) => {
   const {response} = error;
 
   //displays the message by changing the store state.
   //refer the SnackBar components in components folder for functionality
-  Store.dispatch(
-    
-  )
+  store.dispatch(
+    showAlert({
+      // message: response.data.message,
+      message: response.data.error,
+      isVisible: true,
+      severity:"error",
+    })
+  );
+
+  const errorObject = {};
+
+  if (response && response.state === 401){
+    errorObject.status = 401;
+    errorObject.errorCode = error.response?.data.errorCode;
+    errorObject.errorMessage = error.response?.data.errorMessage;
+    errorObject.data = {};
+    toast("Network Error");
+  }
 }
 
 const responseHandling = (response) => {
+
+  store.dispatch(
+    showAlert({
+      message: response.data.message,
+      isVisible: true,
+      severity:response.data.status,
+    })
+  )
+
   const reponseObject = {
     data: response.data,
     status: response.status,
   };
+
 
   if (reponseObject.status === 201) {
     toast("Successfully Created!");
@@ -26,6 +55,15 @@ const responseHandling = (response) => {
 };
 
 class ApiService {
+
+  dispatchLoader(showOrHide) {
+    if (showOrHide){
+      store.dispatch(show());
+    }else{
+      store.dispatch(hide());
+    }
+  }
+
   http = axios.create({
     baseURL: process.env.REACT_APP_BASE_URL,
     headers: {
@@ -44,15 +82,17 @@ class ApiService {
         .then((response) => responseHandling(response))
         .catch((error) => optionalOnFailure(error));
 
+      this.dispatchLoader(false);
+
       return;
     }
 
     const response = await this.http
         .post(path, json)
         .then((response) => responseHandling(response))
-        .catch((error) => {
-            console.log(error)
-        })
+        .catch((error) => errorHandling(error));
+
+    this.dispatchLoader(false);
 
     return response;
   }
@@ -62,9 +102,7 @@ class ApiService {
     const response = await this.http
       .patch(`${path}/${id}`, json)
       .then((response) => responseHandling(response))
-      .catch((error) => {
-        console.log(error)
-    })
+      .catch((error) => errorHandling(error));
 
     return response;
   }
@@ -74,9 +112,7 @@ class ApiService {
     const response = await this.http
       .put(path, json)
       .then((response) => responseHandling(response))
-      .catch((error) => {
-        console.log(error)
-    })
+      .catch((error) => errorHandling(error));
 
     return response;
   }
@@ -85,9 +121,7 @@ class ApiService {
     const response = await this.http
       .delete(`${path}/${id}`)
       .then((response) => responseHandling(response))
-      .catch((error) => {
-        console.log(error)
-    })
+      .catch((error) => errorHandling(error))
 
     return response;
   }

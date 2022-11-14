@@ -1,11 +1,13 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ThemeImage from "../../images/statusq-main-image.png";
-import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DialogBox from "../../components/DialogBox/DialogBox";
+import UserService from "../../api/services/UserService";
 
 function Register() {
+
+  let navigate = useNavigate();
 
   // Alert Box
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -13,8 +15,8 @@ function Register() {
   const [description, setDescription] = useState();
 
   const [userInfo, setUserInfo] = useState({
-    fname: null,
-    lname: null,
+    firstname: null,
+    lastname: null,
     email: null,
     password: null,
     confirm_password: null,
@@ -25,14 +27,14 @@ function Register() {
   const handleOnChangeFirstName = (event) => {
     setUserInfo({
       ...userInfo,
-      fname: event.target.value,
+      firstname: event.target.value,
     });
   };
 
   const handleOnChangeLastName = (event) => {
     setUserInfo({
       ...userInfo,
-      lname: event.target.value,
+      lastname: event.target.value,
     });
   };
 
@@ -58,24 +60,19 @@ function Register() {
   };
 
   const saveUser = () => {
-    axios
-      .post("http://localhost:8080/api/v1/user/saveUser", {
-        firstname: userInfo.fname,
-        lastname: userInfo.lname,
-        email: userInfo.email,
-        password: userInfo.password,
-        userType: userInfo.userType,
-        state: userInfo.state,
-      })
-      .then((res) => {
-        console.log(res.data);
-        setTitle("Successfully Registered");
-        setDescription("Your account is created successfully. Welcome to the StatusQ!!!")
-        setDialogOpen(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    let apiCall = UserService.saveUser(userInfo);
+    apiCall.then((response) => {
+      if (response) {
+        response = response.data;
+
+        console.log("response is ", response)
+        
+        if(response.responseCode === "00"){
+          console.log("navigate to login")
+          navigate("/");
+        }
+      }
+    });
   };
 
   return (
@@ -220,7 +217,7 @@ function Register() {
           </Box>
         </Box>
       </Paper>
-      <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} navigateLink={"/"}/>
+      {/* <DialogBox title={title} description={description} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} navigateLink={"/"}/> */}
     </Box>
   );
 }
