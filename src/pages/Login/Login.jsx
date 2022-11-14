@@ -2,17 +2,14 @@ import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import DialogBox from "../../components/DialogBox/DialogBox";
+import { Link, useNavigate } from "react-router-dom";
 import ThemeImage from "../../images/statusq-main-image.png";
+import { showAlert } from "../../store/reducers/alert.slice";
 import { login } from "../../store/reducers/login.slice";
 
 function Login({ setUserInfo }) {
-  // Alert Box
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-  const [navigateLink, setNavigateLink] = useState();
+
+  let navigate = useNavigate();
 
   const [loginCredentials, setLoginCredentials] = useState({
     email: null,
@@ -42,50 +39,45 @@ function Login({ setUserInfo }) {
         if (res) {
           res = res.data;
 
-          dispatch(
-            login({
-              isLoggedIn: true,
-              userId: res.userId,
-              firstName: res.firstname,
-              lastName: res.lastname,
-              email: res.email,
-              userType: res.userType,
-              profileImageurl: res.profileImageurl,
-            })
-          );
-
-          if (res.userType === "NORMAL_USER") {
-            setTitle("Loging Successfull");
-            setDescription(
-              "You are logged successfully. Welcome to StatusQ!!!"
+          if(res.responseCode === "00"){
+            dispatch(
+              login({
+                isLoggedIn: true,
+                userId: res.user.userId,
+                firstName: res.user.firstname,
+                lastName: res.user.lastname,
+                email: res.user.email,
+                userType: res.user.userType,
+                profileImageurl: res.user.profileImageurl,
+              }),
             );
-
-            setNavigateLink("/home");
-            setDialogOpen(true);
+            dispatch(
+              showAlert({
+                message: res.message,
+                isVisible: true,
+                severity:"success",
+              })
+            )
+  
+            if (res.user.userType === "NORMAL_USER") {
+              navigate("/home");
+            }
+          }
+          else if(res.responseCode === "1000"){
+            dispatch(
+              showAlert({
+                message: res.message,
+                isVisible: true,
+                severity:"error",
+              })
+            )
           }
         }
 
-        // temperary commented until check redux
-        // console.log(res.data);
-        // if (res.data.userType === "NORMAL_USER") {
-        //   setTitle("Loging Successfull");
-        //   setDescription("You are logged successfully. Welcome to StatusQ!!!");
-
-        //   setUserInfo({
-        //     fname: res.data.fname,
-        //   })
-
-        //   setNavigateLink("/home");
-        //   setDialogOpen(true);
-        //   // navigate("/home");
-        // }
       })
+      // should change later
       .catch((err) => {
         console.log(err);
-        setTitle("Can't Log");
-        setDescription("Invalid email or password");
-        setNavigateLink("/");
-        setDialogOpen(true);
       });
   };
 
@@ -192,13 +184,6 @@ function Login({ setUserInfo }) {
           </Box>
         </Box>
       </Paper>
-      <DialogBox
-        title={title}
-        description={description}
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
-        navigateLink={navigateLink}
-      />
     </Box>
   );
 }
