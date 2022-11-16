@@ -1,10 +1,12 @@
 import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React from "react";
+import AudienceDetails from "../AudienceDetails/AudienceDetails";
 import PersonalInfoForm from "../PersonalInfoFprm/PersonalInfoForm";
 import PromoterDeclaration from "../PromoterDeclaration/PromoterDeclaration";
 
 const steps = [
   "Personal Information",
+  "Audience Details",
   "Promoter Declaration ",
 ];
 
@@ -104,7 +106,8 @@ function PromoterSurveyStepper() {
             <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
 
             {activeStep === 0 && <PersonalInfoForm />}
-            {activeStep === 1 && <PromoterDeclaration />}
+            {activeStep === 1 && <AudienceDetails />}
+            {activeStep === 2 && <PromoterDeclaration />}
 
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button

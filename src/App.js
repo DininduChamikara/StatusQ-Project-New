@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CommonBar from "./components/CommonBar/CommonBar.jsx";
 import ProtectedRoute, {
+  AdminUserProtectedRoute,
   NormalUserProtectedRoute,
 } from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import SnackBar from "./components/SnackBar/SnackBar.jsx";
@@ -47,37 +48,115 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/admin_home"
+            element={
+              <ProtectedRoute>
+                <AdminUserProtectedRoute>
+                  <CommonBar title={"Home"} />
+                </AdminUserProtectedRoute>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin_complaints"
+            element={
+              <ProtectedRoute>
+                <AdminUserProtectedRoute>
+                  <CommonBar title={"Complaints"} />
+                </AdminUserProtectedRoute>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin_account"
+            element={
+              <ProtectedRoute>
+                <AdminUserProtectedRoute>
+                  <CommonBar title={"Account"} />
+                </AdminUserProtectedRoute>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin_report"
+            element={
+              <ProtectedRoute>
+                <AdminUserProtectedRoute>
+                  <CommonBar title={"Report"} />
+                </AdminUserProtectedRoute>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/client-view"
             element={
-              <CommonBar title={"Client View"} component={<ClientView />} />
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
+                  <CommonBar title={"Client View"} component={<ClientView />} />
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/promoter-view"
             element={
-              <CommonBar title={"Promoter View"} component={<PromoterView />} />
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
+                  <CommonBar
+                    title={"Promoter View"}
+                    component={<PromoterView />}
+                  />
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/payments"
-            element={<CommonBar title={"Payments"} component={<Payments />} />}
+            element={
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
+                  <CommonBar title={"Payments"} component={<Payments />} />
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/settings"
-            element={<CommonBar title={"Settings"} component={<Settings />} />}
+            element={
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
+                  <CommonBar title={"Settings"} component={<Settings />} />
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/help"
-            element={<CommonBar title={"Help"} component={<Help />} />}
+            element={
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
+                  <CommonBar title={"Help"} component={<Help />} />
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
+            }
           />
           <Route
             path="/feedback"
             element={
-              <CommonBar
-                title={"Feedback"}
-                component={<Feedback userInfo={userInfo} />}
-              />
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
+                  <CommonBar
+                    title={"Feedback"}
+                    component={<Feedback userInfo={userInfo} />}
+                  />
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
             }
           />
         </Routes>

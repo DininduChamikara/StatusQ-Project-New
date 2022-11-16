@@ -14,9 +14,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MenuIcon from "@mui/icons-material/Menu";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems } from "../../lib/ListItems";
 import PopoverView from "../PopoverView/PopoverView";
 import { KeyboardDoubleArrowLeft } from "@mui/icons-material";
+import MainListItems from "../../lib/ListItems";
 
 const drawerWidth = 250;
 
@@ -126,13 +126,22 @@ function DashboardContent({ component, title }) {
               backgroundColor: "#324148",
             }}
           >
-            <Box sx={{...(!open && { display: "none" }),}}>
-              <Typography sx={{ color: "white", fontWeight:'bold', fontSize: "1.9rem", px: 1 }}>
+            <Box sx={{ ...(!open && { display: "none" }) }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "1.9rem",
+                  px: 1,
+                }}
+              >
                 StatusQ
               </Typography>
             </Box>
-            <Box sx={{height:'50%'}}>
-              <Typography sx={{ color: "white", fontSize: "1rem", lineHeight:2.6 }}>
+            <Box sx={{ height: "50%" }}>
+              <Typography
+                sx={{ color: "white", fontSize: "1rem", lineHeight: 2.6 }}
+              >
                 Welcome
               </Typography>
             </Box>
@@ -143,9 +152,7 @@ function DashboardContent({ component, title }) {
           </Toolbar>
           <Divider />
           <List>
-            {mainListItems}
-            {/* <Divider sx={{ my: 1 }} />
-            {secondaryListItems} */}
+            <MainListItems />
           </List>
         </Drawer>
         <Box
