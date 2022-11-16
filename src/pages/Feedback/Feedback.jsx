@@ -22,9 +22,6 @@ function Feedback({ userInfo }) {
 
   let date = new Date().toISOString().split("T")[0];
 
-  console.log("new date format is " + date);
-
-
   const { userId } = useSelector((state) => state.login);
 
   const [review, setReview] = useState({
@@ -56,6 +53,8 @@ function Feedback({ userInfo }) {
     apiCall.then((response) => {
       if (response) {
         response = response.data;
+        console.log("response is ", response)
+        
       }
     });
   };

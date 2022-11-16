@@ -61,6 +61,8 @@ function Login({ setUserInfo }) {
   
             if (res.user.userType === "NORMAL_USER") {
               navigate("/home");
+            } else if (res.user.userType === "ADMIN_USER"){
+              navigate("/admin_home");
             }
           }
           else if(res.responseCode === "1000"){

@@ -49,4 +49,19 @@ export const NormalUserProtectedRoute = ({children}) => {
     return children;
 };
 
+export const AdminUserProtectedRoute = ({children}) => {
+    const userType = useSelector((state) => state.login.userType);
+    if (userType !== ADMIN_USER){
+        store.dispatch(
+            showAlert({
+                message: ERROR_MESSAGE,
+                isVisible: true,
+                severity: "warning",
+            })
+        );
+        return <Navigate to="/" replace />
+    }
+    return children;
+};
+
 export default ProtectedRoute;
