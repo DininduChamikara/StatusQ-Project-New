@@ -10,16 +10,17 @@ export const savePromoterSlice = createSlice({
         nic: "",
         address: "",
         postcode: "",
-        mobile: undefined,
-        province: undefined,
-        language: undefined,
-        educationalCategory: undefined,
+        mobile: "",
+        province: "",
+        language: "",
+        educationalCategory: "",
         platforms: {
             whatsapp: {
-                minAccessibleViews: undefined,
+                whatsappChecked: false,
+                minAccessibleViews: 0,
                 genderAudience: {
-                    malePercentage: undefined,
-                    femalePercentage: undefined,
+                    malePercentage: 0,
+                    femalePercentage: 0,
                 },
                 ageCategories: [],
                 educationCategories: [],
@@ -27,10 +28,11 @@ export const savePromoterSlice = createSlice({
                 languageCategories: [],
             },
             facebook: {
-                minAccessibleViews: undefined,
+                facebookChecked: false,
+                minAccessibleViews: 0,
                 genderAudience: {
-                    malePercentage: undefined,
-                    femalePercentage: undefined,
+                    malePercentage: 0,
+                    femalePercentage: 0,
                 },
                 ageCategories: [],
                 educationCategories: [],
@@ -38,10 +40,11 @@ export const savePromoterSlice = createSlice({
                 languageCategories: [],
             },
             instagram: {
-                minAccessibleViews: undefined,
+                instagramChecked: false,
+                minAccessibleViews: 0,
                 genderAudience: {
-                    malePercentage: undefined,
-                    femalePercentage: undefined,
+                    malePercentage: 0,
+                    femalePercentage: 0,
                 },
                 ageCategories: [],
                 educationCategories: [],
@@ -64,10 +67,14 @@ export const savePromoterSlice = createSlice({
             state.language = action.payload.language;
             state.educationalCategory = action.payload.educationalCategory;
         },
+        changePromoterAccessibilityData: (state, action) => {
+            state.platforms = action.payload.platforms;
+        },
     }
 })
 
 export const {
     changePersonalDetails,
+    changePromoterAccessibilityData,
 } = savePromoterSlice.actions;
 export default savePromoterSlice.reducer;
