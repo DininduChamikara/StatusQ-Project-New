@@ -16,17 +16,33 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import {changePersonalDetails, savePromoter} from "../../store/reducers/savePromoter";
+import { useDispatch, useSelector } from "react-redux";
+import {changePersonalDetails, changePromoterAccessibilityData} from "../../store/reducers/savePromoter";
 
 function PersonalInfoForm() {
+
+  const {fullName, nameWithInit, dob, gender, nic, address, postcode, mobile, province, language, educationalCategory, platforms} = useSelector((state) => state.savePromoter)
+
   const [state, setState] = useState({
-    whatsapp: false,
-    facebook: false,
-    instagram: false,
+    whatsapp: platforms.whatsapp.whatsAppChecked,
+    facebook: platforms.facebook.facebookChecked,
+    instagram: platforms.instagram.instagramChecked,
   });
 
   const handleChange = (event) => {
+
+    if(!event.target.checked){
+      if(event.target.name === "whatsapp"){
+        promoterPersonalInfo.whatsAppMinViews = 0;
+      }
+      if(event.target.name === "facebook"){
+        promoterPersonalInfo.facebookMinViews = 0;
+      }
+      if(event.target.name === "instagram"){
+        promoterPersonalInfo.instagramMinViews = 0;
+      }
+    }
+
     setState({
       ...state,
       [event.target.name]: event.target.checked,
@@ -34,21 +50,57 @@ function PersonalInfoForm() {
   };
 
   const [promoterPersonalInfo, setPromoterPersonalInfo] = useState({
-    fullname: undefined,
-    nameWithInit: undefined,
-    dob: undefined,
-    gender: undefined,
-    nic: undefined,
-    address: undefined,
-    postcode: undefined,
-    mobile: undefined,
-    province: undefined,
-    language: undefined,
-    educationalLevel: undefined,
-    whatsAppMinViews: undefined,
-    facebookMinViews: undefined,
-    instagramMinViews: undefined,
+    fullname: fullName,
+    nameWithInit: nameWithInit,
+    dob: dob,
+    gender: gender,
+    nic: nic,
+    address: address,
+    postcode: postcode,
+    mobile: mobile,
+    province: province,
+    language: language,
+    educationalLevel: educationalCategory,
+    whatsAppMinViews: platforms.whatsapp.minAccessibleViews,
+    facebookMinViews: platforms.facebook.minAccessibleViews,
+    instagramMinViews: platforms.instagram.minAccessibleViews,
   })
+
+  const [promoterAccessibleData, setPromoterAccessibleData] = useState({
+    platforms: {
+      whatsapp: {
+        whatsAppChecked: false,
+        minAccessibleViews: 0,
+      },
+      facebook: {
+        facebookChecked: false,
+        minAccessibleViews: 0,
+      },
+      instagram: {
+        instagramChecked: false,
+        minAccessibleViews: 0,
+      }
+    }
+  })
+
+  useEffect(() => {
+    setPromoterAccessibleData({
+      platforms: {
+        whatsapp: {
+          whatsAppChecked: state.whatsapp,
+          minAccessibleViews: promoterPersonalInfo.whatsAppMinViews,
+        },
+        facebook: {
+          facebookChecked: state.facebook,
+          minAccessibleViews: promoterPersonalInfo.facebookMinViews,
+        },
+        instagram: {
+          instagramChecked: state.instagram,
+          minAccessibleViews: promoterPersonalInfo.instagramMinViews,
+        }
+      }
+    })
+  }, [promoterPersonalInfo.whatsAppMinViews, promoterPersonalInfo.facebookMinViews, promoterPersonalInfo.instagramMinViews])
 
   const dispatch = useDispatch();
   // const { promoterStepperActive } = useSelector((state) => state.activeStep);
@@ -69,7 +121,12 @@ function PersonalInfoForm() {
         educationalCategory: promoterPersonalInfo.educationalLevel,
       })
     )
-  }, [promoterPersonalInfo])
+    dispatch(
+      changePromoterAccessibilityData({
+        platforms: promoterAccessibleData.platforms,
+      })
+    )
+  }, [promoterPersonalInfo, promoterAccessibleData])
 
   // get form info on hadle chages
   const handleOnChangeFullName = (event) => {
@@ -618,7 +675,7 @@ function PersonalInfoForm() {
             {(whatsapp || facebook || instagram) && (
               <Box sx={{ width: "60%", my:1 }}>
               <Typography sx={{ color: "#336cad", fontWeight:'bold' }}>
-                Select accessible amount of views for selected platforms
+                Select the minimum accessible amount of views for selected platforms
               </Typography>
             </Box>
             )}

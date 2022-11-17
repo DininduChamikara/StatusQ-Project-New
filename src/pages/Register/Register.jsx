@@ -1,20 +1,19 @@
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import ThemeImage from "../../images/statusq-main-image.png";
 import { Link, useNavigate } from "react-router-dom";
-import DialogBox from "../../components/DialogBox/DialogBox";
 import UserService from "../../api/services/UserService";
+import ThemeImage from "../../images/statusq-main-image.png";
 
 function Register() {
 
   let navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState({
-    firstname: undefined,
-    lastname: undefined,
-    email: undefined,
-    password: undefined,
-    confirm_password: undefined,
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirm_password: "",
     userType: "NORMAL_USER",
     state: "ACTIVE",
   });
