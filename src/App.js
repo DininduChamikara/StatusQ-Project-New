@@ -19,12 +19,12 @@ import Settings from "./pages/SettingsView/Settings.jsx";
 
 function App() {
   const [userInfo, setUserInfo] = useState({
-    fname: null,
-    lname: null,
-    email: null,
-    profileImgUrl: null,
-    userType: null,
-    state: null,
+    fname: "",
+    lname: "",
+    email: "",
+    profileImgUrl: "",
+    userType: "",
+    state: "",
   });
 
   // console.log("User first name from app js firl is " + userInfo.fname);

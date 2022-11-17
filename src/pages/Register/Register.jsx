@@ -9,17 +9,12 @@ function Register() {
 
   let navigate = useNavigate();
 
-  // Alert Box
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [title, setTitle] = useState();
-  const [description, setDescription] = useState();
-
   const [userInfo, setUserInfo] = useState({
-    firstname: null,
-    lastname: null,
-    email: null,
-    password: null,
-    confirm_password: null,
+    firstname: undefined,
+    lastname: undefined,
+    email: undefined,
+    password: undefined,
+    confirm_password: undefined,
     userType: "NORMAL_USER",
     state: "ACTIVE",
   });

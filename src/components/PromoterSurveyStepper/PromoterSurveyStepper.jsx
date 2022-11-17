@@ -1,8 +1,11 @@
 import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
 import React from "react";
+import { useDispatch } from "react-redux";
 import AudienceDetails from "../AudienceDetails/AudienceDetails";
 import PersonalInfoForm from "../PersonalInfoFprm/PersonalInfoForm";
 import PromoterDeclaration from "../PromoterDeclaration/PromoterDeclaration";
+import {promoterActiveStep} from "../../store/reducers/activeStep.slice";
+import { useEffect } from "react";
 
 const steps = [
   "Personal Information",
@@ -11,6 +14,9 @@ const steps = [
 ];
 
 function PromoterSurveyStepper() {
+
+  const dispatch = useDispatch();
+
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
 
@@ -32,7 +38,16 @@ function PromoterSurveyStepper() {
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
+
   };
+
+  useEffect(() => {
+    dispatch(
+      promoterActiveStep({
+        promoterStepperActive: activeStep,
+      })
+    )
+  }, [activeStep])
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);

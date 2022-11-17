@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const loaderSlice = createSlice({
-    name: "Custom API Loader",
+    name: "Custom_API_Loader",
     initialState: {
         isVisible: false
     },
