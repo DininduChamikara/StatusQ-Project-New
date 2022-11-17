@@ -486,6 +486,7 @@ function AudienceDetails() {
           </Box>
         )}
 
+        {/* question 04 */}
         <Box
           sx={{
             display: "flex",
@@ -508,137 +509,142 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On WhatsApp,
-          </Typography>
+        {platforms.whatsapp.whatsAppChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On WhatsApp,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Central Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Southern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Uva Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Nothern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Eastern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Sabaragamuwa Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Northern Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"North Central Province"}
-            categoryText={"province"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Central Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Southern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Uva Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Nothern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Eastern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Sabaragamuwa Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Northern Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"North Central Province"}
+              categoryText={"province"}
+            />
+          </Box>
+        )}
 
-        {/* facebook */}
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On Facebook,
-          </Typography>
+        {platforms.facebook.facebookChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On Facebook,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Central Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Southern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Uva Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Nothern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Eastern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Sabaragamuwa Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Northern Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"North Central Province"}
-            categoryText={"province"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Central Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Southern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Uva Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Nothern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Eastern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Sabaragamuwa Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Northern Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"North Central Province"}
+              categoryText={"province"}
+            />
+          </Box>
+        )}
 
-        {/* instagram */}
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On Instagram,
-          </Typography>
+        {platforms.instagram.instagramChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On Instagram,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Central Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Southern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Uva Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Nothern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Eastern Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Sabaragamuwa Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Northern Western Province"}
-            categoryText={"province"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"North Central Province"}
-            categoryText={"province"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Central Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Southern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Uva Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Nothern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Eastern Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Sabaragamuwa Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Northern Western Province"}
+              categoryText={"province"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"North Central Province"}
+              categoryText={"province"}
+            />
+          </Box>
+        )}
 
+        {/* question 05 */}
         <Box
           sx={{
             display: "flex",
@@ -660,64 +666,68 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On WhatsApp,
-          </Typography>
+        {platforms.whatsapp.whatsAppChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On WhatsApp,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Sinhala"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Tamil"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"English"}
-            categoryText={"language users"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Sinhala"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Tamil"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"English"}
+              categoryText={"language users"}
+            />
+          </Box>
+        )}
 
-        {/* facebook */}
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On Facebook,
-          </Typography>
+        {platforms.facebook.facebookChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On Facebook,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Sinhala"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Tamil"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"English"}
-            categoryText={"language users"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Sinhala"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Tamil"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"English"}
+              categoryText={"language users"}
+            />
+          </Box>
+        )}
 
-        {/* instagram */}
-        <Box>
-          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
-            On Instagram,
-          </Typography>
+        {platforms.instagram.instagramChecked && (
+          <Box>
+            <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+              On Instagram,
+            </Typography>
 
-          <CheckAndCountRow
-            categoryLabal={"Sinhala"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"Tamil"}
-            categoryText={"language users"}
-          />
-          <CheckAndCountRow
-            categoryLabal={"English"}
-            categoryText={"language users"}
-          />
-        </Box>
+            <CheckAndCountRow
+              categoryLabal={"Sinhala"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"Tamil"}
+              categoryText={"language users"}
+            />
+            <CheckAndCountRow
+              categoryLabal={"English"}
+              categoryText={"language users"}
+            />
+          </Box>
+        )}
       </Paper>
     </Box>
   );
