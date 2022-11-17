@@ -1,7 +1,5 @@
 import { Man, Woman } from "@mui/icons-material";
-import {
-  Box, Divider, Paper, Typography
-} from "@mui/material";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 import React, { useState } from "react";
 import CheckAndCountRow from "../CheckAndCountRow/CheckAndCountRow";
 import DiscreteSlider from "../DiscreteSlider/DiscreteSlider";
@@ -360,6 +358,343 @@ function AudienceDetails() {
           <CheckAndCountRow
             categoryLabal={"Over 60 years"}
             categoryText={"age category"}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            mt: 3,
+            ml: 10,
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              fontSize: "1rem",
+              color: "#336cad",
+              mx: 1,
+            }}
+          >
+            03. Select the educational categories you can promote
+          </Typography>
+        </Box>
+
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On WhatsApp,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Ordinary Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Advanced Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Undergraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Postgraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Others"}
+            categoryText={"educational category"}
+          />
+        </Box>
+
+        {/* facebook */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Facebook,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Ordinary Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Advanced Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Undergraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Postgraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Others"}
+            categoryText={"educational category"}
+          />
+        </Box>
+
+        {/* instagram */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Instagram,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Ordinary Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Advanced Level"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Undergraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Postgraduates"}
+            categoryText={"educational category"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Others"}
+            categoryText={"educational category"}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            mt: 3,
+            ml: 10,
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              fontSize: "1rem",
+              color: "#336cad",
+              mx: 1,
+            }}
+          >
+            04. Select the regional areas (Provinces) where your social media
+            audience is located in
+          </Typography>
+        </Box>
+
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On WhatsApp,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Central Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Southern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Uva Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Nothern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Eastern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Sabaragamuwa Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Northern Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"North Central Province"}
+            categoryText={"province"}
+          />
+        </Box>
+
+        {/* facebook */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Facebook,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Central Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Southern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Uva Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Nothern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Eastern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Sabaragamuwa Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Northern Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"North Central Province"}
+            categoryText={"province"}
+          />
+        </Box>
+
+        {/* instagram */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Instagram,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Central Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Southern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Uva Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Nothern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Eastern Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Sabaragamuwa Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Northern Western Province"}
+            categoryText={"province"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"North Central Province"}
+            categoryText={"province"}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            mt: 3,
+            ml: 10,
+          }}
+        >
+          <Typography
+            sx={{
+              fontWeight: "bold",
+              fontSize: "1rem",
+              color: "#336cad",
+              mx: 1,
+            }}
+          >
+            05. Choose the languages ​​your social media audience is using
+          </Typography>
+        </Box>
+
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On WhatsApp,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Sinhala"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Tamil"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"English"}
+            categoryText={"language users"}
+          />
+        </Box>
+
+        {/* facebook */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Facebook,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Sinhala"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Tamil"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"English"}
+            categoryText={"language users"}
+          />
+        </Box>
+
+        {/* instagram */}
+        <Box>
+          <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
+            On Instagram,
+          </Typography>
+
+          <CheckAndCountRow
+            categoryLabal={"Sinhala"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"Tamil"}
+            categoryText={"language users"}
+          />
+          <CheckAndCountRow
+            categoryLabal={"English"}
+            categoryText={"language users"}
           />
         </Box>
       </Paper>

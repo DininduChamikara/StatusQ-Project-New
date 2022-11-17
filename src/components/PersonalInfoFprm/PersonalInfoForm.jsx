@@ -6,17 +6,18 @@ import {
   FormControlLabel,
   FormGroup,
   FormHelperText,
-  FormLabel,
   MenuItem,
   Paper,
   Radio,
   RadioGroup,
   Select,
   TextField,
-  Typography,
+  Typography
 } from "@mui/material";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {changePersonalDetails, savePromoter} from "../../store/reducers/savePromoter";
 
 function PersonalInfoForm() {
   const [state, setState] = useState({
@@ -29,6 +30,130 @@ function PersonalInfoForm() {
     setState({
       ...state,
       [event.target.name]: event.target.checked,
+    });
+  };
+
+  const [promoterPersonalInfo, setPromoterPersonalInfo] = useState({
+    fullname: undefined,
+    nameWithInit: undefined,
+    dob: undefined,
+    gender: undefined,
+    nic: undefined,
+    address: undefined,
+    postcode: undefined,
+    mobile: undefined,
+    province: undefined,
+    language: undefined,
+    educationalLevel: undefined,
+    whatsAppMinViews: undefined,
+    facebookMinViews: undefined,
+    instagramMinViews: undefined,
+  })
+
+  const dispatch = useDispatch();
+  // const { promoterStepperActive } = useSelector((state) => state.activeStep);
+
+  useEffect(() => {
+    dispatch(
+      changePersonalDetails({
+        fullName: promoterPersonalInfo.fullname,
+        nameWithInit: promoterPersonalInfo.nameWithInit,
+        dob: promoterPersonalInfo.dob,
+        gender: promoterPersonalInfo.gender,
+        nic: promoterPersonalInfo.nic,
+        address: promoterPersonalInfo.address,
+        postcode: promoterPersonalInfo.postcode,
+        mobile: promoterPersonalInfo.mobile,
+        province: promoterPersonalInfo.province,
+        language: promoterPersonalInfo.language,
+        educationalCategory: promoterPersonalInfo.educationalLevel,
+      })
+    )
+  }, [promoterPersonalInfo])
+
+  // get form info on hadle chages
+  const handleOnChangeFullName = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      fullname: event.target.value,
+    });
+  };
+  const handleOnChangeNameWithInit = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      nameWithInit: event.target.value,
+    });
+  };
+  const handleOnChangeDob = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      dob: event.target.value,
+    });
+  };
+  const handleOnChangeGender = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      gender: event.target.value,
+    });
+  };
+  const handleOnChangeNic = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      nic: event.target.value,
+    });
+  };
+  const handleOnChangeAddress = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      address: event.target.value,
+    });
+  };
+  const handleOnChangePostcode = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      postcode: event.target.value,
+    });
+  };
+  const handleOnChangeMobile = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      mobile: event.target.value,
+    });
+  };
+  const handleOnChangeProvince = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      province: event.target.value,
+    });
+  };
+  const handleOnChangeLanguage = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      language: event.target.value,
+    });
+  };
+  const handleOnChangeEducationalLevel = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      educationalLevel: event.target.value,
+    });
+  };
+  const handleOnChangeWhatsAppMinViews = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      whatsAppMinViews: event.target.value,
+    });
+  };
+  const handleOnChangeFacebookMinViews = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      facebookMinViews: event.target.value,
+    });
+  };
+  const handleOnChangeInstagramMinViews = (event) => {
+    setPromoterPersonalInfo({
+      ...promoterPersonalInfo,
+      instagramMinViews: event.target.value,
     });
   };
 
@@ -61,6 +186,8 @@ function PersonalInfoForm() {
                 sx={{ pl: 1, width: "96%" }}
                 placeholder="Enter the full legal name"
                 size="small"
+                value={promoterPersonalInfo.fullname}
+                onChange={handleOnChangeFullName}
               ></TextField>
             </Box>
           </Box>
@@ -87,6 +214,8 @@ function PersonalInfoForm() {
                 sx={{ pl: 1, width: "96%" }}
                 placeholder="Enter the name with initials"
                 size="small"
+                value={promoterPersonalInfo.nameWithInit}
+                onChange={handleOnChangeNameWithInit}
               ></TextField>
             </Box>
           </Box>
@@ -110,13 +239,15 @@ function PersonalInfoForm() {
               <TextField
                 id="date"
                 type="date"
-                defaultValue="2017-05-24"
+                // defaultValue="2017-05-24"
                 sx={{ pl: 1, width: "96%" }}
                 fullWidth
                 size="small"
                 InputLabelProps={{
                   shrink: true,
                 }}
+                value={promoterPersonalInfo.dob}
+                onChange={handleOnChangeDob}
               />
             </Box>
           </Box>
@@ -142,6 +273,8 @@ function PersonalInfoForm() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                value={promoterPersonalInfo.gender}
+                onChange={handleOnChangeGender}
               >
                 <FormControlLabel
                   value="male"
@@ -177,6 +310,8 @@ function PersonalInfoForm() {
                 sx={{ pl: 1, width: "96%" }}
                 placeholder="Enter your NIC"
                 size="small"
+                value={promoterPersonalInfo.nic}
+                onChange={handleOnChangeNic}
               ></TextField>
             </Box>
           </Box>
@@ -201,6 +336,8 @@ function PersonalInfoForm() {
                 sx={{ pl: 1, width: "96%" }}
                 placeholder="Enter your address"
                 size="small"
+                value={promoterPersonalInfo.address}
+                onChange={handleOnChangeAddress}
               ></TextField>
             </Box>
           </Box>
@@ -225,6 +362,8 @@ function PersonalInfoForm() {
                 sx={{ pl: 1, width: "96%" }}
                 placeholder="Enter your postal code"
                 size="small"
+                value={promoterPersonalInfo.postcode}
+                onChange={handleOnChangePostcode}
               ></TextField>
             </Box>
           </Box>
@@ -250,6 +389,8 @@ function PersonalInfoForm() {
                 placeholder="Enter your mobile number"
                 type="tel"
                 size="small"
+                value={promoterPersonalInfo.mobile}
+                onChange={handleOnChangeMobile}
               ></TextField>
             </Box>
           </Box>
@@ -278,6 +419,8 @@ function PersonalInfoForm() {
                   }}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  value={promoterPersonalInfo.province}
+                  onChange={handleOnChangeProvince}
                 >
                   <MenuItem value="western">Western Province</MenuItem>
                   <MenuItem value="uva">Uva Province</MenuItem>
@@ -320,9 +463,11 @@ function PersonalInfoForm() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                value={promoterPersonalInfo.language}
+                onChange={handleOnChangeLanguage}
               >
                 <FormControlLabel
-                  value="sinhal"
+                  value="sinhala"
                   control={<Radio />}
                   label="Sinhala"
                 />
@@ -364,6 +509,8 @@ function PersonalInfoForm() {
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"
                 name="row-radio-buttons-group"
+                value={promoterPersonalInfo.educationalLevel}
+                onChange={handleOnChangeEducationalLevel}
               >
                 <FormControlLabel
                   value="upto-ol"
@@ -506,6 +653,8 @@ function PersonalInfoForm() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
+                  value={promoterPersonalInfo.whatsAppMinViews}
+                  onChange={handleOnChangeWhatsAppMinViews}
                 >
                   <FormControlLabel value={50} control={<Radio />} label="50" />
                   <FormControlLabel
@@ -556,6 +705,8 @@ function PersonalInfoForm() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
+                  value={promoterPersonalInfo.facebookMinViews}
+                  onChange={handleOnChangeFacebookMinViews}
                 >
                   <FormControlLabel value={50} control={<Radio />} label="50" />
                   <FormControlLabel
@@ -606,6 +757,8 @@ function PersonalInfoForm() {
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   name="row-radio-buttons-group"
+                  value={promoterPersonalInfo.instagramMinViews}
+                  onChange={handleOnChangeInstagramMinViews}
                 >
                   <FormControlLabel value={50} control={<Radio />} label="50" />
                   <FormControlLabel

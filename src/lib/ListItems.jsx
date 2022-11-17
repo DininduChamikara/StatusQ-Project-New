@@ -95,6 +95,7 @@ const MainListItems = () => {
         return (
           (item.authUser === userType || item.authUser === "") && (
             <Link
+              key={index}
               to={item.link}
               style={{ textDecoration: "none", color: "black" }}
             >

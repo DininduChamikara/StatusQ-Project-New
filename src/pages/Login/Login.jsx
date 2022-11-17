@@ -12,8 +12,8 @@ function Login({ setUserInfo }) {
   let navigate = useNavigate();
 
   const [loginCredentials, setLoginCredentials] = useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
 
   const handleOnChangeEmail = (event) => {
@@ -85,8 +85,6 @@ function Login({ setUserInfo }) {
 
   ////////
   const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.login);
-  const [loggedIn, setLoggedIn] = useState(false);
   ////////
 
   return (
