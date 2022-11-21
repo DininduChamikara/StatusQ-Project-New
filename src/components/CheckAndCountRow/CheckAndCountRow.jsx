@@ -9,17 +9,30 @@ import {
 import React from "react";
 import { useState } from "react";
 
-function CheckAndCountRow({categoryLabal, categoryText}) {
+function CheckAndCountRow({categoryLabal, categoryText, amount, setAmount, categoryName}) {
   const [checked, setChecked] = useState(false);
-  const [amount, setAmount] = useState(0);
+  // const [amount, setAmount] = useState(0);
 
   const handleOnChangeCheckbox = (event) => {
     setChecked(event.target.checked);
+    if(event.target.checked === false){
+      setAmount({
+        categoryName:categoryName,
+        checked:false,
+        count: 0,
+      })
+    }
   };
 
   const handleOnChangeAmount = (event) => {
-    setAmount(event.target.value)
-    console.log(event.target.value)
+    // setAmount(event.target.value)
+    if(event.target.value > 0){
+      setAmount({
+        categoryName:categoryName,
+        checked:true,
+        count: event.target.value,
+      })
+    }
   }
 
   return (
@@ -64,7 +77,7 @@ function CheckAndCountRow({categoryLabal, categoryText}) {
               inputProps={{ min: 0 }}
               type="number"
               size="small"
-              value={amount}
+              value={amount.count}
               onChange={handleOnChangeAmount}
             />
           </Box>
