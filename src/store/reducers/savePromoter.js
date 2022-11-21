@@ -18,6 +18,18 @@ export const savePromoterSlice = createSlice({
             whatsapp: {
                 whatsappChecked: false,
                 minAccessibleViews: 0,
+            },
+            facebook: {
+                facebookChecked: false,
+                minAccessibleViews: 0,
+            },
+            instagram: {
+                instagramChecked: false,
+                minAccessibleViews: 0,
+            },
+        },
+        audience: {
+            whatsapp: {
                 genderAudience: {
                     malePercentage: 0,
                     femalePercentage: 0,
@@ -28,8 +40,6 @@ export const savePromoterSlice = createSlice({
                 languageCategories: [],
             },
             facebook: {
-                facebookChecked: false,
-                minAccessibleViews: 0,
                 genderAudience: {
                     malePercentage: 0,
                     femalePercentage: 0,
@@ -40,8 +50,6 @@ export const savePromoterSlice = createSlice({
                 languageCategories: [],
             },
             instagram: {
-                instagramChecked: false,
-                minAccessibleViews: 0,
                 genderAudience: {
                     malePercentage: 0,
                     femalePercentage: 0,
@@ -51,7 +59,7 @@ export const savePromoterSlice = createSlice({
                 regionCategories:[],
                 languageCategories: [],
             },
-        },
+        }
     },
     reducers: {
         changePersonalDetails: (state, action) => {
@@ -70,11 +78,15 @@ export const savePromoterSlice = createSlice({
         changePromoterAccessibilityData: (state, action) => {
             state.platforms = action.payload.platforms;
         },
+        changePromoterAudience: (state, action) => {
+            state.audience = action.payload.audience;
+        },
     }
 })
 
 export const {
     changePersonalDetails,
     changePromoterAccessibilityData,
+    changePromoterAudience,
 } = savePromoterSlice.actions;
 export default savePromoterSlice.reducer;

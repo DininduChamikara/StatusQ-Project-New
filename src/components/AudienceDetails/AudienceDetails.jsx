@@ -1,7 +1,9 @@
 import { Man, Woman } from "@mui/icons-material";
 import { Box, Divider, Paper, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changePromoterAudience } from "../../store/reducers/savePromoter";
 import CheckAndCountRow from "../CheckAndCountRow/CheckAndCountRow";
 import DiscreteSlider from "../DiscreteSlider/DiscreteSlider";
 
@@ -10,7 +12,314 @@ function AudienceDetails() {
   const [facebookMaleViews, setFacebookMaleViews] = useState(50);
   const [instagramMaleViews, setInstagramMaleViews] = useState(50);
 
+  const [whatsappAgeCategories, setWhatsappAgeCategories] = useState([]);
+  const [whatsappEducationCategories, setWhatsappEducationalCategories] =
+    useState([]);
+  const [whatsappProvinces, setWhatsappProvinces] = useState([]);
+  const [whatsappLanguageCategories, setWhatsappLanguageCategories] = useState(
+    []
+  );
+
+  // set whatsapp age categories
+  const [whatsappAgeLevel_13_15, setWhatsappAgeLevel_13_15] = useState({
+    categoryName: "ageLevel_13_15",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAgeLevel_16_18, setWhatsappAgeLevel_16_18] = useState({
+    categoryName: "ageLevel_16_18",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAgeLevel_19_25, setWhatsappAgeLevel_19_25] = useState({
+    categoryName: "ageLevel_19_25",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAgeLevel_26_35, setWhatsappAgeLevel_26_35] = useState({
+    categoryName: "ageLevel_26_35",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAgeLevel_36_60, setWhatsappAgeLevel_36_60] = useState({
+    categoryName: "ageLevel_36_60",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAgeLevel_over_60, setWhatsappAgeLevel_over_60] = useState({
+    categoryName: "ageLevel_over_60",
+    checked: false,
+    count: 0,
+  });
+
+  // set whatsapp educational categories
+  const [whatsappOl_cat, setWhatsappOlCat] = useState({
+    categoryName: "ol_cat",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappAl_cat, setWhatsappAlCat] = useState({
+    categoryName: "al_cat",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappUndergraduate_cat, setWhatsappUndergraduateCat] = useState({
+    categoryName: "undergraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappPostgraduate_cat, setWhatsappPostgraduateCat] = useState({
+    categoryName: "postgraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappOtherEdu_cat, setWhatsappOtherEduCat] = useState({
+    categoryName: "otherEdu_cat",
+    checked: false,
+    count: 0,
+  });
+
+  // set whatsapp province categories
+  const [whatsappWesternProvince, setWhatsappWesternProvince] = useState({
+    categoryName: "westernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappCentralProvince, setWhatsappCentralProvince] = useState({
+    categoryName: "centralProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappSouthernProvince, setWhatsappSouthernProvince] = useState({
+    categoryName: "southernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappUwaProvince, setWhatsappUwaProvince] = useState({
+    categoryName: "uwaProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappNothernProvince, setWhatsappNothernProvince] = useState({
+    categoryName: "nothernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappEasternProvince, setWhatsappEasternProvince] = useState({
+    categoryName: "easternProvince",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappSabaragamuwaProvince, setWhatsappSabaragamuwaProvince] =
+    useState({
+      categoryName: "sabaragamuwaProvince",
+      checked: false,
+      count: 0,
+    });
+  const [whatsappNorthernWesternProvince, setWhatsappNorthernWesternProvince] =
+    useState({
+      categoryName: "northernWesternProvince",
+      checked: false,
+      count: 0,
+    });
+  const [whatsappNorthCentralProvince, setWhatsappNorthCentralProvince] =
+    useState({
+      categoryName: "northCentralProvince",
+      checked: false,
+      count: 0,
+    });
+
+  // set whatsapp language categories
+  const [whatsappSinhala, setWhatsappSinhala] = useState({
+    categoryName: "sinhala",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappEnglish, setWhatsappEnglish] = useState({
+    categoryName: "english",
+    checked: false,
+    count: 0,
+  });
+  const [whatsappTamil, setWhatsappTamil] = useState({
+    categoryName: "sinhala",
+    checked: false,
+    count: 0,
+  });
+
+  useEffect(() => {
+    setWhatsappAgeCategories([
+      whatsappAgeLevel_13_15,
+      whatsappAgeLevel_16_18,
+      whatsappAgeLevel_19_25,
+      whatsappAgeLevel_26_35,
+      whatsappAgeLevel_36_60,
+      whatsappAgeLevel_over_60,
+    ]);
+    setWhatsappEducationalCategories([
+      whatsappOl_cat,
+      whatsappAl_cat,
+      whatsappUndergraduate_cat,
+      whatsappPostgraduate_cat,
+      whatsappOtherEdu_cat,
+    ]);
+    setWhatsappProvinces([
+      whatsappWesternProvince,
+      whatsappCentralProvince,
+      whatsappSouthernProvince,
+      whatsappUwaProvince,
+      whatsappNothernProvince,
+      whatsappEasternProvince,
+      whatsappSabaragamuwaProvince,
+      whatsappNorthernWesternProvince,
+      whatsappNorthCentralProvince,
+    ]);
+    setWhatsappLanguageCategories([
+      whatsappSinhala,
+      whatsappEnglish,
+      whatsappTamil,
+    ]);
+  }, [
+    whatsappAgeLevel_13_15,
+    whatsappAgeLevel_16_18,
+    whatsappAgeLevel_19_25,
+    whatsappAgeLevel_26_35,
+    whatsappAgeLevel_36_60,
+    whatsappAgeLevel_over_60,
+    whatsappOl_cat,
+    whatsappAl_cat,
+    whatsappUndergraduate_cat,
+    whatsappPostgraduate_cat,
+    whatsappOtherEdu_cat,
+    whatsappWesternProvince,
+    whatsappWesternProvince,
+    whatsappCentralProvince,
+    whatsappSouthernProvince,
+    whatsappUwaProvince,
+    whatsappNothernProvince,
+    whatsappEasternProvince,
+    whatsappSabaragamuwaProvince,
+    whatsappNorthernWesternProvince,
+    whatsappNorthCentralProvince,
+    whatsappSinhala,
+    whatsappEnglish,
+    whatsappTamil,
+  ]);
+
   const { platforms } = useSelector((state) => state.savePromoter);
+
+  const [whatsappGenderPercentages, setWhatsappGenderPercentages] = useState({
+    male: 0,
+    female: 0,
+  });
+
+  const [facebookGenderPercentages, setFacebookGenderPercentages] = useState({
+    male: 0,
+    female: 0,
+  });
+
+  const [instagramGenderPercentages, setInstagramGenderPercentages] = useState({
+    male: 0,
+    female: 0,
+  });
+
+  useEffect(() => {
+    if (platforms.whatsapp.whatsAppChecked) {
+      setWhatsappGenderPercentages({
+        male: whatsappMaleViews,
+        female: 100 - whatsappMaleViews,
+      });
+    }
+    if (platforms.facebook.facebookChecked) {
+      setFacebookGenderPercentages({
+        male: facebookMaleViews,
+        female: 100 - facebookMaleViews,
+      });
+    }
+    if (platforms.instagram.instagramChecked) {
+      setInstagramGenderPercentages({
+        male: instagramMaleViews,
+        female: 100 - instagramMaleViews,
+      });
+    }
+  }, [whatsappMaleViews, facebookMaleViews, instagramMaleViews]);
+
+  // initial state of promoterAudienceInfo
+  const [promoterAudienceInfo, setPromoterAudienceInfo] = useState({
+    whatsapp: {
+      genderAudience: {
+        malePercentage: 0,
+        femalePercentage: 0,
+      },
+      ageCategories: [],
+      educationCategories: [],
+      regionCategories: [],
+      languageCategories: [],
+    },
+    facebook: {
+      genderAudience: {
+        malePercentage: 0,
+        femalePercentage: 0,
+      },
+      ageCategories: [],
+      educationCategories: [],
+      regionCategories: [],
+      languageCategories: [],
+    },
+    instagram: {
+      genderAudience: {
+        malePercentage: 0,
+        femalePercentage: 0,
+      },
+      ageCategories: [],
+      educationCategories: [],
+      regionCategories: [],
+      languageCategories: [],
+    },
+  });
+
+  useEffect(() => {
+    setPromoterAudienceInfo({
+      whatsapp: {
+        genderAudience: {
+          malePercentage: whatsappGenderPercentages.male,
+          femalePercentage: whatsappGenderPercentages.female,
+        },
+        ageCategories: whatsappAgeCategories,
+        educationCategories: whatsappEducationCategories,
+        regionCategories: whatsappProvinces,
+        languageCategories: whatsappLanguageCategories,
+      },
+      facebook: {
+        genderAudience: {
+          malePercentage: facebookGenderPercentages.male,
+          femalePercentage: facebookGenderPercentages.female,
+        },
+      },
+      instagram: {
+        genderAudience: {
+          malePercentage: instagramGenderPercentages.male,
+          femalePercentage: instagramGenderPercentages.female,
+        },
+      },
+    });
+  }, [
+    whatsappGenderPercentages,
+    facebookGenderPercentages,
+    instagramGenderPercentages,
+    whatsappAgeCategories,
+    whatsappProvinces,
+    whatsappLanguageCategories,
+  ]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      changePromoterAudience({
+        audience: promoterAudienceInfo,
+      })
+    );
+  }, [promoterAudienceInfo]);
 
   return (
     <Box sx={{ my: 2 }}>
@@ -64,6 +373,7 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
+        {/* gender percentages */}
         {platforms.whatsapp.whatsAppChecked && (
           <Box
             sx={{
@@ -287,26 +597,44 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"13 - 15 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_13_15}
+              amount={whatsappAgeLevel_13_15}
+              categoryName={"ageLevel_13_15"}
             />
             <CheckAndCountRow
               categoryLabal={"16 - 18 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_16_18}
+              amount={whatsappAgeLevel_16_18}
+              categoryName={"ageLevel_16_18"}
             />
             <CheckAndCountRow
               categoryLabal={"19 - 25 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_19_25}
+              amount={whatsappAgeLevel_19_25}
+              categoryName={"ageLevel_19_25"}
             />
             <CheckAndCountRow
               categoryLabal={"26 - 35 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_26_35}
+              amount={whatsappAgeLevel_26_35}
+              categoryName={"ageLevel_26_35"}
             />
             <CheckAndCountRow
               categoryLabal={"36 - 60 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_36_60}
+              amount={whatsappAgeLevel_36_60}
+              categoryName={"ageLevel_36_60"}
             />
             <CheckAndCountRow
               categoryLabal={"Over 60 years"}
               categoryText={"age category"}
+              setAmount={setWhatsappAgeLevel_over_60}
+              amount={whatsappAgeLevel_over_60}
+              categoryName={"ageLevel_over_60"}
             />
           </Box>
         )}
@@ -408,22 +736,37 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Ordinary Level"}
               categoryText={"educational category"}
+              setAmount={setWhatsappOlCat}
+              amount={whatsappOl_cat}
+              categoryName={"ol_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Advanced Level"}
               categoryText={"educational category"}
+              setAmount={setWhatsappAlCat}
+              amount={whatsappAl_cat}
+              categoryName={"al_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Undergraduates"}
               categoryText={"educational category"}
+              setAmount={setWhatsappUndergraduateCat}
+              amount={whatsappUndergraduate_cat}
+              categoryName={"undergraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Postgraduates"}
               categoryText={"educational category"}
+              setAmount={setWhatsappPostgraduateCat}
+              amount={whatsappPostgraduate_cat}
+              categoryName={"postgraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Others"}
               categoryText={"educational category"}
+              setAmount={setWhatsappOtherEduCat}
+              amount={whatsappOtherEdu_cat}
+              categoryName={"otherEdu_cat"}
             />
           </Box>
         )}
@@ -518,38 +861,65 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Western Province"}
               categoryText={"province"}
+              setAmount={setWhatsappWesternProvince}
+              amount={whatsappWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"Central Province"}
               categoryText={"province"}
+              setAmount={setWhatsappCentralProvince}
+              amount={whatsappCentralProvince}
+              categoryName={"central"}
             />
             <CheckAndCountRow
               categoryLabal={"Southern Province"}
               categoryText={"province"}
+              setAmount={setWhatsappSouthernProvince}
+              amount={whatsappSouthernProvince}
+              categoryName={"southern"}
             />
             <CheckAndCountRow
               categoryLabal={"Uva Province"}
               categoryText={"province"}
+              setAmount={setWhatsappUwaProvince}
+              amount={whatsappUwaProvince}
+              categoryName={"uwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Nothern Province"}
               categoryText={"province"}
+              setAmount={setWhatsappNothernProvince}
+              amount={whatsappNothernProvince}
+              categoryName={"nothern"}
             />
             <CheckAndCountRow
               categoryLabal={"Eastern Province"}
               categoryText={"province"}
+              setAmount={setWhatsappEasternProvince}
+              amount={whatsappEasternProvince}
+              categoryName={"eastern"}
             />
             <CheckAndCountRow
               categoryLabal={"Sabaragamuwa Province"}
               categoryText={"province"}
+              setAmount={setWhatsappSabaragamuwaProvince}
+              amount={whatsappSabaragamuwaProvince}
+              categoryName={"sabaragamuwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Northern Western Province"}
               categoryText={"province"}
+              setAmount={setWhatsappNorthernWesternProvince}
+              amount={whatsappNorthernWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"North Central Province"}
               categoryText={"province"}
+              setAmount={setWhatsappNorthCentralProvince}
+              amount={whatsappNorthCentralProvince}
+              categoryName={"northCentral"}
             />
           </Box>
         )}
@@ -675,14 +1045,23 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Sinhala"}
               categoryText={"language users"}
+              setAmount={setWhatsappSinhala}
+              amount={whatsappSinhala}
+              categoryName={"sinhala"}
             />
             <CheckAndCountRow
               categoryLabal={"Tamil"}
               categoryText={"language users"}
+              setAmount={setWhatsappTamil}
+              amount={whatsappTamil}
+              categoryName={"tamil"}
             />
             <CheckAndCountRow
               categoryLabal={"English"}
               categoryText={"language users"}
+              setAmount={setWhatsappEnglish}
+              amount={whatsappEnglish}
+              categoryName={"english"}
             />
           </Box>
         )}

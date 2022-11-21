@@ -31,7 +31,9 @@ function PersonalInfoForm() {
 
   const handleChange = (event) => {
 
-    if(!event.target.checked){
+    console.log(event.target.checked)
+
+    if(event.target.checked === false){
       if(event.target.name === "whatsapp"){
         promoterPersonalInfo.whatsAppMinViews = 0;
       }
