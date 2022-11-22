@@ -10,7 +10,7 @@ import React from "react";
 import { useState } from "react";
 
 function CheckAndCountRow({categoryLabal, categoryText, amount, setAmount, categoryName}) {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(amount.checked);
 
   const handleOnChangeCheckbox = (event) => {
     setChecked(event.target.checked);
@@ -56,7 +56,7 @@ function CheckAndCountRow({categoryLabal, categoryText, amount, setAmount, categ
       >
         <FormControlLabel
           control={
-            <Checkbox name="ageGroup_13_15" onChange={handleOnChangeCheckbox} />
+            <Checkbox checked={amount.checked} name="ageGroup_13_15" onChange={handleOnChangeCheckbox} />
           }
           label={categoryLabal}
           labelPlacement="start"

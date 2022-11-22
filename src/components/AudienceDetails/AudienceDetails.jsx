@@ -8,10 +8,9 @@ import CheckAndCountRow from "../CheckAndCountRow/CheckAndCountRow";
 import DiscreteSlider from "../DiscreteSlider/DiscreteSlider";
 
 function AudienceDetails() {
+  const { audience } = useSelector((state) => state.savePromoter);
 
-  const {audience} = useSelector((state) => state.savePromoter)
-
-  const [whatsappMaleViews, setWhatsAppMaleViews] = useState();
+  const [whatsappMaleViews, setWhatsAppMaleViews] = useState(50);
   const [facebookMaleViews, setFacebookMaleViews] = useState(50);
   const [instagramMaleViews, setInstagramMaleViews] = useState(50);
 
@@ -38,424 +37,429 @@ function AudienceDetails() {
   const [instagramEducationCategories, setInstagramEducationalCategories] =
     useState([]);
   const [instagramProvinces, setInstagramProvinces] = useState([]);
-  const [instagramLanguageCategories, setInstagramLanguageCategories] = useState(
-    []
-  );
+  const [instagramLanguageCategories, setInstagramLanguageCategories] =
+    useState([]);
 
   // set whatsapp age categories
   const [whatsappAgeLevel_13_15, setWhatsappAgeLevel_13_15] = useState({
     categoryName: "ageLevel_13_15",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[0]?.checked,
+    count: audience.whatsapp.ageCategories[0]?.count,
   });
   const [whatsappAgeLevel_16_18, setWhatsappAgeLevel_16_18] = useState({
     categoryName: "ageLevel_16_18",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[1]?.checked,
+    count: audience.whatsapp.ageCategories[1]?.count,
   });
   const [whatsappAgeLevel_19_25, setWhatsappAgeLevel_19_25] = useState({
     categoryName: "ageLevel_19_25",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[2]?.checked,
+    count: audience.whatsapp.ageCategories[2]?.count,
   });
   const [whatsappAgeLevel_26_35, setWhatsappAgeLevel_26_35] = useState({
     categoryName: "ageLevel_26_35",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[3]?.checked,
+    count: audience.whatsapp.ageCategories[3]?.count,
   });
   const [whatsappAgeLevel_36_60, setWhatsappAgeLevel_36_60] = useState({
     categoryName: "ageLevel_36_60",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[4]?.checked,
+    count: audience.whatsapp.ageCategories[4]?.count,
   });
   const [whatsappAgeLevel_over_60, setWhatsappAgeLevel_over_60] = useState({
     categoryName: "ageLevel_over_60",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.ageCategories[5]?.checked,
+    count: audience.whatsapp.ageCategories[5]?.count,
   });
 
   // set facebook age categories
   const [facebookAgeLevel_13_15, setFacebookAgeLevel_13_15] = useState({
     categoryName: "ageLevel_13_15",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[0]?.checked,
+    count: audience.facebook.ageCategories[0]?.count,
   });
   const [facebookAgeLevel_16_18, setFacebookAgeLevel_16_18] = useState({
     categoryName: "ageLevel_16_18",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[1]?.checked,
+    count: audience.facebook.ageCategories[1]?.count,
   });
   const [facebookAgeLevel_19_25, setFacebookAgeLevel_19_25] = useState({
     categoryName: "ageLevel_19_25",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[2]?.checked,
+    count: audience.facebook.ageCategories[2]?.count,
   });
   const [facebookAgeLevel_26_35, setFacebookAgeLevel_26_35] = useState({
     categoryName: "ageLevel_26_35",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[3]?.checked,
+    count: audience.facebook.ageCategories[3]?.count,
   });
   const [facebookAgeLevel_36_60, setFacebookAgeLevel_36_60] = useState({
     categoryName: "ageLevel_36_60",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[4]?.checked,
+    count: audience.facebook.ageCategories[4]?.count,
   });
   const [facebookAgeLevel_over_60, setFacebookAgeLevel_over_60] = useState({
     categoryName: "ageLevel_over_60",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.ageCategories[5]?.checked,
+    count: audience.facebook.ageCategories[5]?.count,
   });
 
-   // set instagram age categories
-   const [instagramAgeLevel_13_15, setInstagramAgeLevel_13_15] = useState({
+  // set instagram age categories
+  const [instagramAgeLevel_13_15, setInstagramAgeLevel_13_15] = useState({
     categoryName: "ageLevel_13_15",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[0]?.checked,
+    count: audience.instagram.ageCategories[0]?.count,
   });
   const [instagramAgeLevel_16_18, setInstagramAgeLevel_16_18] = useState({
     categoryName: "ageLevel_16_18",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[1]?.checked,
+    count: audience.instagram.ageCategories[1]?.count,
   });
   const [instagramAgeLevel_19_25, setInstagramAgeLevel_19_25] = useState({
     categoryName: "ageLevel_19_25",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[2]?.checked,
+    count: audience.instagram.ageCategories[2]?.count,
   });
   const [instagramAgeLevel_26_35, setInstagramAgeLevel_26_35] = useState({
     categoryName: "ageLevel_26_35",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[3]?.checked,
+    count: audience.instagram.ageCategories[3]?.count,
   });
   const [instagramAgeLevel_36_60, setInstagramAgeLevel_36_60] = useState({
     categoryName: "ageLevel_36_60",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[4]?.checked,
+    count: audience.instagram.ageCategories[4]?.count,
   });
   const [instagramAgeLevel_over_60, setInstagramAgeLevel_over_60] = useState({
     categoryName: "ageLevel_over_60",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.ageCategories[5]?.checked,
+    count: audience.instagram.ageCategories[5]?.count,
   });
-
 
   // set whatsapp educational categories
   const [whatsappOl_cat, setWhatsappOlCat] = useState({
     categoryName: "ol_cat",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.educationCategories[0]?.checked,
+    count: audience.whatsapp.educationCategories[0]?.count,
   });
   const [whatsappAl_cat, setWhatsappAlCat] = useState({
     categoryName: "al_cat",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.educationCategories[1]?.checked,
+    count: audience.whatsapp.educationCategories[1]?.count,
   });
   const [whatsappUndergraduate_cat, setWhatsappUndergraduateCat] = useState({
     categoryName: "undergraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.educationCategories[2]?.checked,
+    count: audience.whatsapp.educationCategories[2]?.count,
   });
   const [whatsappPostgraduate_cat, setWhatsappPostgraduateCat] = useState({
     categoryName: "postgraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.educationCategories[3]?.checked,
+    count: audience.whatsapp.educationCategories[3]?.count,
   });
   const [whatsappOtherEdu_cat, setWhatsappOtherEduCat] = useState({
     categoryName: "otherEdu_cat",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.educationCategories[4]?.checked,
+    count: audience.whatsapp.educationCategories[4]?.count,
   });
 
   // set facebook educational categories
   const [facebookOl_cat, setFacebookOlCat] = useState({
     categoryName: "ol_cat",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.educationCategories[0]?.checked,
+    count: audience.facebook.educationCategories[0]?.count,
   });
   const [facebookAl_cat, setFacebookAlCat] = useState({
     categoryName: "al_cat",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.educationCategories[1]?.checked,
+    count: audience.facebook.educationCategories[1]?.count,
   });
   const [facebookUndergraduate_cat, setFacebookUndergraduateCat] = useState({
     categoryName: "undergraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.educationCategories[2]?.checked,
+    count: audience.facebook.educationCategories[2]?.count,
   });
   const [facebookPostgraduate_cat, setFacebookPostgraduateCat] = useState({
     categoryName: "postgraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.educationCategories[3]?.checked,
+    count: audience.facebook.educationCategories[3]?.count,
   });
   const [facebookOtherEdu_cat, setFacebookOtherEduCat] = useState({
     categoryName: "otherEdu_cat",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.educationCategories[4]?.checked,
+    count: audience.facebook.educationCategories[4]?.count,
   });
 
   // set instagram educational categories
   const [instagramOl_cat, setInstagramOlCat] = useState({
     categoryName: "ol_cat",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.educationCategories[0]?.checked,
+    count: audience.instagram.educationCategories[0]?.count,
   });
   const [instagramAl_cat, setInstagramAlCat] = useState({
     categoryName: "al_cat",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.educationCategories[1]?.checked,
+    count: audience.instagram.educationCategories[1]?.count,
   });
   const [instagramUndergraduate_cat, setInstagramUndergraduateCat] = useState({
     categoryName: "undergraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.educationCategories[2]?.checked,
+    count: audience.instagram.educationCategories[2]?.count,
   });
   const [instagramPostgraduate_cat, setInstagramPostgraduateCat] = useState({
     categoryName: "postgraduate_cat",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.educationCategories[3]?.checked,
+    count: audience.instagram.educationCategories[3]?.count,
   });
   const [instagramOtherEdu_cat, setInstagramOtherEduCat] = useState({
     categoryName: "otherEdu_cat",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.educationCategories[4]?.checked,
+    count: audience.instagram.educationCategories[4]?.count,
   });
-
 
   // set whatsapp province categories
   const [whatsappWesternProvince, setWhatsappWesternProvince] = useState({
     categoryName: "westernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[0]?.checked,
+    count: audience.whatsapp.regionCategories[0]?.count,
   });
   const [whatsappCentralProvince, setWhatsappCentralProvince] = useState({
     categoryName: "centralProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[1]?.checked,
+    count: audience.whatsapp.regionCategories[1]?.count,
   });
   const [whatsappSouthernProvince, setWhatsappSouthernProvince] = useState({
     categoryName: "southernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[2]?.checked,
+    count: audience.whatsapp.regionCategories[2]?.count,
   });
   const [whatsappUwaProvince, setWhatsappUwaProvince] = useState({
     categoryName: "uwaProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[3]?.checked,
+    count: audience.whatsapp.regionCategories[3]?.count,
   });
   const [whatsappNothernProvince, setWhatsappNothernProvince] = useState({
     categoryName: "nothernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[4]?.checked,
+    count: audience.whatsapp.regionCategories[4]?.count,
   });
   const [whatsappEasternProvince, setWhatsappEasternProvince] = useState({
     categoryName: "easternProvince",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.regionCategories[5]?.checked,
+    count: audience.whatsapp.regionCategories[5]?.count,
   });
   const [whatsappSabaragamuwaProvince, setWhatsappSabaragamuwaProvince] =
     useState({
       categoryName: "sabaragamuwaProvince",
-      checked: false,
-      count: 0,
+      checked: audience.whatsapp.regionCategories[6]?.checked,
+      count: audience.whatsapp.regionCategories[6]?.count,
     });
   const [whatsappNorthernWesternProvince, setWhatsappNorthernWesternProvince] =
     useState({
       categoryName: "northernWesternProvince",
-      checked: false,
-      count: 0,
+      checked: audience.whatsapp.regionCategories[7]?.checked,
+      count: audience.whatsapp.regionCategories[7]?.count,
     });
   const [whatsappNorthCentralProvince, setWhatsappNorthCentralProvince] =
     useState({
       categoryName: "northCentralProvince",
-      checked: false,
-      count: 0,
+      checked: audience.whatsapp.regionCategories[8]?.checked,
+      count: audience.whatsapp.regionCategories[8]?.count,
     });
 
   // set facebook province categories
   const [facebookWesternProvince, setFacebookWesternProvince] = useState({
     categoryName: "westernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[0]?.checked,
+    count: audience.facebook.regionCategories[0]?.count,
   });
   const [facebookCentralProvince, setFacebookCentralProvince] = useState({
     categoryName: "centralProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[1]?.checked,
+    count: audience.facebook.regionCategories[1]?.count,
   });
   const [facebookSouthernProvince, setFacebookSouthernProvince] = useState({
     categoryName: "southernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[2]?.checked,
+    count: audience.facebook.regionCategories[2]?.count,
   });
   const [facebookUwaProvince, setFacebookUwaProvince] = useState({
     categoryName: "uwaProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[3]?.checked,
+    count: audience.facebook.regionCategories[3]?.count,
   });
   const [facebookNothernProvince, setFacebookNothernProvince] = useState({
     categoryName: "nothernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[4]?.checked,
+    count: audience.facebook.regionCategories[4]?.count,
   });
   const [facebookEasternProvince, setFacebookEasternProvince] = useState({
     categoryName: "easternProvince",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.regionCategories[5]?.checked,
+    count: audience.facebook.regionCategories[5]?.count,
   });
   const [facebookSabaragamuwaProvince, setFacebookSabaragamuwaProvince] =
     useState({
       categoryName: "sabaragamuwaProvince",
-      checked: false,
-      count: 0,
+      checked: audience.facebook.regionCategories[6]?.checked,
+      count: audience.facebook.regionCategories[6]?.count,
     });
   const [facebookNorthernWesternProvince, setFacebookNorthernWesternProvince] =
     useState({
       categoryName: "northernWesternProvince",
-      checked: false,
-      count: 0,
+      checked: audience.facebook.regionCategories[7]?.checked,
+      count: audience.facebook.regionCategories[7]?.count,
     });
   const [facebookNorthCentralProvince, setFacebookNorthCentralProvince] =
     useState({
       categoryName: "northCentralProvince",
-      checked: false,
-      count: 0,
+      checked: audience.facebook.regionCategories[8]?.checked,
+      count: audience.facebook.regionCategories[8]?.count,
     });
 
   // set instagram province categories
   const [instagramWesternProvince, setInstagramWesternProvince] = useState({
     categoryName: "westernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[0]?.checked,
+    count: audience.instagram.regionCategories[0]?.count,
   });
   const [instagramCentralProvince, setInstagramCentralProvince] = useState({
     categoryName: "centralProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[1]?.checked,
+    count: audience.instagram.regionCategories[1]?.count,
   });
   const [instagramSouthernProvince, setInstagramSouthernProvince] = useState({
     categoryName: "southernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[2]?.checked,
+    count: audience.instagram.regionCategories[2]?.count,
   });
   const [instagramUwaProvince, setInstagramUwaProvince] = useState({
     categoryName: "uwaProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[3]?.checked,
+    count: audience.instagram.regionCategories[3]?.count,
   });
   const [instagramNothernProvince, setInstagramNothernProvince] = useState({
     categoryName: "nothernProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[4]?.checked,
+    count: audience.instagram.regionCategories[4]?.count,
   });
   const [instagramEasternProvince, setInstagramEasternProvince] = useState({
     categoryName: "easternProvince",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.regionCategories[5]?.checked,
+    count: audience.instagram.regionCategories[5]?.count,
   });
   const [instagramSabaragamuwaProvince, setInstagramSabaragamuwaProvince] =
     useState({
       categoryName: "sabaragamuwaProvince",
-      checked: false,
-      count: 0,
+      checked: audience.instagram.regionCategories[6]?.checked,
+      count: audience.instagram.regionCategories[6]?.count,
     });
-  const [instagramNorthernWesternProvince, setInstagramNorthernWesternProvince] =
-    useState({
-      categoryName: "northernWesternProvince",
-      checked: false,
-      count: 0,
-    });
+  const [
+    instagramNorthernWesternProvince,
+    setInstagramNorthernWesternProvince,
+  ] = useState({
+    categoryName: "northernWesternProvince",
+    checked: audience.instagram.regionCategories[7]?.checked,
+    count: audience.instagram.regionCategories[7]?.count,
+  });
   const [instagramNorthCentralProvince, setInstagramNorthCentralProvince] =
     useState({
       categoryName: "northCentralProvince",
-      checked: false,
-      count: 0,
+      checked: audience.instagram.regionCategories[8]?.checked,
+      count: audience.instagram.regionCategories[8]?.count,
     });
-
 
   // set whatsapp language categories
   const [whatsappSinhala, setWhatsappSinhala] = useState({
     categoryName: "sinhala",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.languageCategories[0]?.checked,
+    count: audience.whatsapp.languageCategories[0]?.count,
   });
   const [whatsappEnglish, setWhatsappEnglish] = useState({
     categoryName: "english",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.languageCategories[1]?.checked,
+    count: audience.whatsapp.languageCategories[1]?.count,
   });
   const [whatsappTamil, setWhatsappTamil] = useState({
     categoryName: "tamil",
-    checked: false,
-    count: 0,
+    checked: audience.whatsapp.languageCategories[2]?.checked,
+    count: audience.whatsapp.languageCategories[2]?.count,
   });
 
   // set facebook language categories
   const [facebookSinhala, setFacebookSinhala] = useState({
     categoryName: "sinhala",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.languageCategories[0]?.checked,
+    count: audience.facebook.languageCategories[0]?.count,
   });
   const [facebookEnglish, setFacebookEnglish] = useState({
     categoryName: "english",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.languageCategories[1]?.checked,
+    count: audience.facebook.languageCategories[1]?.count,
   });
   const [facebookTamil, setFacebookTamil] = useState({
     categoryName: "tamil",
-    checked: false,
-    count: 0,
+    checked: audience.facebook.languageCategories[2]?.checked,
+    count: audience.facebook.languageCategories[2]?.count,
   });
 
   // set instagram language categories
   const [instagramSinhala, setInstagramSinhala] = useState({
     categoryName: "sinhala",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.languageCategories[0]?.checked,
+    count: audience.instagram.languageCategories[0]?.count,
   });
   const [instagramEnglish, setInstagramEnglish] = useState({
     categoryName: "english",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.languageCategories[1]?.checked,
+    count: audience.instagram.languageCategories[1]?.count,
   });
   const [instagramTamil, setInstagramTamil] = useState({
     categoryName: "tamil",
-    checked: false,
-    count: 0,
+    checked: audience.instagram.languageCategories[2]?.checked,
+    count: audience.instagram.languageCategories[2]?.count,
   });
 
   // set whatsapp audience data changes storing arrays
   useEffect(() => {
-    setWhatsappAgeCategories([
-      whatsappAgeLevel_13_15,
-      whatsappAgeLevel_16_18,
-      whatsappAgeLevel_19_25,
-      whatsappAgeLevel_26_35,
-      whatsappAgeLevel_36_60,
-      whatsappAgeLevel_over_60,
-    ]);
-    setWhatsappEducationalCategories([
-      whatsappOl_cat,
-      whatsappAl_cat,
-      whatsappUndergraduate_cat,
-      whatsappPostgraduate_cat,
-      whatsappOtherEdu_cat,
-    ]);
-    setWhatsappProvinces([
-      whatsappWesternProvince,
-      whatsappCentralProvince,
-      whatsappSouthernProvince,
-      whatsappUwaProvince,
-      whatsappNothernProvince,
-      whatsappEasternProvince,
-      whatsappSabaragamuwaProvince,
-      whatsappNorthernWesternProvince,
-      whatsappNorthCentralProvince,
-    ]);
-    setWhatsappLanguageCategories([
-      whatsappSinhala,
-      whatsappEnglish,
-      whatsappTamil,
-    ]);
+    if (platforms.whatsapp.whatsAppChecked) {
+      setWhatsappAgeCategories([
+        whatsappAgeLevel_13_15,
+        whatsappAgeLevel_16_18,
+        whatsappAgeLevel_19_25,
+        whatsappAgeLevel_26_35,
+        whatsappAgeLevel_36_60,
+        whatsappAgeLevel_over_60,
+      ]);
+      setWhatsappEducationalCategories([
+        whatsappOl_cat,
+        whatsappAl_cat,
+        whatsappUndergraduate_cat,
+        whatsappPostgraduate_cat,
+        whatsappOtherEdu_cat,
+      ]);
+      setWhatsappProvinces([
+        whatsappWesternProvince,
+        whatsappCentralProvince,
+        whatsappSouthernProvince,
+        whatsappUwaProvince,
+        whatsappNothernProvince,
+        whatsappEasternProvince,
+        whatsappSabaragamuwaProvince,
+        whatsappNorthernWesternProvince,
+        whatsappNorthCentralProvince,
+      ]);
+      setWhatsappLanguageCategories([
+        whatsappSinhala,
+        whatsappEnglish,
+        whatsappTamil,
+      ]);
+    } else {
+      setWhatsappAgeCategories([]);
+      setWhatsappEducationalCategories([]);
+      setWhatsappProvinces([]);
+      setWhatsappLanguageCategories([]);
+    }
   }, [
     whatsappAgeLevel_13_15,
     whatsappAgeLevel_16_18,
@@ -485,37 +489,44 @@ function AudienceDetails() {
 
   // set facebook audience data changes storing arrays
   useEffect(() => {
-    setFacebookAgeCategories([
-      facebookAgeLevel_13_15,
-      facebookAgeLevel_16_18,
-      facebookAgeLevel_19_25,
-      facebookAgeLevel_26_35,
-      facebookAgeLevel_36_60,
-      facebookAgeLevel_over_60,
-    ]);
-    setFacebookEducationalCategories([
-      facebookOl_cat,
-      facebookAl_cat,
-      facebookUndergraduate_cat,
-      facebookPostgraduate_cat,
-      facebookOtherEdu_cat,
-    ]);
-    setFacebookProvinces([
-      facebookWesternProvince,
-      facebookCentralProvince,
-      facebookSouthernProvince,
-      facebookUwaProvince,
-      facebookNothernProvince,
-      facebookEasternProvince,
-      facebookSabaragamuwaProvince,
-      facebookNorthernWesternProvince,
-      facebookNorthCentralProvince,
-    ]);
-    setFacebookLanguageCategories([
-      facebookSinhala,
-      facebookEnglish,
-      facebookTamil,
-    ]);
+    if (platforms.facebook.facebookChecked) {
+      setFacebookAgeCategories([
+        facebookAgeLevel_13_15,
+        facebookAgeLevel_16_18,
+        facebookAgeLevel_19_25,
+        facebookAgeLevel_26_35,
+        facebookAgeLevel_36_60,
+        facebookAgeLevel_over_60,
+      ]);
+      setFacebookEducationalCategories([
+        facebookOl_cat,
+        facebookAl_cat,
+        facebookUndergraduate_cat,
+        facebookPostgraduate_cat,
+        facebookOtherEdu_cat,
+      ]);
+      setFacebookProvinces([
+        facebookWesternProvince,
+        facebookCentralProvince,
+        facebookSouthernProvince,
+        facebookUwaProvince,
+        facebookNothernProvince,
+        facebookEasternProvince,
+        facebookSabaragamuwaProvince,
+        facebookNorthernWesternProvince,
+        facebookNorthCentralProvince,
+      ]);
+      setFacebookLanguageCategories([
+        facebookSinhala,
+        facebookEnglish,
+        facebookTamil,
+      ]);
+    } else {
+      setFacebookAgeCategories([]);
+      setFacebookEducationalCategories([]);
+      setFacebookProvinces([]);
+      setFacebookLanguageCategories([]);
+    }
   }, [
     facebookAgeLevel_13_15,
     facebookAgeLevel_16_18,
@@ -545,37 +556,44 @@ function AudienceDetails() {
 
   // set instagram audience data changes storing arrays
   useEffect(() => {
-    setInstagramAgeCategories([
-      instagramAgeLevel_13_15,
-      instagramAgeLevel_16_18,
-      instagramAgeLevel_19_25,
-      instagramAgeLevel_26_35,
-      instagramAgeLevel_36_60,
-      instagramAgeLevel_over_60,
-    ]);
-    setInstagramEducationalCategories([
-      instagramOl_cat,
-      instagramAl_cat,
-      instagramUndergraduate_cat,
-      instagramPostgraduate_cat,
-      instagramOtherEdu_cat,
-    ]);
-    setInstagramProvinces([
-      instagramWesternProvince,
-      instagramCentralProvince,
-      instagramSouthernProvince,
-      instagramUwaProvince,
-      instagramNothernProvince,
-      instagramEasternProvince,
-      instagramSabaragamuwaProvince,
-      instagramNorthernWesternProvince,
-      instagramNorthCentralProvince,
-    ]);
-    setInstagramLanguageCategories([
-      instagramSinhala,
-      instagramEnglish,
-      instagramTamil,
-    ]);
+    if (platforms.instagram.instagramChecked) {
+      setInstagramAgeCategories([
+        instagramAgeLevel_13_15,
+        instagramAgeLevel_16_18,
+        instagramAgeLevel_19_25,
+        instagramAgeLevel_26_35,
+        instagramAgeLevel_36_60,
+        instagramAgeLevel_over_60,
+      ]);
+      setInstagramEducationalCategories([
+        instagramOl_cat,
+        instagramAl_cat,
+        instagramUndergraduate_cat,
+        instagramPostgraduate_cat,
+        instagramOtherEdu_cat,
+      ]);
+      setInstagramProvinces([
+        instagramWesternProvince,
+        instagramCentralProvince,
+        instagramSouthernProvince,
+        instagramUwaProvince,
+        instagramNothernProvince,
+        instagramEasternProvince,
+        instagramSabaragamuwaProvince,
+        instagramNorthernWesternProvince,
+        instagramNorthCentralProvince,
+      ]);
+      setInstagramLanguageCategories([
+        instagramSinhala,
+        instagramEnglish,
+        instagramTamil,
+      ]);
+    }else{
+      setInstagramAgeCategories([]);
+      setInstagramEducationalCategories([]);
+      setInstagramProvinces([]);
+      setInstagramLanguageCategories([]);
+    }
   }, [
     instagramAgeLevel_13_15,
     instagramAgeLevel_16_18,
@@ -648,7 +666,7 @@ function AudienceDetails() {
         malePercentage: audience.whatsapp.genderAudience.malePercentage,
         femalePercentage: audience.whatsapp.genderAudience.femalePercentage,
       },
-      ageCategories: [],
+      ageCategories: audience.whatsapp.ageCategories,
       educationCategories: [],
       regionCategories: [],
       languageCategories: [],
@@ -845,7 +863,10 @@ function AudienceDetails() {
                 <Typography>Male {whatsappMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setWhatsAppMaleViews} views={audience.whatsapp.genderAudience.malePercentage} />
+                  <DiscreteSlider
+                    setViews={setWhatsAppMaleViews}
+                    views={audience.whatsapp.genderAudience.malePercentage}
+                  />
                 </Box>
                 <Woman />
                 <Typography>{100 - whatsappMaleViews} Female</Typography>
@@ -909,7 +930,10 @@ function AudienceDetails() {
                 <Typography>Male {facebookMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setFacebookMaleViews}  views={audience.facebook.genderAudience.malePercentage}/>
+                  <DiscreteSlider
+                    setViews={setFacebookMaleViews}
+                    views={audience.facebook.genderAudience.malePercentage}
+                  />
                 </Box>
                 <Woman />
                 <Typography>{100 - facebookMaleViews} Female</Typography>
@@ -973,7 +997,10 @@ function AudienceDetails() {
                 <Typography>Male {instagramMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setInstagramMaleViews} views={audience.instagram.genderAudience.malePercentage}/>
+                  <DiscreteSlider
+                    setViews={setInstagramMaleViews}
+                    views={audience.instagram.genderAudience.malePercentage}
+                  />
                 </Box>
                 <Woman />
                 <Typography>{100 - instagramMaleViews} Female</Typography>
