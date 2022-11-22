@@ -11,7 +11,6 @@ import { useState } from "react";
 
 function CheckAndCountRow({categoryLabal, categoryText, amount, setAmount, categoryName}) {
   const [checked, setChecked] = useState(false);
-  // const [amount, setAmount] = useState(0);
 
   const handleOnChangeCheckbox = (event) => {
     setChecked(event.target.checked);
