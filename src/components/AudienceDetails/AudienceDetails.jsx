@@ -12,11 +12,21 @@ function AudienceDetails() {
   const [facebookMaleViews, setFacebookMaleViews] = useState(50);
   const [instagramMaleViews, setInstagramMaleViews] = useState(50);
 
+  // data arrays for whatsapp
   const [whatsappAgeCategories, setWhatsappAgeCategories] = useState([]);
   const [whatsappEducationCategories, setWhatsappEducationalCategories] =
     useState([]);
   const [whatsappProvinces, setWhatsappProvinces] = useState([]);
   const [whatsappLanguageCategories, setWhatsappLanguageCategories] = useState(
+    []
+  );
+
+  // data arrays for facebook
+  const [facebookAgeCategories, setFacebookAgeCategories] = useState([]);
+  const [facebookEducationCategories, setFacebookEducationalCategories] =
+    useState([]);
+  const [facebookProvinces, setFacebookProvinces] = useState([]);
+  const [facebookLanguageCategories, setFacebookLanguageCategories] = useState(
     []
   );
 
@@ -52,6 +62,39 @@ function AudienceDetails() {
     count: 0,
   });
 
+  // set facebook age categories
+  const [facebookAgeLevel_13_15, setFacebookAgeLevel_13_15] = useState({
+    categoryName: "ageLevel_13_15",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAgeLevel_16_18, setFacebookAgeLevel_16_18] = useState({
+    categoryName: "ageLevel_16_18",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAgeLevel_19_25, setFacebookAgeLevel_19_25] = useState({
+    categoryName: "ageLevel_19_25",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAgeLevel_26_35, setFacebookAgeLevel_26_35] = useState({
+    categoryName: "ageLevel_26_35",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAgeLevel_36_60, setFacebookAgeLevel_36_60] = useState({
+    categoryName: "ageLevel_36_60",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAgeLevel_over_60, setFacebookAgeLevel_over_60] = useState({
+    categoryName: "ageLevel_over_60",
+    checked: false,
+    count: 0,
+  });
+
+
   // set whatsapp educational categories
   const [whatsappOl_cat, setWhatsappOlCat] = useState({
     categoryName: "ol_cat",
@@ -78,6 +121,34 @@ function AudienceDetails() {
     checked: false,
     count: 0,
   });
+
+  // set facebook educational categories
+  const [facebookOl_cat, setFacebookOlCat] = useState({
+    categoryName: "ol_cat",
+    checked: false,
+    count: 0,
+  });
+  const [facebookAl_cat, setFacebookAlCat] = useState({
+    categoryName: "al_cat",
+    checked: false,
+    count: 0,
+  });
+  const [facebookUndergraduate_cat, setFacebookUndergraduateCat] = useState({
+    categoryName: "undergraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [facebookPostgraduate_cat, setFacebookPostgraduateCat] = useState({
+    categoryName: "postgraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [facebookOtherEdu_cat, setFacebookOtherEduCat] = useState({
+    categoryName: "otherEdu_cat",
+    checked: false,
+    count: 0,
+  });
+
 
   // set whatsapp province categories
   const [whatsappWesternProvince, setWhatsappWesternProvince] = useState({
@@ -129,6 +200,57 @@ function AudienceDetails() {
       count: 0,
     });
 
+  // set facebook province categories
+  const [facebookWesternProvince, setFacebookWesternProvince] = useState({
+    categoryName: "westernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookCentralProvince, setFacebookCentralProvince] = useState({
+    categoryName: "centralProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookSouthernProvince, setFacebookSouthernProvince] = useState({
+    categoryName: "southernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookUwaProvince, setFacebookUwaProvince] = useState({
+    categoryName: "uwaProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookNothernProvince, setFacebookNothernProvince] = useState({
+    categoryName: "nothernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookEasternProvince, setFacebookEasternProvince] = useState({
+    categoryName: "easternProvince",
+    checked: false,
+    count: 0,
+  });
+  const [facebookSabaragamuwaProvince, setFacebookSabaragamuwaProvince] =
+    useState({
+      categoryName: "sabaragamuwaProvince",
+      checked: false,
+      count: 0,
+    });
+  const [facebookNorthernWesternProvince, setFacebookNorthernWesternProvince] =
+    useState({
+      categoryName: "northernWesternProvince",
+      checked: false,
+      count: 0,
+    });
+  const [facebookNorthCentralProvince, setFacebookNorthCentralProvince] =
+    useState({
+      categoryName: "northCentralProvince",
+      checked: false,
+      count: 0,
+    });
+
+
   // set whatsapp language categories
   const [whatsappSinhala, setWhatsappSinhala] = useState({
     categoryName: "sinhala",
@@ -141,11 +263,29 @@ function AudienceDetails() {
     count: 0,
   });
   const [whatsappTamil, setWhatsappTamil] = useState({
-    categoryName: "sinhala",
+    categoryName: "tamil",
     checked: false,
     count: 0,
   });
 
+  // set facebook language categories
+  const [facebookSinhala, setFacebookSinhala] = useState({
+    categoryName: "sinhala",
+    checked: false,
+    count: 0,
+  });
+  const [facebookEnglish, setFacebookEnglish] = useState({
+    categoryName: "english",
+    checked: false,
+    count: 0,
+  });
+  const [facebookTamil, setFacebookTamil] = useState({
+    categoryName: "tamil",
+    checked: false,
+    count: 0,
+  });
+
+  // set whatsapp audience data changes storing arrays
   useEffect(() => {
     setWhatsappAgeCategories([
       whatsappAgeLevel_13_15,
@@ -203,6 +343,66 @@ function AudienceDetails() {
     whatsappSinhala,
     whatsappEnglish,
     whatsappTamil,
+  ]);
+
+  // set facebook audience data changes storing arrays
+  useEffect(() => {
+    setFacebookAgeCategories([
+      facebookAgeLevel_13_15,
+      facebookAgeLevel_16_18,
+      facebookAgeLevel_19_25,
+      facebookAgeLevel_26_35,
+      facebookAgeLevel_36_60,
+      facebookAgeLevel_over_60,
+    ]);
+    setFacebookEducationalCategories([
+      facebookOl_cat,
+      facebookAl_cat,
+      facebookUndergraduate_cat,
+      facebookPostgraduate_cat,
+      facebookOtherEdu_cat,
+    ]);
+    setFacebookProvinces([
+      facebookWesternProvince,
+      facebookCentralProvince,
+      facebookSouthernProvince,
+      facebookUwaProvince,
+      facebookNothernProvince,
+      facebookEasternProvince,
+      facebookSabaragamuwaProvince,
+      facebookNorthernWesternProvince,
+      facebookNorthCentralProvince,
+    ]);
+    setFacebookLanguageCategories([
+      facebookSinhala,
+      facebookEnglish,
+      facebookTamil,
+    ]);
+  }, [
+    facebookAgeLevel_13_15,
+    facebookAgeLevel_16_18,
+    facebookAgeLevel_19_25,
+    facebookAgeLevel_26_35,
+    facebookAgeLevel_36_60,
+    facebookAgeLevel_over_60,
+    facebookOl_cat,
+    facebookAl_cat,
+    facebookUndergraduate_cat,
+    facebookPostgraduate_cat,
+    facebookOtherEdu_cat,
+    facebookWesternProvince,
+    facebookWesternProvince,
+    facebookCentralProvince,
+    facebookSouthernProvince,
+    facebookUwaProvince,
+    facebookNothernProvince,
+    facebookEasternProvince,
+    facebookSabaragamuwaProvince,
+    facebookNorthernWesternProvince,
+    facebookNorthCentralProvince,
+    facebookSinhala,
+    facebookEnglish,
+    facebookTamil,
   ]);
 
   const { platforms } = useSelector((state) => state.savePromoter);
@@ -294,6 +494,10 @@ function AudienceDetails() {
           malePercentage: facebookGenderPercentages.male,
           femalePercentage: facebookGenderPercentages.female,
         },
+        ageCategories: facebookAgeCategories,
+        educationCategories: facebookEducationCategories,
+        regionCategories: facebookProvinces,
+        languageCategories: facebookLanguageCategories,
       },
       instagram: {
         genderAudience: {
@@ -307,8 +511,13 @@ function AudienceDetails() {
     facebookGenderPercentages,
     instagramGenderPercentages,
     whatsappAgeCategories,
+    whatsappEducationCategories,
     whatsappProvinces,
     whatsappLanguageCategories,
+    facebookAgeCategories,
+    facebookEducationCategories,
+    facebookProvinces,
+    facebookLanguageCategories,
   ]);
 
   const dispatch = useDispatch();
@@ -648,26 +857,44 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"13 - 15 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_13_15}
+              amount={facebookAgeLevel_13_15}
+              categoryName={"ageLevel_13_15"}
             />
             <CheckAndCountRow
               categoryLabal={"16 - 18 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_16_18}
+              amount={facebookAgeLevel_16_18}
+              categoryName={"ageLevel_16_18"}
             />
             <CheckAndCountRow
               categoryLabal={"19 - 25 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_19_25}
+              amount={facebookAgeLevel_19_25}
+              categoryName={"ageLevel_19_25"}
             />
             <CheckAndCountRow
               categoryLabal={"26 - 35 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_26_35}
+              amount={facebookAgeLevel_26_35}
+              categoryName={"ageLevel_26_35"}
             />
             <CheckAndCountRow
               categoryLabal={"36 - 60 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_36_60}
+              amount={facebookAgeLevel_36_60}
+              categoryName={"ageLevel_36_60"}
             />
             <CheckAndCountRow
               categoryLabal={"Over 60 years"}
               categoryText={"age category"}
+              setAmount={setFacebookAgeLevel_over_60}
+              amount={facebookAgeLevel_over_60}
+              categoryName={"ageLevel_over_60"}
             />
           </Box>
         )}
@@ -780,22 +1007,37 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Ordinary Level"}
               categoryText={"educational category"}
+              setAmount={setFacebookOlCat}
+              amount={facebookOl_cat}
+              categoryName={"ol_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Advanced Level"}
               categoryText={"educational category"}
+              setAmount={setFacebookAlCat}
+              amount={facebookAl_cat}
+              categoryName={"al_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Undergraduates"}
               categoryText={"educational category"}
+              setAmount={setFacebookUndergraduateCat}
+              amount={facebookUndergraduate_cat}
+              categoryName={"undergraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Postgraduates"}
               categoryText={"educational category"}
+              setAmount={setFacebookPostgraduateCat}
+              amount={facebookPostgraduate_cat}
+              categoryName={"postgraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Others"}
               categoryText={"educational category"}
+              setAmount={setFacebookOtherEduCat}
+              amount={facebookOtherEdu_cat}
+              categoryName={"otherEdu_cat"}
             />
           </Box>
         )}
@@ -933,38 +1175,65 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Western Province"}
               categoryText={"province"}
+              setAmount={setFacebookWesternProvince}
+              amount={facebookWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"Central Province"}
               categoryText={"province"}
+              setAmount={setFacebookCentralProvince}
+              amount={facebookCentralProvince}
+              categoryName={"central"}
             />
             <CheckAndCountRow
               categoryLabal={"Southern Province"}
               categoryText={"province"}
+              setAmount={setFacebookSouthernProvince}
+              amount={facebookSouthernProvince}
+              categoryName={"southern"}
             />
             <CheckAndCountRow
               categoryLabal={"Uva Province"}
               categoryText={"province"}
+              setAmount={setFacebookUwaProvince}
+              amount={facebookUwaProvince}
+              categoryName={"uwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Nothern Province"}
               categoryText={"province"}
+              setAmount={setFacebookNothernProvince}
+              amount={facebookNothernProvince}
+              categoryName={"nothern"}
             />
             <CheckAndCountRow
               categoryLabal={"Eastern Province"}
               categoryText={"province"}
+              setAmount={setFacebookEasternProvince}
+              amount={facebookEasternProvince}
+              categoryName={"eastern"}
             />
             <CheckAndCountRow
               categoryLabal={"Sabaragamuwa Province"}
               categoryText={"province"}
+              setAmount={setFacebookSabaragamuwaProvince}
+              amount={facebookSabaragamuwaProvince}
+              categoryName={"sabaragamuwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Northern Western Province"}
               categoryText={"province"}
+              setAmount={setFacebookNorthernWesternProvince}
+              amount={facebookNorthernWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"North Central Province"}
               categoryText={"province"}
+              setAmount={setFacebookNorthCentralProvince}
+              amount={facebookNorthCentralProvince}
+              categoryName={"northCentral"}
             />
           </Box>
         )}
@@ -1075,14 +1344,23 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Sinhala"}
               categoryText={"language users"}
+              setAmount={setFacebookSinhala}
+              amount={facebookSinhala}
+              categoryName={"sinhala"}
             />
             <CheckAndCountRow
               categoryLabal={"Tamil"}
               categoryText={"language users"}
+              setAmount={setFacebookTamil}
+              amount={facebookTamil}
+              categoryName={"tamil"}
             />
             <CheckAndCountRow
               categoryLabal={"English"}
               categoryText={"language users"}
+              setAmount={setFacebookEnglish}
+              amount={facebookEnglish}
+              categoryName={"english"}
             />
           </Box>
         )}
