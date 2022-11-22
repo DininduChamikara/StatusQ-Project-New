@@ -8,7 +8,10 @@ import CheckAndCountRow from "../CheckAndCountRow/CheckAndCountRow";
 import DiscreteSlider from "../DiscreteSlider/DiscreteSlider";
 
 function AudienceDetails() {
-  const [whatsappMaleViews, setWhatsAppMaleViews] = useState(50);
+
+  const {audience} = useSelector((state) => state.savePromoter)
+
+  const [whatsappMaleViews, setWhatsAppMaleViews] = useState();
   const [facebookMaleViews, setFacebookMaleViews] = useState(50);
   const [instagramMaleViews, setInstagramMaleViews] = useState(50);
 
@@ -27,6 +30,15 @@ function AudienceDetails() {
     useState([]);
   const [facebookProvinces, setFacebookProvinces] = useState([]);
   const [facebookLanguageCategories, setFacebookLanguageCategories] = useState(
+    []
+  );
+
+  // data arrays for instagram
+  const [instagramAgeCategories, setInstagramAgeCategories] = useState([]);
+  const [instagramEducationCategories, setInstagramEducationalCategories] =
+    useState([]);
+  const [instagramProvinces, setInstagramProvinces] = useState([]);
+  const [instagramLanguageCategories, setInstagramLanguageCategories] = useState(
     []
   );
 
@@ -94,6 +106,38 @@ function AudienceDetails() {
     count: 0,
   });
 
+   // set instagram age categories
+   const [instagramAgeLevel_13_15, setInstagramAgeLevel_13_15] = useState({
+    categoryName: "ageLevel_13_15",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAgeLevel_16_18, setInstagramAgeLevel_16_18] = useState({
+    categoryName: "ageLevel_16_18",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAgeLevel_19_25, setInstagramAgeLevel_19_25] = useState({
+    categoryName: "ageLevel_19_25",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAgeLevel_26_35, setInstagramAgeLevel_26_35] = useState({
+    categoryName: "ageLevel_26_35",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAgeLevel_36_60, setInstagramAgeLevel_36_60] = useState({
+    categoryName: "ageLevel_36_60",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAgeLevel_over_60, setInstagramAgeLevel_over_60] = useState({
+    categoryName: "ageLevel_over_60",
+    checked: false,
+    count: 0,
+  });
+
 
   // set whatsapp educational categories
   const [whatsappOl_cat, setWhatsappOlCat] = useState({
@@ -144,6 +188,33 @@ function AudienceDetails() {
     count: 0,
   });
   const [facebookOtherEdu_cat, setFacebookOtherEduCat] = useState({
+    categoryName: "otherEdu_cat",
+    checked: false,
+    count: 0,
+  });
+
+  // set instagram educational categories
+  const [instagramOl_cat, setInstagramOlCat] = useState({
+    categoryName: "ol_cat",
+    checked: false,
+    count: 0,
+  });
+  const [instagramAl_cat, setInstagramAlCat] = useState({
+    categoryName: "al_cat",
+    checked: false,
+    count: 0,
+  });
+  const [instagramUndergraduate_cat, setInstagramUndergraduateCat] = useState({
+    categoryName: "undergraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [instagramPostgraduate_cat, setInstagramPostgraduateCat] = useState({
+    categoryName: "postgraduate_cat",
+    checked: false,
+    count: 0,
+  });
+  const [instagramOtherEdu_cat, setInstagramOtherEduCat] = useState({
     categoryName: "otherEdu_cat",
     checked: false,
     count: 0,
@@ -250,6 +321,56 @@ function AudienceDetails() {
       count: 0,
     });
 
+  // set instagram province categories
+  const [instagramWesternProvince, setInstagramWesternProvince] = useState({
+    categoryName: "westernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramCentralProvince, setInstagramCentralProvince] = useState({
+    categoryName: "centralProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramSouthernProvince, setInstagramSouthernProvince] = useState({
+    categoryName: "southernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramUwaProvince, setInstagramUwaProvince] = useState({
+    categoryName: "uwaProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramNothernProvince, setInstagramNothernProvince] = useState({
+    categoryName: "nothernProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramEasternProvince, setInstagramEasternProvince] = useState({
+    categoryName: "easternProvince",
+    checked: false,
+    count: 0,
+  });
+  const [instagramSabaragamuwaProvince, setInstagramSabaragamuwaProvince] =
+    useState({
+      categoryName: "sabaragamuwaProvince",
+      checked: false,
+      count: 0,
+    });
+  const [instagramNorthernWesternProvince, setInstagramNorthernWesternProvince] =
+    useState({
+      categoryName: "northernWesternProvince",
+      checked: false,
+      count: 0,
+    });
+  const [instagramNorthCentralProvince, setInstagramNorthCentralProvince] =
+    useState({
+      categoryName: "northCentralProvince",
+      checked: false,
+      count: 0,
+    });
+
 
   // set whatsapp language categories
   const [whatsappSinhala, setWhatsappSinhala] = useState({
@@ -280,6 +401,23 @@ function AudienceDetails() {
     count: 0,
   });
   const [facebookTamil, setFacebookTamil] = useState({
+    categoryName: "tamil",
+    checked: false,
+    count: 0,
+  });
+
+  // set instagram language categories
+  const [instagramSinhala, setInstagramSinhala] = useState({
+    categoryName: "sinhala",
+    checked: false,
+    count: 0,
+  });
+  const [instagramEnglish, setInstagramEnglish] = useState({
+    categoryName: "english",
+    checked: false,
+    count: 0,
+  });
+  const [instagramTamil, setInstagramTamil] = useState({
     categoryName: "tamil",
     checked: false,
     count: 0,
@@ -405,6 +543,66 @@ function AudienceDetails() {
     facebookTamil,
   ]);
 
+  // set instagram audience data changes storing arrays
+  useEffect(() => {
+    setInstagramAgeCategories([
+      instagramAgeLevel_13_15,
+      instagramAgeLevel_16_18,
+      instagramAgeLevel_19_25,
+      instagramAgeLevel_26_35,
+      instagramAgeLevel_36_60,
+      instagramAgeLevel_over_60,
+    ]);
+    setInstagramEducationalCategories([
+      instagramOl_cat,
+      instagramAl_cat,
+      instagramUndergraduate_cat,
+      instagramPostgraduate_cat,
+      instagramOtherEdu_cat,
+    ]);
+    setInstagramProvinces([
+      instagramWesternProvince,
+      instagramCentralProvince,
+      instagramSouthernProvince,
+      instagramUwaProvince,
+      instagramNothernProvince,
+      instagramEasternProvince,
+      instagramSabaragamuwaProvince,
+      instagramNorthernWesternProvince,
+      instagramNorthCentralProvince,
+    ]);
+    setInstagramLanguageCategories([
+      instagramSinhala,
+      instagramEnglish,
+      instagramTamil,
+    ]);
+  }, [
+    instagramAgeLevel_13_15,
+    instagramAgeLevel_16_18,
+    instagramAgeLevel_19_25,
+    instagramAgeLevel_26_35,
+    instagramAgeLevel_36_60,
+    instagramAgeLevel_over_60,
+    instagramOl_cat,
+    instagramAl_cat,
+    instagramUndergraduate_cat,
+    instagramPostgraduate_cat,
+    instagramOtherEdu_cat,
+    instagramWesternProvince,
+    instagramWesternProvince,
+    instagramCentralProvince,
+    instagramSouthernProvince,
+    instagramUwaProvince,
+    instagramNothernProvince,
+    instagramEasternProvince,
+    instagramSabaragamuwaProvince,
+    instagramNorthernWesternProvince,
+    instagramNorthCentralProvince,
+    instagramSinhala,
+    instagramEnglish,
+    instagramTamil,
+  ]);
+
   const { platforms } = useSelector((state) => state.savePromoter);
 
   const [whatsappGenderPercentages, setWhatsappGenderPercentages] = useState({
@@ -447,8 +645,8 @@ function AudienceDetails() {
   const [promoterAudienceInfo, setPromoterAudienceInfo] = useState({
     whatsapp: {
       genderAudience: {
-        malePercentage: 0,
-        femalePercentage: 0,
+        malePercentage: audience.whatsapp.genderAudience.malePercentage,
+        femalePercentage: audience.whatsapp.genderAudience.femalePercentage,
       },
       ageCategories: [],
       educationCategories: [],
@@ -477,6 +675,7 @@ function AudienceDetails() {
     },
   });
 
+  // set promoter audience info object
   useEffect(() => {
     setPromoterAudienceInfo({
       whatsapp: {
@@ -504,6 +703,10 @@ function AudienceDetails() {
           malePercentage: instagramGenderPercentages.male,
           femalePercentage: instagramGenderPercentages.female,
         },
+        ageCategories: instagramAgeCategories,
+        educationCategories: instagramEducationCategories,
+        regionCategories: instagramProvinces,
+        languageCategories: instagramLanguageCategories,
       },
     });
   }, [
@@ -518,6 +721,10 @@ function AudienceDetails() {
     facebookEducationCategories,
     facebookProvinces,
     facebookLanguageCategories,
+    instagramAgeCategories,
+    instagramEducationCategories,
+    instagramProvinces,
+    instagramLanguageCategories,
   ]);
 
   const dispatch = useDispatch();
@@ -638,7 +845,7 @@ function AudienceDetails() {
                 <Typography>Male {whatsappMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setWhatsAppMaleViews} />
+                  <DiscreteSlider setViews={setWhatsAppMaleViews} views={audience.whatsapp.genderAudience.malePercentage} />
                 </Box>
                 <Woman />
                 <Typography>{100 - whatsappMaleViews} Female</Typography>
@@ -702,7 +909,7 @@ function AudienceDetails() {
                 <Typography>Male {facebookMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setFacebookMaleViews} />
+                  <DiscreteSlider setViews={setFacebookMaleViews}  views={audience.facebook.genderAudience.malePercentage}/>
                 </Box>
                 <Woman />
                 <Typography>{100 - facebookMaleViews} Female</Typography>
@@ -766,7 +973,7 @@ function AudienceDetails() {
                 <Typography>Male {instagramMaleViews}</Typography>
                 <Man />
                 <Box sx={{ mt: 1, mx: 1 }}>
-                  <DiscreteSlider setViews={setInstagramMaleViews} />
+                  <DiscreteSlider setViews={setInstagramMaleViews} views={audience.instagram.genderAudience.malePercentage}/>
                 </Box>
                 <Woman />
                 <Typography>{100 - instagramMaleViews} Female</Typography>
@@ -908,26 +1115,44 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"13 - 15 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_13_15}
+              amount={instagramAgeLevel_13_15}
+              categoryName={"ageLevel_13_15"}
             />
             <CheckAndCountRow
               categoryLabal={"16 - 18 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_16_18}
+              amount={instagramAgeLevel_16_18}
+              categoryName={"ageLevel_16_18"}
             />
             <CheckAndCountRow
               categoryLabal={"19 - 25 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_19_25}
+              amount={instagramAgeLevel_19_25}
+              categoryName={"ageLevel_19_25"}
             />
             <CheckAndCountRow
               categoryLabal={"26 - 35 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_26_35}
+              amount={instagramAgeLevel_26_35}
+              categoryName={"ageLevel_26_35"}
             />
             <CheckAndCountRow
               categoryLabal={"36 - 60 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_36_60}
+              amount={instagramAgeLevel_36_60}
+              categoryName={"ageLevel_36_60"}
             />
             <CheckAndCountRow
               categoryLabal={"Over 60 years"}
               categoryText={"age category"}
+              setAmount={setInstagramAgeLevel_over_60}
+              amount={instagramAgeLevel_over_60}
+              categoryName={"ageLevel_over_60"}
             />
           </Box>
         )}
@@ -1051,22 +1276,37 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Ordinary Level"}
               categoryText={"educational category"}
+              setAmount={setInstagramOlCat}
+              amount={instagramOl_cat}
+              categoryName={"ol_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Advanced Level"}
               categoryText={"educational category"}
+              setAmount={setInstagramAlCat}
+              amount={instagramAl_cat}
+              categoryName={"al_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Undergraduates"}
               categoryText={"educational category"}
+              setAmount={setInstagramUndergraduateCat}
+              amount={instagramUndergraduate_cat}
+              categoryName={"undergraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Postgraduates"}
               categoryText={"educational category"}
+              setAmount={setInstagramPostgraduateCat}
+              amount={instagramPostgraduate_cat}
+              categoryName={"postgraduate_cat"}
             />
             <CheckAndCountRow
               categoryLabal={"Others"}
               categoryText={"educational category"}
+              setAmount={setInstagramOtherEduCat}
+              amount={instagramOtherEdu_cat}
+              categoryName={"otherEdu_cat"}
             />
           </Box>
         )}
@@ -1247,38 +1487,65 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Western Province"}
               categoryText={"province"}
+              setAmount={setInstagramWesternProvince}
+              amount={instagramWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"Central Province"}
               categoryText={"province"}
+              setAmount={setInstagramCentralProvince}
+              amount={instagramCentralProvince}
+              categoryName={"central"}
             />
             <CheckAndCountRow
               categoryLabal={"Southern Province"}
               categoryText={"province"}
+              setAmount={setInstagramSouthernProvince}
+              amount={instagramSouthernProvince}
+              categoryName={"southern"}
             />
             <CheckAndCountRow
               categoryLabal={"Uva Province"}
               categoryText={"province"}
+              setAmount={setInstagramUwaProvince}
+              amount={instagramUwaProvince}
+              categoryName={"uwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Nothern Province"}
               categoryText={"province"}
+              setAmount={setInstagramNothernProvince}
+              amount={instagramNothernProvince}
+              categoryName={"nothern"}
             />
             <CheckAndCountRow
               categoryLabal={"Eastern Province"}
               categoryText={"province"}
+              setAmount={setInstagramEasternProvince}
+              amount={instagramEasternProvince}
+              categoryName={"eastern"}
             />
             <CheckAndCountRow
               categoryLabal={"Sabaragamuwa Province"}
               categoryText={"province"}
+              setAmount={setInstagramSabaragamuwaProvince}
+              amount={instagramSabaragamuwaProvince}
+              categoryName={"sabaragamuwa"}
             />
             <CheckAndCountRow
               categoryLabal={"Northern Western Province"}
               categoryText={"province"}
+              setAmount={setInstagramNorthernWesternProvince}
+              amount={instagramNorthernWesternProvince}
+              categoryName={"western"}
             />
             <CheckAndCountRow
               categoryLabal={"North Central Province"}
               categoryText={"province"}
+              setAmount={setInstagramNorthCentralProvince}
+              amount={instagramNorthCentralProvince}
+              categoryName={"northCentral"}
             />
           </Box>
         )}
@@ -1374,14 +1641,23 @@ function AudienceDetails() {
             <CheckAndCountRow
               categoryLabal={"Sinhala"}
               categoryText={"language users"}
+              setAmount={setInstagramSinhala}
+              amount={instagramSinhala}
+              categoryName={"sinhala"}
             />
             <CheckAndCountRow
               categoryLabal={"Tamil"}
               categoryText={"language users"}
+              setAmount={setInstagramTamil}
+              amount={instagramTamil}
+              categoryName={"tamil"}
             />
             <CheckAndCountRow
               categoryLabal={"English"}
               categoryText={"language users"}
+              setAmount={setInstagramEnglish}
+              amount={instagramEnglish}
+              categoryName={"english"}
             />
           </Box>
         )}
