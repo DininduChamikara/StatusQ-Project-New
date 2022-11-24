@@ -422,7 +422,7 @@ function AudienceDetails() {
 
   // set whatsapp audience data changes storing arrays
   useEffect(() => {
-    if (platforms.whatsapp.whatsAppChecked) {
+    if (platforms.whatsapp.whatsappChecked) {
       setWhatsappAgeCategories([
         whatsappAgeLevel_13_15,
         whatsappAgeLevel_16_18,
@@ -639,7 +639,7 @@ function AudienceDetails() {
   });
 
   useEffect(() => {
-    if (platforms.whatsapp.whatsAppChecked) {
+    if (platforms.whatsapp.whatsappChecked) {
       setWhatsappGenderPercentages({
         male: whatsappMaleViews,
         female: 100 - whatsappMaleViews,
@@ -808,7 +808,7 @@ function AudienceDetails() {
         </Box>
 
         {/* gender percentages */}
-        {platforms.whatsapp.whatsAppChecked && (
+        {platforms.whatsapp.whatsappChecked && (
           <Box
             sx={{
               display: "flex",
@@ -1031,7 +1031,7 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        {platforms.whatsapp.whatsAppChecked && (
+        {platforms.whatsapp.whatsappChecked && (
           <Box>
             <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
               On WhatsApp,
@@ -1206,7 +1206,7 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        {platforms.whatsapp.whatsAppChecked && (
+        {platforms.whatsapp.whatsappChecked && (
           <Box>
             <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
               On WhatsApp,
@@ -1361,7 +1361,7 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        {platforms.whatsapp.whatsAppChecked && (
+        {platforms.whatsapp.whatsappChecked && (
           <Box>
             <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
               On WhatsApp,
@@ -1599,7 +1599,7 @@ function AudienceDetails() {
           </Typography>
         </Box>
 
-        {platforms.whatsapp.whatsAppChecked && (
+        {platforms.whatsapp.whatsappChecked && (
           <Box>
             <Typography sx={{ color: "#336cad", ml: 30, mt: 3 }}>
               On WhatsApp,

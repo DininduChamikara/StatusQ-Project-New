@@ -1,11 +1,22 @@
-import { Box, Button, Paper, Step, StepLabel, Stepper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  Step,
+  StepLabel,
+  Stepper,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AudienceDetails from "../AudienceDetails/AudienceDetails";
 import PersonalInfoForm from "../PersonalInfoFprm/PersonalInfoForm";
 import PromoterDeclaration from "../PromoterDeclaration/PromoterDeclaration";
-import {promoterActiveStep} from "../../store/reducers/activeStep.slice";
+import { promoterActiveStep } from "../../store/reducers/activeStep.slice";
+import { useState } from "react";
 import { useEffect } from "react";
+import PromoterService from "../../api/services/PromoterService";
+
 
 const steps = [
   "Personal Information",
@@ -14,7 +25,6 @@ const steps = [
 ];
 
 function PromoterSurveyStepper() {
-
   const dispatch = useDispatch();
 
   const [activeStep, setActiveStep] = React.useState(0);
@@ -29,7 +39,231 @@ function PromoterSurveyStepper() {
     return skipped.has(step);
   };
 
+  const { userId } = useSelector((state) => state.login);
+  const {
+    fullName,
+    nameWithInit,
+    dob,
+    gender,
+    nic,
+    address,
+    postcode,
+    mobile,
+    province,
+    language,
+    educationalCategory,
+    platforms,
+    audience,
+  } = useSelector((state) => state.savePromoter);
+
+  const [socialMediaList, setSocialMediaList] = useState([]);
+  const [promoterGenderAudienceList, setPromoterGenderAudienceList] = useState(
+    []
+  );
+
+  const [promoterAudienceCategoryList, setPromoterAudienceCategoryList] =
+    useState([]);
+
+  const [categoryObj, setCategoryObj] = useState({
+    platform: "",
+    categoryType: "",
+    category: "",
+    count: 0,
+  });
+
+  useEffect(() => {
+    setSocialMediaList([
+      {
+        platform: "whatsapp",
+        accessibleViewsCount: platforms.whatsapp.minAccessibleViews,
+      },
+      {
+        platform: "facebook",
+        accessibleViewsCount: platforms.facebook.minAccessibleViews,
+      },
+      {
+        platform: "instagram",
+        accessibleViewsCount: platforms.instagram.minAccessibleViews,
+      },
+    ]);
+
+    setPromoterGenderAudienceList([
+      {
+        platform: "whatsapp",
+        malePercentage: audience.whatsapp.genderAudience.malePercentage,
+        femalePercentage: audience.whatsapp.genderAudience.femalePercentage,
+      },
+      {
+        platform: "facebook",
+        malePercentage: audience.facebook.genderAudience.malePercentage,
+        femalePercentage: audience.facebook.genderAudience.femalePercentage,
+      },
+      {
+        platform: "instagram",
+        malePercentage: audience.instagram.genderAudience.malePercentage,
+        femalePercentage: audience.instagram.genderAudience.femalePercentage,
+      },
+    ]);
+
+    // setPromoterAudienceCategoryList for whatsapp on age
+    audience.whatsapp.ageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for whatsapp on education
+    audience.whatsapp.educationCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for facebook on age
+    audience.facebook.ageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+  }, [audience]);
+
+  // console.log("obj", promoterAudienceCategoryList);
+
+  // promoterInfo request body
+  const [promoterInfo, setPromoterInfo] = useState({
+    userId: userId,
+    fullName: fullName,
+    nameWithInit: nameWithInit,
+    dob: dob,
+    gender: gender,
+    age: null,
+    nic: nic,
+    address: address,
+    postcode: postcode,
+    province: province,
+    language: language,
+    educationalCategory: educationalCategory,
+    socialMediaList: socialMediaList,
+    promoterGenderAudienceList: promoterGenderAudienceList,
+    promoterAudienceCategoryList: promoterAudienceCategoryList,
+    state: "ACTIVE",
+  });
+
+  // testing
+  useEffect(() => {
+    setPromoterInfo({
+      userId: userId,
+      fullName: fullName,
+      nameWithInit: nameWithInit,
+      dob: dob,
+      gender: gender,
+      age: null,
+      nic: nic,
+      address: address,
+      postcode: postcode,
+      province: province,
+      language: language,
+      educationalCategory: educationalCategory,
+      socialMediaList: socialMediaList,
+      promoterGenderAudienceList: promoterGenderAudienceList,
+      promoterAudienceCategoryList: promoterAudienceCategoryList,
+      state: "ACTIVE",
+    });
+  }, [promoterAudienceCategoryList]);
+
+  console.log(promoterInfo);
+
+  const savePromoter = () => {
+    let apiCall = PromoterService.savePromoter(promoterInfo);
+    apiCall.then((response) => {
+      if (response) {
+        response = response.data;
+        console.log("response is ", response)
+      }
+    });
+  };
+
   const handleNext = () => {
+    if (activeStep === steps.length - 1) {
+      console.log("Activity Finished");
+      savePromoter();
+    }
+
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -38,7 +272,6 @@ function PromoterSurveyStepper() {
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
-
   };
 
   useEffect(() => {
@@ -46,8 +279,8 @@ function PromoterSurveyStepper() {
       promoterActiveStep({
         promoterStepperActive: activeStep,
       })
-    )
-  }, [activeStep])
+    );
+  }, [activeStep]);
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
