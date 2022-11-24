@@ -24,7 +24,7 @@ function PersonalInfoForm() {
   const {fullName, nameWithInit, dob, gender, nic, address, postcode, mobile, province, language, educationalCategory, platforms} = useSelector((state) => state.savePromoter)
 
   const [state, setState] = useState({
-    whatsapp: platforms.whatsapp.whatsAppChecked,
+    whatsapp: platforms.whatsapp.whatsappChecked,
     facebook: platforms.facebook.facebookChecked,
     instagram: platforms.instagram.instagramChecked,
   });
@@ -71,7 +71,7 @@ function PersonalInfoForm() {
   const [promoterAccessibleData, setPromoterAccessibleData] = useState({
     platforms: {
       whatsapp: {
-        whatsAppChecked: false,
+        whatsappChecked: false,
         minAccessibleViews: 0,
       },
       facebook: {
@@ -89,7 +89,7 @@ function PersonalInfoForm() {
     setPromoterAccessibleData({
       platforms: {
         whatsapp: {
-          whatsAppChecked: state.whatsapp,
+          whatsappChecked: state.whatsapp,
           minAccessibleViews: promoterPersonalInfo.whatsAppMinViews,
         },
         facebook: {
