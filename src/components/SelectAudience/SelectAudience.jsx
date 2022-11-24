@@ -12,10 +12,15 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCampaignAudienceDetails } from "../../store/reducers/saveCampaign";
 
 function SelectAudience() {
+  // const {platform} = useSelector((state) => state.saveCampaign);
+
   const [state, setState] = React.useState({
+    platform: null,
     schoolCat: false,
     universityCat: false,
     olCat: false,
@@ -45,8 +50,8 @@ function SelectAudience() {
     sinhala: false,
     tamil: false,
     english: false,
-    male:false,
-    female:false,
+    male: false,
+    female: false,
   });
 
   const handleChange = (event) => {
@@ -57,6 +62,7 @@ function SelectAudience() {
   };
 
   const {
+    platform,
     schoolCat,
     universityCat,
     olCat,
@@ -90,6 +96,91 @@ function SelectAudience() {
     female,
   } = state;
 
+  useEffect(() => {
+    if (state.schoolCat === false) {
+      setState({
+        ...state,
+        olCat: false,
+        alCat: false,
+      });
+    }
+    if (state.alCat === false) {
+      setState({
+        ...state,
+        subMaths: false,
+        subBio: false,
+        subCommerce: false,
+        subArt: false,
+        subTechnology: false,
+      });
+    }
+    if (state.universityCat === false) {
+      setState({
+        ...state,
+        undergraduateCat: false,
+        postgraduateCat: false,
+      });
+    }
+  }, [state.schoolCat, state.alCat, state.universityCat]);
+
+  const handleOnChangePlatform = (event) => {
+    setState({
+      ...state,
+      platform: event.target.value,
+    });
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      changeCampaignAudienceDetails({
+        platform: state.platform,
+        education: {
+          olCat: state.olCat,
+          alCat: state.alCat,
+          alSubCat: {
+            subMaths: state.subMaths,
+            subBio: state.subBio,
+            subCommerce: state.subCommerce,
+            subArt: state.subArt,
+            subTechnology: state.subTechnology,
+          },
+          undergraduateCat: state.undergraduateCat,
+          postgraduateCat: state.postgraduateCat,
+        },
+        age: {
+          ageGroup_13_15: state.ageGroup_13_15,
+          ageGroup_16_18: state.ageGroup_16_18,
+          ageGroup_19_25: state.ageGroup_19_25,
+          ageGroup_26_35: state.ageGroup_26_35,
+          ageGroup_36_60: state.ageGroup_36_60,
+          ageGroup_over_60: state.ageGroup_over_60,
+        },
+        region: {
+          western: state.western,
+          uva: state.uva,
+          sabaragamuwa: state.sabaragamuwa,
+          central: state.central,
+          nothern: state.nothern,
+          northernWestern: state.northernWestern,
+          southern: state.southern,
+          eastern: state.eastern,
+          northCentral: state.northCentral,
+        },
+        language: {
+          sinhala: state.sinhala,
+          tamil: state.tamil,
+          english: state.english,
+        },
+        gender: {
+          male: state.male,
+          female: state.female,
+        },
+      })
+    );
+  }, [state]);
+
   return (
     <Box sx={{ my: 2 }}>
       <FormControl>
@@ -101,19 +192,20 @@ function SelectAudience() {
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
+            onChange={handleOnChangePlatform}
           >
             <FormControlLabel
-              value="WHATSAPP"
+              value="whatsapp"
               control={<Radio />}
               label="WhatsApp"
             />
             <FormControlLabel
-              value="FACEBOOK"
+              value="facebook"
               control={<Radio />}
               label="Facebook"
             />
             <FormControlLabel
-              value="INSTAGRAM"
+              value="instagram"
               control={<Radio />}
               label="Instagram"
             />

@@ -96,24 +96,24 @@ function App() {
           <Route
             path="/client-view"
             element={
-              // <ProtectedRoute>
-              //   <NormalUserProtectedRoute>
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
                   <CommonBar title={"Client View"} component={<ClientView />} />
-              //   </NormalUserProtectedRoute>
-              // </ProtectedRoute>
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
             path="/promoter-view"
             element={
-              // <ProtectedRoute>
-              //   <NormalUserProtectedRoute>
+              <ProtectedRoute>
+                <NormalUserProtectedRoute>
                   <CommonBar
                     title={"Promoter View"}
                     component={<PromoterView />}
                   />
-              //   </NormalUserProtectedRoute>
-              // </ProtectedRoute>
+                </NormalUserProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route

@@ -108,6 +108,8 @@ function PromoterSurveyStepper() {
       },
     ]);
 
+    // for whatsapp audience //
+
     // setPromoterAudienceCategoryList for whatsapp on age
     audience.whatsapp.ageCategories.forEach((element) => {
       if (element.checked) {
@@ -226,6 +228,127 @@ function PromoterSurveyStepper() {
       }
     });
 
+    // setPromoterAudienceCategoryList for whatsapp on region
+    audience.whatsapp.regionCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for whatsapp on language
+    audience.whatsapp.languageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+
+    // for facebook audience //
+
     // setPromoterAudienceCategoryList for facebook on age
     audience.facebook.ageCategories.forEach((element) => {
       if (element.checked) {
@@ -268,6 +391,422 @@ function PromoterSurveyStepper() {
           if (
             element.category === catObj.category &&
             element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for facebook on education
+    audience.facebook.educationCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for facebook on region
+    audience.facebook.regionCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for facebook on language
+    audience.facebook.languageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for facebook
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+
+    // for instagram audience //
+
+    // setPromoterAudienceCategoryList for instagram on age
+    audience.instagram.ageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for instagram on education
+    audience.instagram.educationCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for instagram on region
+    audience.instagram.regionCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "region",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      }
+    });
+
+    // setPromoterAudienceCategoryList for instagram on language
+    audience.instagram.languageCategories.forEach((element) => {
+      if (element.checked) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "instagram",
+          categoryType: "language",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for instagram
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "instagram"
           ) {
             return true;
           } else {
@@ -329,7 +868,7 @@ function PromoterSurveyStepper() {
     });
   }, [promoterAudienceCategoryList]);
 
-  console.log(promoterInfo)
+  // console.log(promoterInfo)
 
   const savePromoter = () => {
     let apiCall = PromoterService.savePromoter(promoterInfo);
