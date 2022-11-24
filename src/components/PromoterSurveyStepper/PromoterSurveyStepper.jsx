@@ -17,7 +17,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import PromoterService from "../../api/services/PromoterService";
 
-
 const steps = [
   "Personal Information",
   "Audience Details",
@@ -63,6 +62,10 @@ function PromoterSurveyStepper() {
 
   const [promoterAudienceCategoryList, setPromoterAudienceCategoryList] =
     useState([]);
+
+  useEffect(() => {
+    setPromoterAudienceCategoryList([]);
+  }, [platforms.whatsapp.whatsappChecked])
 
   const [categoryObj, setCategoryObj] = useState({
     platform: "",
@@ -134,12 +137,66 @@ function PromoterSurveyStepper() {
         } else {
           promoterAudienceCategoryList[chqIndex] = catObj;
         }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
       }
     });
 
     // setPromoterAudienceCategoryList for whatsapp on education
     audience.whatsapp.educationCategories.forEach((element) => {
       if (element.checked) {
+        let catObj = {
+          platform: "whatsapp",
+          categoryType: "education",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "whatsapp"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
         let catObj = {
           platform: "whatsapp",
           categoryType: "education",
@@ -179,7 +236,34 @@ function PromoterSurveyStepper() {
           count: element.count,
         };
 
-        // function to check same categories for facebook
+        // function to check same categories for whatsapp
+        const isSameCategory = (element) => {
+          if (
+            element.category === catObj.category &&
+            element.platform === "facebook"
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        };
+
+        let chqIndex = promoterAudienceCategoryList.findIndex(isSameCategory);
+
+        if (chqIndex === -1) {
+          promoterAudienceCategoryList.push(catObj);
+        } else {
+          promoterAudienceCategoryList[chqIndex] = catObj;
+        }
+      } else if (element.checked === false) {
+        let catObj = {
+          platform: "facebook",
+          categoryType: "age",
+          category: element.categoryName,
+          count: element.count,
+        };
+
+        // function to check same categories for whatsapp
         const isSameCategory = (element) => {
           if (
             element.category === catObj.category &&
@@ -200,11 +284,10 @@ function PromoterSurveyStepper() {
         }
       }
     });
+
   }, [audience]);
 
-  // console.log("obj", promoterAudienceCategoryList);
-
-  // promoterInfo request body
+  // initial promoterInfo request body
   const [promoterInfo, setPromoterInfo] = useState({
     userId: userId,
     fullName: fullName,
@@ -224,7 +307,7 @@ function PromoterSurveyStepper() {
     state: "ACTIVE",
   });
 
-  // testing
+  // set promoter info request
   useEffect(() => {
     setPromoterInfo({
       userId: userId,
@@ -246,14 +329,14 @@ function PromoterSurveyStepper() {
     });
   }, [promoterAudienceCategoryList]);
 
-  console.log(promoterInfo);
+  console.log(promoterInfo)
 
   const savePromoter = () => {
     let apiCall = PromoterService.savePromoter(promoterInfo);
     apiCall.then((response) => {
       if (response) {
         response = response.data;
-        console.log("response is ", response)
+        console.log("response is ", response);
       }
     });
   };
