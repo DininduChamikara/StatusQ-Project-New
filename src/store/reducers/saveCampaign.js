@@ -4,56 +4,72 @@ export const saveCampaignSlice = createSlice({
   name: "saveCampaign",
   initialState: {
     platform: "",
-    education: {
-      olCat: false,
-      alCat: false,
-      alSubCat: {
-        subMaths: false,
-        subBio: false,
-        subCommerce: false,
-        subArt: false,
-        subTechnology: false,
-      },
-      undergraduateCat: false,
-      postgraduateCat: false,
-    },
-    age: {
-      ageGroup_13_15: false,
-      ageGroup_16_18: false,
-      ageGroup_19_25: false,
-      ageGroup_26_35: false,
-      ageGroup_36_60: false,
-      ageGroup_over_60: false,
-    },
-    region: {
-      western: false,
-      uva: false,
-      sabaragamuwa: false,
-      central: false,
-      nothern: false,
-      northernWestern: false,
-      southern: false,
-      eastern: false,
-      northCentral: false,
-    },
-    language: {
-      sinhala: false,
-      tamil: false,
-      english: false,
-    },
-    gender: {
-      male: false,
-      female: false,
-    },
+    schoolCat: false,
+    universityCat: false,
+    olCat: false,
+    alCat: false,
+    subMaths: false,
+    subBio: false,
+    subCommerce: false,
+    subArt: false,
+    subTechnology: false,
+    undergraduateCat: false,
+    postgraduateCat: false,
+    ageGroup_13_15: false,
+    ageGroup_16_18: false,
+    ageGroup_19_25: false,
+    ageGroup_26_35: false,
+    ageGroup_36_60: false,
+    ageGroup_over_60: false,
+    western: false,
+    uva: false,
+    sabaragamuwa: false,
+    central: false,
+    nothern: false,
+    northernWestern: false,
+    southern: false,
+    eastern: false,
+    northCentral: false,
+    sinhala: false,
+    tamil: false,
+    english: false,
+    male: false,
+    female: false,
   },
   reducers: {
     changeCampaignAudienceDetails: (state, action) => {
       state.platform = action.payload.platform;
-      state.education = action.payload.education;
-      state.age = action.payload.age;
-      state.region = action.payload.region;
-      state.language = action.payload.language;
-      state.gender = action.payload.gender;
+      state.schoolCat = action.payload.schoolCat;
+      state.universityCat = action.payload.universityCat;
+      state.olCat = action.payload.olCat;
+      state.alCat = action.payload.alCat;
+      state.subMaths = action.payload.subMaths;
+      state.subBio = action.payload.subBio;
+      state.subCommerce = action.payload.subCommerce;
+      state.subArt = action.payload.subArt;
+      state.subTechnology = action.payload.subTechnology;
+      state.undergraduateCat = action.payload.undergraduateCat;
+      state.postgraduateCat = action.payload.postgraduateCat;
+      state.ageGroup_13_15 = action.payload.ageGroup_13_15;
+      state.ageGroup_16_18 = action.payload.ageGroup_16_18;
+      state.ageGroup_19_25 = action.payload.ageGroup_19_25;
+      state.ageGroup_26_35 = action.payload.ageGroup_26_35;
+      state.ageGroup_36_60 = action.payload.ageGroup_36_60;
+      state.ageGroup_over_60 = action.payload.ageGroup_over_60;
+      state.western = action.payload.western;
+      state.uva = action.payload.uva;
+      state.sabaragamuwa = action.payload.sabaragamuwa;
+      state.central = action.payload.central;
+      state.nothern = action.payload.nothern;
+      state.northernWestern = action.payload.northernWestern;
+      state.southern = action.payload.southern;
+      state.eastern = action.payload.eastern;
+      state.northCentral = action.payload.northCentral;
+      state.sinhala = action.payload.sinhala;
+      state.tamil = action.payload.tamil;
+      state.english = action.payload.english;
+      state.male = action.payload.male;
+      state.female = action.payload.female;
     },
   },
 });
