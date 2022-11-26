@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import loaderSlice from "./reducers/loader.slice";
 import savePromoterSlice from "./reducers/savePromoter";
 import activeStepSlice from "./reducers/activeStep.slice";
+import saveCampaignSlice from "./reducers/saveCampaign";
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     newAlert: alertSlice,
     Custom_API_Loader: loaderSlice,
     savePromoter: savePromoterSlice,
+    saveCampaign: saveCampaignSlice,
     activeStep: activeStepSlice,
 });
 

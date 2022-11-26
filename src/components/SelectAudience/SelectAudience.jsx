@@ -12,51 +12,14 @@ import {
   RadioGroup,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeCampaignAudienceDetails } from "../../store/reducers/saveCampaign";
 
 function SelectAudience() {
-  const [state, setState] = React.useState({
-    schoolCat: false,
-    universityCat: false,
-    olCat: false,
-    alCat: false,
-    subMaths: false,
-    subBio: false,
-    subCommerce: false,
-    subArt: false,
-    subTechnology: false,
-    undergraduateCat: false,
-    postgraduateCat: false,
-    ageGroup_13_15: false,
-    ageGroup_16_18: false,
-    ageGroup_19_25: false,
-    ageGroup_26_35: false,
-    ageGroup_36_60: false,
-    ageGroup_over_60: false,
-    western: false,
-    uva: false,
-    sabaragamuwa: false,
-    central: false,
-    nothern: false,
-    northernWestern: false,
-    southern: false,
-    eastern: false,
-    northCentral: false,
-    sinhala: false,
-    tamil: false,
-    english: false,
-    male:false,
-    female:false,
-  });
-
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
 
   const {
+    platform,
     schoolCat,
     universityCat,
     olCat,
@@ -88,7 +51,125 @@ function SelectAudience() {
     english,
     male,
     female,
-  } = state;
+  } = useSelector((state) => state.saveCampaign);
+
+  const [state, setState] = React.useState({
+    platform: platform,
+    schoolCat: schoolCat,
+    universityCat: universityCat,
+    olCat: olCat,
+    alCat: alCat,
+    subMaths: subMaths,
+    subBio: subBio,
+    subCommerce: subCommerce,
+    subArt: subArt,
+    subTechnology: subTechnology,
+    undergraduateCat: undergraduateCat,
+    postgraduateCat: postgraduateCat,
+    ageGroup_13_15: ageGroup_13_15,
+    ageGroup_16_18: ageGroup_16_18,
+    ageGroup_19_25: ageGroup_19_25,
+    ageGroup_26_35: ageGroup_26_35,
+    ageGroup_36_60: ageGroup_36_60,
+    ageGroup_over_60: ageGroup_over_60,
+    western: western,
+    uva: uva,
+    sabaragamuwa: sabaragamuwa,
+    central: central,
+    nothern: nothern,
+    northernWestern: northernWestern,
+    southern: southern,
+    eastern: eastern,
+    northCentral: northCentral,
+    sinhala: sinhala,
+    tamil: tamil,
+    english: english,
+    male: male,
+    female: female,
+  });
+
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+
+  useEffect(() => {
+    if (state.schoolCat === false) {
+      setState({
+        ...state,
+        olCat: false,
+        alCat: false,
+      });
+    }
+    if (state.alCat === false) {
+      setState({
+        ...state,
+        subMaths: false,
+        subBio: false,
+        subCommerce: false,
+        subArt: false,
+        subTechnology: false,
+      });
+    }
+    if (state.universityCat === false) {
+      setState({
+        ...state,
+        undergraduateCat: false,
+        postgraduateCat: false,
+      });
+    }
+  }, [state.schoolCat, state.alCat, state.universityCat]);
+
+  const handleOnChangePlatform = (event) => {
+    setState({
+      ...state,
+      platform: event.target.value,
+    });
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      changeCampaignAudienceDetails({
+        platform: state.platform,
+        schoolCat: state.schoolCat,
+        universityCat: state.universityCat,
+        olCat: state.olCat,
+        alCat: state.alCat,
+        subMaths: state.subMaths,
+        subBio: state.subBio,
+        subCommerce: state.subCommerce,
+        subArt: state.subArt,
+        subTechnology: state.subTechnology,
+        undergraduateCat: state.undergraduateCat,
+        postgraduateCat: state.postgraduateCat,
+        ageGroup_13_15: state.ageGroup_13_15,
+        ageGroup_16_18: state.ageGroup_16_18,
+        ageGroup_19_25: state.ageGroup_19_25,
+        ageGroup_26_35: state.ageGroup_26_35,
+        ageGroup_36_60: state.ageGroup_36_60,
+        ageGroup_over_60: state.ageGroup_over_60,
+        western: state.western,
+        uva: state.uva,
+        sabaragamuwa: state.sabaragamuwa,
+        central: state.central,
+        nothern: state.nothern,
+        northernWestern: state.northernWestern,
+        southern: state.southern,
+        eastern: state.eastern,
+        northCentral: state.northCentral,
+        sinhala: state.sinhala,
+        tamil: state.tamil,
+        english: state.english,
+        male: state.male,
+        female: state.female,
+      })
+    );
+  }, [state]);
 
   return (
     <Box sx={{ my: 2 }}>
@@ -101,19 +182,21 @@ function SelectAudience() {
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
+            value={platform}
+            onChange={handleOnChangePlatform}
           >
             <FormControlLabel
-              value="WHATSAPP"
+              value="whatsapp"
               control={<Radio />}
               label="WhatsApp"
             />
             <FormControlLabel
-              value="FACEBOOK"
+              value="facebook"
               control={<Radio />}
               label="Facebook"
             />
             <FormControlLabel
-              value="INSTAGRAM"
+              value="instagram"
               control={<Radio />}
               label="Instagram"
             />

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import DropFileInput from "../DropFileInput/DropFileInput";
+import ImagePreview from "../ImagePreview/ImagePreview";
 
 function UploadAdvertisement() {
   const onFileChange = (files) => {
@@ -21,7 +22,10 @@ function UploadAdvertisement() {
         <Typography sx={{ fontWeight: "bold", fontSize: "1.1rem", mb: 1 }}>
           Upload the advertisement
         </Typography>
-        <DropFileInput onFileChange={(files) => onFileChange(files)} />
+
+        <ImagePreview/>
+
+        {/* <DropFileInput onFileChange={(files) => onFileChange(files)} /> */}
       </Paper>
       <Paper variant="outlined" sx={{ width: "75vw", p: 1, mb: 1 }}>
         <Box

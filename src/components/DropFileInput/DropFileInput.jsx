@@ -77,23 +77,6 @@ function DropFileInput(props) {
           onChange={onFileDrop}
         />
 
-        {/* <Input
-          sx={{
-            position: "absolute",
-            opacity: 1,
-            "&:hover": { opacity: 0.6 },
-            "&:dragover":{opacity:0.6},
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            cursor: "pointer",
-          }}
-          type="file"
-          value=""
-          onChange={onFileDrop}
-        /> */}
-
       </Box>
       {fileList.length > 0 ? (
         <Box sx={{ mt: "30px" }}>
