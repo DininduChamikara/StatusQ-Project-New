@@ -1,31 +1,41 @@
-import { Box, TextField, Typography } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import { Button } from "semantic-ui-react";
+import { HighlightOff } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
+import React, { useState } from "react";
+import LanguageTextfield from "../LanguageTextfield/LanguageTextfield";
 
 function ImagePreview() {
+  ///
+  const [finalMessage, setFinalMessage] = useState();
 
-    const [advertisements, setAdvertisements] = useState([]);
+  const [advertisements, setAdvertisements] = useState([]);
 
-  const [selectedImages, setSelectedImages] = useState([]);
+  let advertisementObj = {
+    file: null,
+    description: "",
+  };
 
   const onSelectFile = (event) => {
     const selectedFiles = event.target.files;
     const selectedFileArray = Array.from(selectedFiles);
 
-    const imagesArray = selectedFileArray.map((file) => {
-      return URL.createObjectURL(file);
+    const imagesArray = selectedFileArray.map((file, description) => {
+      advertisementObj.file = URL.createObjectURL(file);
+      advertisementObj.description = description;
+
+      return advertisementObj;
     });
 
-    setSelectedImages((previousImages) => previousImages.concat(imagesArray));
+    setAdvertisements((previousAdvertisements) =>
+      previousAdvertisements.concat(imagesArray)
+    );
 
     // FOR BUG IN CHROME
     event.target.value = "";
   };
 
-  function deleteHandler(image) {
-    setSelectedImages(selectedImages.filter((e) => e !== image));
-    URL.revokeObjectURL(image);
+  function deleteHandler(advertisement) {
+    setAdvertisements(advertisements.filter((e) => e !== advertisement));
+    URL.revokeObjectURL(advertisement);
   }
 
   return (
@@ -38,8 +48,8 @@ function ImagePreview() {
           alignItems: "center",
         }}
       >
-        {selectedImages &&
-          selectedImages.map((image, index) => {
+        {advertisements &&
+          advertisements.map((advertisement, index) => {
             return (
               <Box
                 sx={{
@@ -48,33 +58,36 @@ function ImagePreview() {
                   borderRadius: 5,
                   borderColor: "#4267b2",
                   p: 1,
-                  width: 220,
-                  //   height: 300,
+                  width: 260,
                 }}
-                key={image}
+                key={advertisement.file}
               >
                 <img
                   style={{ borderRadius: 10 }}
-                  src={image}
-                  height="250"
-                  width="200"
+                  src={advertisement.file}
+                  height="300"
+                  width="240"
                   alt="upload"
                 />
                 <Box sx={{ border: 0, borderRadius: 2, my: 1 }}>
-                  {/* <Typography>Description</Typography> */}
-                  <TextField />
+                  <LanguageTextfield
+                    index={index}
+                    advertisements={advertisements}
+                    setFinalMessage={setFinalMessage}
+                  />
                 </Box>
                 <Box
                   sx={{
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                 >
-                  <Typography>{index + 1}</Typography>
-                  <Button onClick={() => deleteHandler(image)}>
-                    delete image
-                  </Button>
+                  <Typography sx={{ ml: 1 }}>{index + 1}</Typography>
+                  <IconButton onClick={() => deleteHandler(advertisement)}>
+                    <HighlightOff color="error" />
+                  </IconButton>
                 </Box>
               </Box>
             );
@@ -84,8 +97,8 @@ function ImagePreview() {
             position: "relative",
             border: "2px dashed #4267b2",
             borderRadius: 5,
-            width: 220,
-            height: 300,
+            width: 260,
+            height: 520,
             backgroundColor: "#f5f8ff",
             p: 2,
             m: 1,
@@ -106,30 +119,39 @@ function ImagePreview() {
             type="file"
             name="images"
             onChange={onSelectFile}
-            multiple
+            // multiple
             accept="image/png , image/jpeg, image/webp"
           />
         </Box>
       </Box>
 
-      {selectedImages.length > 0 &&
-        (selectedImages.length > 10 ? (
+      {/* {advertisements.length > 0 &&
+        (advertisements.length > 10 ? (
           <Box>
             <Typography>You can't upload more than 10 images!</Typography>
             <Typography>
-              please delete <b> {selectedImages.length - 10} </b> of them
+              please delete <b> {advertisements.length - 10} </b> of them
             </Typography>
           </Box>
         ) : (
           <Button
             onClick={() => {
-              console.log(selectedImages);
+              console.log(advertisements);
             }}
           >
-            UPLOAD {selectedImages.length} IMAGE
-            {selectedImages.length === 1 ? "" : "S"}
+            UPLOAD {advertisements.length} IMAGE
+            {advertisements.length === 1 ? "" : "S"}
           </Button>
-        ))}
+        ))} */}
+
+      {advertisements.length > 5 && (
+        <Box>
+          <Typography>You can't upload more than 5 images!</Typography>
+          <Typography>
+            please delete <b> {advertisements.length - 5} </b> of them
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 }
