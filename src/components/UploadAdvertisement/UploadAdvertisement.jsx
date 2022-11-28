@@ -23,7 +23,7 @@ function UploadAdvertisement() {
           Upload the advertisement
         </Typography>
 
-        <ImagePreview/>
+        <ImagePreview />
 
         {/* <DropFileInput onFileChange={(files) => onFileChange(files)} /> */}
       </Paper>
@@ -40,7 +40,9 @@ function UploadAdvertisement() {
               px: 1,
             }}
           >
-            <Typography sx={{color:'#336cad'}}>Select the required amount of views</Typography>
+            <Typography sx={{ color: "#336cad" }}>
+              Select the required amount of views
+            </Typography>
           </Box>
           <Box sx={{ width: "60%" }}>
             <FormControl sx={{ mx: 1, width: "95%" }} size="small">
@@ -52,6 +54,7 @@ function UploadAdvertisement() {
                 }}
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
+                defaultValue={1000}
               >
                 <MenuItem value={1000}>1000</MenuItem>
                 <MenuItem value={2000}>2000</MenuItem>
@@ -74,14 +77,13 @@ function UploadAdvertisement() {
               px: 1,
             }}
           >
-            <Typography sx={{color:'#336cad'}}>Required Payment</Typography>
+            <Typography sx={{ color: "#336cad" }}>Required Payment</Typography>
           </Box>
 
           <Box sx={{ width: "60%" }}>
             <TextField
               disabled
               sx={{ pl: 1, width: "96%" }}
-              placeholder="Name"
               value={"Rs. 1000.00"}
               size="small"
             ></TextField>
@@ -100,7 +102,7 @@ function UploadAdvertisement() {
               px: 1,
             }}
           >
-            <Typography sx={{color:'#336cad'}}>
+            <Typography sx={{ color: "#336cad" }}>
               Select the required amount of views from each promoter
             </Typography>
           </Box>
@@ -136,7 +138,9 @@ function UploadAdvertisement() {
               px: 1,
             }}
           >
-            <Typography sx={{color:'#336cad'}}>Number of promoters required</Typography>
+            <Typography sx={{ color: "#336cad" }}>
+              Number of promoters required
+            </Typography>
           </Box>
 
           <Box sx={{ width: "60%" }}>

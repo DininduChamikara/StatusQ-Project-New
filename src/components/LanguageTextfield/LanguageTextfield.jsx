@@ -18,6 +18,8 @@ const LanguageTextfield = ({
   setFinalMessage,
 //   characterCount,
   resetMessageBox,
+  rowsCount,
+  finalMessageText,
 //   setCharacterCount,
 }) => {
   const [typedText, setTypedText] = useState("");
@@ -26,6 +28,13 @@ const LanguageTextfield = ({
 
   const [characterCount, setCharacterCount] = useState(0);
 
+
+  useEffect(()=> {
+    if(finalMessageText && finalMessageText.length > 0){
+      setTypedText(finalMessageText)
+    }
+  }, [finalMessageText])
+
   const handleOnChange = (event) => {
     if (event.target.value.length > 400) {
       console.log("invalid legth of description");
@@ -33,7 +42,10 @@ const LanguageTextfield = ({
     setTypedText(event.target.value);
 
     // Dinindu test
-    advertisements[index].description = event.target.value;
+    if(index !== -1){
+      advertisements[index].description = event.target.value;
+    }
+   
 
     if (event.target.value.substr(-1) === " ") {
       let currentInput = typedText.split(" ");
@@ -57,7 +69,6 @@ const LanguageTextfield = ({
   }, [translatedText]);
 
   useEffect(() => {
-    // setCharacterCount(count(typedText));
     setCharacterCount(typedText.length);
     setFinalMessage(typedText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +77,8 @@ const LanguageTextfield = ({
   useEffect(() => {
     //clears the initial state
     //otherwise an empty string in the text area
-    setTypedText("");
+    // setTypedText("");
+    setTypedText(finalMessageText + "  ");
     setTranslatedText([]);
   }, [resetMessageBox]);
 
@@ -128,6 +140,7 @@ const LanguageTextfield = ({
         placeholder="Type something…"
         value={typedText}
         onChange={handleOnChange}
+        rowsCount={rowsCount}
       />
       <Box display={"flex"} justifyContent="end">
         <WordCountDisplay characterCount={characterCount} />

@@ -35,6 +35,7 @@ export const saveCampaignSlice = createSlice({
     english: false,
     male: false,
     female: false,
+    selectedAdvertisements: [],
   },
   reducers: {
     changeCampaignAudienceDetails: (state, action) => {
@@ -71,8 +72,12 @@ export const saveCampaignSlice = createSlice({
       state.male = action.payload.male;
       state.female = action.payload.female;
     },
+    changeCampaignAdvertisements: (state, action) => {
+      state.selectedAdvertisements = action.payload.selectedAdvertisements;
+    }
   },
+
 });
 
-export const { changeCampaignAudienceDetails } = saveCampaignSlice.actions;
+export const { changeCampaignAudienceDetails, changeCampaignAdvertisements } = saveCampaignSlice.actions;
 export default saveCampaignSlice.reducer;
