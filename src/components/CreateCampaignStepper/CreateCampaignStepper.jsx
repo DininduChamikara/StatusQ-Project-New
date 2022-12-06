@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PromoterService from "../../api/services/PromoterService";
+import { showAlert } from "../../store/reducers/alert.slice";
 import { changePromoterListResponse } from "../../store/reducers/saveCampaign";
 import CampaignPayment from "../CampaignPayment/CampaignPayment";
 import SelectAudience from "../SelectAudience/SelectAudience";
@@ -62,7 +63,7 @@ function CreateCampaignStepper() {
     selectedAdvertisements,
     minRequiredViews,
     viewsFromEach,
-    numOfPromoters
+    numOfPromoters,
   } = useSelector((state) => state.saveCampaign);
 
   const [educationAudience, setEducationAudience] = useState([]);
@@ -208,11 +209,19 @@ function CreateCampaignStepper() {
       regionalAudience: regionAudience,
       languageAudience: languageAudience,
       genderAudience: genderAudience,
-      responseCount: (numOfPromoters*2),
-      state:"ACTIVE",
+      responseCount: numOfPromoters * 2,
+      state: "ACTIVE",
     });
-  }, [platform, educationAudience, ageAudience, regionAudience, languageAudience, genderAudience, viewsFromEach, numOfPromoters]);
-
+  }, [
+    platform,
+    educationAudience,
+    ageAudience,
+    regionAudience,
+    languageAudience,
+    genderAudience,
+    viewsFromEach,
+    numOfPromoters,
+  ]);
 
   const dispatch = useDispatch();
 
@@ -226,7 +235,7 @@ function CreateCampaignStepper() {
           changePromoterListResponse({
             promoterListResponse: response,
           })
-        )
+        );
       }
     });
   };
@@ -250,12 +259,47 @@ function CreateCampaignStepper() {
       newSkipped.delete(activeStep);
     }
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
+    if (activeStep === 0) {
+      if (platform !== "") {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      } else {
+        dispatch(
+          showAlert({
+            message: "Please select the campaign media",
+            isVisible: true,
+            severity: "warning",
+          })
+        );
+      }
+    }
 
     if (activeStep === 1) {
-      sendRequestToGetPromotersList();
+      // console.log(selectedAdvertisements.length);
+
+      if (selectedAdvertisements.length > 0) {
+        sendRequestToGetPromotersList();
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      }else{
+        // console.log("no selected advertisements")
+        dispatch(
+          showAlert({
+            message: "Please submit your advertisements",
+            isVisible: true,
+            severity: "warning",
+          })
+        );
+      }
     }
+
+    if (activeStep === 2) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+
+    if (activeStep === 3) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
+
+    setSkipped(newSkipped);
   };
 
   const handleBack = () => {

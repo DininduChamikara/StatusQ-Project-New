@@ -4,18 +4,23 @@ import React, { useState } from "react";
 import LanguageTextfield from "../LanguageTextfield/LanguageTextfield";
 import uploadImg from "../../images/cloud-upload-image.png";
 import { useDispatch, useSelector } from "react-redux";
-import { changeCampaignAdvertisements } from "../../store/reducers/saveCampaign";
+import {
+  changeAdvertisementSavedForUpload,
+  changeCampaignAdvertisements,
+} from "../../store/reducers/saveCampaign";
 import { useEffect } from "react";
 
 function ImagePreview() {
   const [finalMessage, setFinalMessage] = useState();
 
-  const [saveClicked, setSaveClicked] = useState(false);
+  // const [saveClicked, setSaveClicked] = useState(false);
 
   const [advertisementObjArr, setAdvertisementObjArr] = useState([]);
   const [advertisements, setAdvertisements] = useState([]);
 
-  const { selectedAdvertisements } = useSelector((state) => state.saveCampaign);
+  const { selectedAdvertisements, advertisementSavedForUpload } = useSelector(
+    (state) => state.saveCampaign
+  );
 
   useEffect(() => {
     setAdvertisements(selectedAdvertisements);
@@ -123,7 +128,7 @@ function ImagePreview() {
                             : ""
                         }
                         setFinalMessage={setFinalMessage}
-                        saveClicked={saveClicked}
+                        saveClicked={advertisementSavedForUpload}
                       />
                     </Box>
                   </Box>
@@ -140,7 +145,7 @@ function ImagePreview() {
                           : ""
                       }
                       setFinalMessage={setFinalMessage}
-                      saveClicked={saveClicked}
+                      saveClicked={advertisementSavedForUpload}
                     />
                   </Box>
                 )}
@@ -155,7 +160,7 @@ function ImagePreview() {
                 >
                   <Typography sx={{ ml: 1 }}>{index + 1}</Typography>
                   <IconButton
-                    disabled={saveClicked}
+                    disabled={advertisementSavedForUpload}
                     onClick={() => deleteHandler(advertisement, index)}
                   >
                     <HighlightOff color="error" />
@@ -197,7 +202,7 @@ function ImagePreview() {
             type="file"
             name="images"
             onChange={onSelectFile}
-            disabled={saveClicked}
+            disabled={advertisementSavedForUpload}
             accept="image/png , image/jpeg, image/webp"
           />
         </Box>
@@ -220,7 +225,7 @@ function ImagePreview() {
               variant="outlined"
               startIcon={<AddCircleOutline />}
               onClick={onAddTextOnlyAdvertisement}
-              disabled={saveClicked}
+              disabled={advertisementSavedForUpload}
             >
               Add New
             </Button>
@@ -260,11 +265,12 @@ function ImagePreview() {
           >
             <Button
               sx={{ ml: 1, width: 300 }}
-              disabled={saveClicked}
+              disabled={advertisementSavedForUpload}
               variant="contained"
               onClick={() => {
                 console.log("button clicked", advertisements);
-                setSaveClicked(true);
+
+                // setSaveClicked(true);
 
                 let i = 0;
                 setAdvertisementObjArr([]);
@@ -298,9 +304,15 @@ function ImagePreview() {
                     selectedAdvertisements: advertisementObjArr,
                   })
                 );
+
+                dispatch(
+                  changeAdvertisementSavedForUpload({
+                    advertisementSavedForUpload: true,
+                  })
+                );
               }}
             >
-              UPLOAD ONLY {advertisements.length} ADVERTISEMENTS
+              SUBMIT ONLY {advertisements.length} ADVERTISEMENTS
               {advertisements.length === 1 ? "" : "S"}
             </Button>
 
@@ -316,7 +328,13 @@ function ImagePreview() {
                   })
                 );
 
-                setSaveClicked(false);
+                // setSaveClicked(false);
+
+                dispatch(
+                  changeAdvertisementSavedForUpload({
+                    advertisementSavedForUpload: false,
+                  })
+                );
               }}
             >
               Cancel All

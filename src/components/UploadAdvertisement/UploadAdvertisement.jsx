@@ -40,8 +40,6 @@ function UploadAdvertisement() {
 
   }, [selectedAdvertisements, selectedAdsCount, viewsAmount, promoterMinViews])
 
-  // console.log("length is", selectedAdsCount)
-
   const dispatch = useDispatch();
 
   useEffect(() => {
