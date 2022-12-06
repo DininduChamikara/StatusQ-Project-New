@@ -36,6 +36,12 @@ export const saveCampaignSlice = createSlice({
     male: false,
     female: false,
     selectedAdvertisements: [],
+    minRequiredViews: 1000,
+    viewsFromEach: 50,
+    numOfPromoters: 20,
+    promoterListResponse: null,
+    selectedPromoterIdList: [],
+    selectedPromoterForView: null,
   },
   reducers: {
     changeCampaignAudienceDetails: (state, action) => {
@@ -74,10 +80,30 @@ export const saveCampaignSlice = createSlice({
     },
     changeCampaignAdvertisements: (state, action) => {
       state.selectedAdvertisements = action.payload.selectedAdvertisements;
-    }
+    },
+    changeCampaignViewsInfo: (state, action) => {
+      state.minRequiredViews = action.payload.minRequiredViews;
+      state.viewsFromEach = action.payload.viewsFromEach;
+      state.numOfPromoters = action.payload.numOfPromoters;
+    },
+    changePromoterListResponse: (state, action) => {
+      state.promoterListResponse = action.payload.promoterListResponse;
+    },
+    changeSelectedPromotersList: (state, action) => {
+      state.selectedPromoterIdList = action.payload.selectedPromoterIdList;
+    },
+    changeSelectedPromoterForView: (state, action) => {
+      state.selectedPromoterForView = action.payload.selectedPromoterForView;
+    },
   },
-
 });
 
-export const { changeCampaignAudienceDetails, changeCampaignAdvertisements } = saveCampaignSlice.actions;
+export const {
+  changeCampaignAudienceDetails,
+  changeCampaignAdvertisements,
+  changeCampaignViewsInfo,
+  changePromoterListResponse,
+  changeSelectedPromotersList,
+  changeSelectedPromoterForView,
+} = saveCampaignSlice.actions;
 export default saveCampaignSlice.reducer;

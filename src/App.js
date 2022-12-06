@@ -15,6 +15,7 @@ import Login from "./pages/Login/Login.jsx";
 import Payments from "./pages/Payments/Payments.jsx";
 import PromoterView from "./pages/PromoterView/PromoterView.jsx";
 import Register from "./pages/Register/Register.jsx";
+import Reports from "./pages/Reports/Reports.jsx";
 import Settings from "./pages/SettingsView/Settings.jsx";
 
 function App() {
@@ -41,55 +42,55 @@ function App() {
           <Route
             path="/home"
             element={
-              <ProtectedRoute>
-                <NormalUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
                   <CommonBar title={"Home"} component={<Home />} />
-                </NormalUserProtectedRoute>
-              </ProtectedRoute>
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/admin_home"
             element={
-              <ProtectedRoute>
-                <AdminUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <AdminUserProtectedRoute>
                   <CommonBar title={"Home"} />
-                </AdminUserProtectedRoute>
-              </ProtectedRoute>
+              //   </AdminUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/admin_complaints"
             element={
-              <ProtectedRoute>
-                <AdminUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <AdminUserProtectedRoute>
                   <CommonBar title={"Complaints"} />
-                </AdminUserProtectedRoute>
-              </ProtectedRoute>
+              //   </AdminUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/admin_account"
             element={
-              <ProtectedRoute>
-                <AdminUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <AdminUserProtectedRoute>
                   <CommonBar title={"Account"} />
-                </AdminUserProtectedRoute>
-              </ProtectedRoute>
+              //   </AdminUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/admin_report"
             element={
-              <ProtectedRoute>
-                <AdminUserProtectedRoute>
-                  <CommonBar title={"Report"} />
-                </AdminUserProtectedRoute>
-              </ProtectedRoute>
+              // <ProtectedRoute>
+              //   <AdminUserProtectedRoute>
+                  <CommonBar title={"Report"} component={<Reports />}/>
+              //   </AdminUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
@@ -119,44 +120,44 @@ function App() {
           <Route
             path="/payments"
             element={
-              <ProtectedRoute>
-                <NormalUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
                   <CommonBar title={"Payments"} component={<Payments />} />
-                </NormalUserProtectedRoute>
-              </ProtectedRoute>
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/settings"
             element={
-              <ProtectedRoute>
-                <NormalUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
                   <CommonBar title={"Settings"} component={<Settings />} />
-                </NormalUserProtectedRoute>
-              </ProtectedRoute>
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/help"
             element={
-              <ProtectedRoute>
-                <NormalUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
                   <CommonBar title={"Help"} component={<Help />} />
-                </NormalUserProtectedRoute>
-              </ProtectedRoute>
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/feedback"
             element={
-              <ProtectedRoute>
-                <NormalUserProtectedRoute>
+              // <ProtectedRoute>
+              //   <NormalUserProtectedRoute>
                   <CommonBar
                     title={"Feedback"}
                     component={<Feedback userInfo={userInfo} />}
                   />
-                </NormalUserProtectedRoute>
-              </ProtectedRoute>
+              //   </NormalUserProtectedRoute>
+              // </ProtectedRoute>
             }
           />
         </Routes>

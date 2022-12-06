@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCampaignAudienceDetails } from "../../store/reducers/saveCampaign";
 
 function SelectAudience() {
-
   const {
     platform,
     schoolCat,
@@ -95,7 +94,6 @@ function SelectAudience() {
     });
   };
 
-
   useEffect(() => {
     if (state.schoolCat === false) {
       setState({
@@ -104,6 +102,16 @@ function SelectAudience() {
         alCat: false,
       });
     }
+    if (state.universityCat === false) {
+      setState({
+        ...state,
+        undergraduateCat: false,
+        postgraduateCat: false,
+      });
+    }
+  }, [state.schoolCat, state.universityCat]);
+
+  useEffect(() => {
     if (state.alCat === false) {
       setState({
         ...state,
@@ -114,14 +122,7 @@ function SelectAudience() {
         subTechnology: false,
       });
     }
-    if (state.universityCat === false) {
-      setState({
-        ...state,
-        undergraduateCat: false,
-        postgraduateCat: false,
-      });
-    }
-  }, [state.schoolCat, state.alCat, state.universityCat]);
+  }, [alCat]);
 
   const handleOnChangePlatform = (event) => {
     setState({

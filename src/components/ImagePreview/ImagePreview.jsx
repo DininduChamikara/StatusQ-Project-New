@@ -155,6 +155,7 @@ function ImagePreview() {
                 >
                   <Typography sx={{ ml: 1 }}>{index + 1}</Typography>
                   <IconButton
+                    disabled={saveClicked}
                     onClick={() => deleteHandler(advertisement, index)}
                   >
                     <HighlightOff color="error" />

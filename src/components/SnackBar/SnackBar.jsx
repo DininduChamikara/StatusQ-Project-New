@@ -33,17 +33,17 @@ function SnackBarAlert() {
   };
 
   useEffect(() => {
-    if(severity.length > 0){
-        handleClickVariant(severity);
+    if (severity.length > 0) {
+      handleClickVariant(severity);
 
-        dispatch(
-            showAlert({
-                message: "",
-                isVisible: false,
-                severity: "",
-            })
-        )
-    }  
+      dispatch(
+        showAlert({
+          message: "",
+          isVisible: false,
+          severity: "",
+        })
+      );
+    }
   }, [open]);
 }
 
