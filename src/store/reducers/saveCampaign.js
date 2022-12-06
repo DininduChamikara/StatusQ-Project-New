@@ -42,6 +42,7 @@ export const saveCampaignSlice = createSlice({
     promoterListResponse: null,
     selectedPromoterIdList: [],
     selectedPromoterForView: null,
+    advertisementSavedForUpload: false,
   },
   reducers: {
     changeCampaignAudienceDetails: (state, action) => {
@@ -95,6 +96,9 @@ export const saveCampaignSlice = createSlice({
     changeSelectedPromoterForView: (state, action) => {
       state.selectedPromoterForView = action.payload.selectedPromoterForView;
     },
+    changeAdvertisementSavedForUpload: (state, action) => {
+      state.advertisementSavedForUpload = action.payload.advertisementSavedForUpload;
+    }
   },
 });
 
@@ -105,5 +109,6 @@ export const {
   changePromoterListResponse,
   changeSelectedPromotersList,
   changeSelectedPromoterForView,
+  changeAdvertisementSavedForUpload,
 } = saveCampaignSlice.actions;
 export default saveCampaignSlice.reducer;
