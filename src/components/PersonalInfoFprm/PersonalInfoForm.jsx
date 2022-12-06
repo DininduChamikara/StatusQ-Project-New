@@ -12,16 +12,31 @@ import {
   RadioGroup,
   Select,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {changePersonalDetails, changePromoterAccessibilityData} from "../../store/reducers/savePromoter";
+import {
+  changePersonalDetails,
+  changePromoterAccessibilityData,
+} from "../../store/reducers/savePromoter";
 
 function PersonalInfoForm() {
-
-  const {fullName, nameWithInit, dob, gender, nic, address, postcode, mobile, province, language, educationalCategory, platforms} = useSelector((state) => state.savePromoter)
+  const {
+    fullName,
+    nameWithInit,
+    dob,
+    gender,
+    nic,
+    address,
+    postcode,
+    mobile,
+    province,
+    language,
+    educationalCategory,
+    platforms,
+  } = useSelector((state) => state.savePromoter);
 
   const [state, setState] = useState({
     whatsapp: platforms.whatsapp.whatsappChecked,
@@ -30,17 +45,16 @@ function PersonalInfoForm() {
   });
 
   const handleChange = (event) => {
+    console.log(event.target.checked);
 
-    console.log(event.target.checked)
-
-    if(event.target.checked === false){
-      if(event.target.name === "whatsapp"){
+    if (event.target.checked === false) {
+      if (event.target.name === "whatsapp") {
         promoterPersonalInfo.whatsAppMinViews = 0;
       }
-      if(event.target.name === "facebook"){
+      if (event.target.name === "facebook") {
         promoterPersonalInfo.facebookMinViews = 0;
       }
-      if(event.target.name === "instagram"){
+      if (event.target.name === "instagram") {
         promoterPersonalInfo.instagramMinViews = 0;
       }
     }
@@ -66,7 +80,7 @@ function PersonalInfoForm() {
     whatsAppMinViews: platforms.whatsapp.minAccessibleViews,
     facebookMinViews: platforms.facebook.minAccessibleViews,
     instagramMinViews: platforms.instagram.minAccessibleViews,
-  })
+  });
 
   const [promoterAccessibleData, setPromoterAccessibleData] = useState({
     platforms: {
@@ -81,9 +95,9 @@ function PersonalInfoForm() {
       instagram: {
         instagramChecked: false,
         minAccessibleViews: 0,
-      }
-    }
-  })
+      },
+    },
+  });
 
   useEffect(() => {
     setPromoterAccessibleData({
@@ -99,10 +113,14 @@ function PersonalInfoForm() {
         instagram: {
           instagramChecked: state.instagram,
           minAccessibleViews: promoterPersonalInfo.instagramMinViews,
-        }
-      }
-    })
-  }, [promoterPersonalInfo.whatsAppMinViews, promoterPersonalInfo.facebookMinViews, promoterPersonalInfo.instagramMinViews])
+        },
+      },
+    });
+  }, [
+    promoterPersonalInfo.whatsAppMinViews,
+    promoterPersonalInfo.facebookMinViews,
+    promoterPersonalInfo.instagramMinViews,
+  ]);
 
   const dispatch = useDispatch();
   // const { promoterStepperActive } = useSelector((state) => state.activeStep);
@@ -122,22 +140,69 @@ function PersonalInfoForm() {
         language: promoterPersonalInfo.language,
         educationalCategory: promoterPersonalInfo.educationalLevel,
       })
-    )
+    );
     dispatch(
       changePromoterAccessibilityData({
         platforms: promoterAccessibleData.platforms,
       })
-    )
-  }, [promoterPersonalInfo, promoterAccessibleData])
+    );
+  }, [promoterPersonalInfo, promoterAccessibleData]);
+
+  // for error validations
+  const [errorInfo, setErrorInfo] = useState({
+    fullNameError: "",
+    nameWithInitError: "",
+    nicError: "",
+    addressError: "",
+    postcodeError: "",
+    mobileError: "",
+  });
 
   // get form info on hadle chages
   const handleOnChangeFullName = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        fullNameError: "Full name cannot be empty",
+      });
+    } else if (
+      !event.target.value.match(/^[a-zA-Z]{0,}(?: [a-zA-Z]+){0,10}$/)
+    ) {
+      setErrorInfo({
+        ...errorInfo,
+        fullNameError: "Allowed only letters",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        fullNameError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       fullname: event.target.value,
     });
   };
+
   const handleOnChangeNameWithInit = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        nameWithInitError: "Name with initials cannot be empty",
+      });
+    } else if (
+      !event.target.value.match(/^[a-zA-Z]{0,}(?: [a-zA-Z]+){0,10}$/)
+    ) {
+      setErrorInfo({
+        ...errorInfo,
+        nameWithInitError: "Allowed only letters and spaces",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        nameWithInitError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       nameWithInit: event.target.value,
@@ -156,24 +221,79 @@ function PersonalInfoForm() {
     });
   };
   const handleOnChangeNic = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        nicError: "NIC cannot be empty",
+      });
+    } else if (!event.target.value.match(/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/)) {
+      setErrorInfo({
+        ...errorInfo,
+        nicError: "Invalid NIC",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        nicError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       nic: event.target.value,
     });
   };
   const handleOnChangeAddress = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        addressError: "Address cannot be empty",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        addressError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       address: event.target.value,
     });
   };
   const handleOnChangePostcode = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        postcodeError: "Postcode cannot be empty",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        postcodeError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       postcode: event.target.value,
     });
   };
   const handleOnChangeMobile = (event) => {
+    const regex = /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\d)\d{6}$/; 
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        mobileError: "Mobile number need to be added",
+      });
+    } else if (!event.target.value.match(regex)) {
+      setErrorInfo({
+        ...errorInfo,
+        mobileError: "Invalid mobile number",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        mobileError: "",
+      });
+    }
     setPromoterPersonalInfo({
       ...promoterPersonalInfo,
       mobile: event.target.value,
@@ -237,7 +357,23 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>Full legal name</Typography>
+              <Box>
+                <Typography sx={{ color: "#336cad", textAlign: "right" }}>
+                  Full legal name
+                </Typography>
+                {errorInfo.fullNameError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.fullNameError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -247,7 +383,7 @@ function PersonalInfoForm() {
                 size="small"
                 value={promoterPersonalInfo.fullname}
                 onChange={handleOnChangeFullName}
-              ></TextField>
+              />
             </Box>
           </Box>
 
@@ -263,9 +399,23 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>
-                Name with initials
-              </Typography>
+              <Box>
+                <Typography sx={{ color: "#336cad", textAlign: "right" }}>
+                  Name with initials
+                </Typography>
+                {errorInfo.nameWithInitError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.nameWithInitError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -361,7 +511,23 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>NIC number</Typography>
+              <Box>
+                <Typography sx={{ color: "#336cad", textAlign: "right" }}>
+                  NIC number
+                </Typography>
+                {errorInfo.nicError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.nicError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -387,7 +553,23 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>Address</Typography>
+              <Box>
+                <Typography sx={{ color: "#336cad", textAlign: "right" }}>
+                  Address
+                </Typography>
+                {errorInfo.addressError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.addressError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -413,7 +595,21 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>Postal Code</Typography>
+              <Box>
+                <Typography sx={{ color: "#336cad", textAlign:'right' }}>Postal Code</Typography>
+                {errorInfo.postcodeError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.postcodeError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -439,7 +635,22 @@ function PersonalInfoForm() {
                 px: 1,
               }}
             >
-              <Typography sx={{ color: "#336cad" }}>Mobile</Typography>
+              <Box>
+              <Typography sx={{ color: "#336cad", textAlign:'right' }}>Mobile</Typography>
+
+              {errorInfo.mobileError !== "" && (
+                  <FormHelperText
+                    sx={{
+                      m: 0,
+                      color: "red",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                    }}
+                  >
+                    {errorInfo.mobileError} -
+                  </FormHelperText>
+                )}
+              </Box>
             </Box>
 
             <Box sx={{ width: "60%" }}>
@@ -675,13 +886,13 @@ function PersonalInfoForm() {
             ></Box>
 
             {(whatsapp || facebook || instagram) && (
-              <Box sx={{ width: "60%", my:1 }}>
-              <Typography sx={{ color: "#336cad", fontWeight:'bold' }}>
-                Select the minimum accessible amount of views for selected platforms
-              </Typography>
-            </Box>
+              <Box sx={{ width: "60%", my: 1 }}>
+                <Typography sx={{ color: "#336cad", fontWeight: "bold" }}>
+                  Select the minimum accessible amount of views for selected
+                  platforms
+                </Typography>
+              </Box>
             )}
-            
           </Box>
 
           {whatsapp && (
