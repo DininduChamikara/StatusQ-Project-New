@@ -15,9 +15,13 @@ const ENGLISH = "";
 const LanguageTextfield = ({
   index,
   advertisements,
+  setAdvertisements,
   setFinalMessage,
 //   characterCount,
   resetMessageBox,
+  rowsCount,
+  finalMessageText,
+  saveClicked,
 //   setCharacterCount,
 }) => {
   const [typedText, setTypedText] = useState("");
@@ -26,6 +30,13 @@ const LanguageTextfield = ({
 
   const [characterCount, setCharacterCount] = useState(0);
 
+
+  useEffect(()=> {
+    if(finalMessageText && finalMessageText.length > 0){
+      setTypedText(finalMessageText)
+    }
+  }, [finalMessageText])
+
   const handleOnChange = (event) => {
     if (event.target.value.length > 400) {
       console.log("invalid legth of description");
@@ -33,7 +44,16 @@ const LanguageTextfield = ({
     setTypedText(event.target.value);
 
     // Dinindu test
-    advertisements[index].description = event.target.value;
+    if(index !== -1){
+      let adzArray = [];
+      adzArray = advertisements;
+      adzArray[index].description = event.target.value;
+
+      setAdvertisements(adzArray)
+      // advertisements[index].description = event.target.value;
+      
+    }
+   
 
     if (event.target.value.substr(-1) === " ") {
       let currentInput = typedText.split(" ");
@@ -44,6 +64,7 @@ const LanguageTextfield = ({
         //TODO:Test
         // currentInput.forEach((word, index) => getSuggestions(word, index));
         getSuggestions(word, 1);
+
       }
     }
   };
@@ -57,7 +78,6 @@ const LanguageTextfield = ({
   }, [translatedText]);
 
   useEffect(() => {
-    // setCharacterCount(count(typedText));
     setCharacterCount(typedText.length);
     setFinalMessage(typedText);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +86,8 @@ const LanguageTextfield = ({
   useEffect(() => {
     //clears the initial state
     //otherwise an empty string in the text area
-    setTypedText("");
+    // setTypedText(finalMessageText);
+    setTypedText(finalMessageText + "  ");
     setTranslatedText([]);
   }, [resetMessageBox]);
 
@@ -126,8 +147,12 @@ const LanguageTextfield = ({
         aria-label="Demo input"
         multiline
         placeholder="Type something…"
+        // to remove unnecessary 2 space
+        // value={typedText.slice(-2) === "  " ? typedText.slice(0, -2) : typedText}
         value={typedText}
+        saveClicked={saveClicked}
         onChange={handleOnChange}
+        rowsCount={rowsCount}
       />
       <Box display={"flex"} justifyContent="end">
         <WordCountDisplay characterCount={characterCount} />
