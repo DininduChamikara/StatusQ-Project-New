@@ -186,7 +186,7 @@ function Register() {
         });
       }
     } else {
-      console.log("Invalid Details");
+      // console.log("Invalid Details");
       dispatch(
         showAlert({
           message: "Please enter valid information",

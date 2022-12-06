@@ -1,4 +1,11 @@
-import { Box, Button, Paper, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormHelperText,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,8 +15,12 @@ import { showAlert } from "../../store/reducers/alert.slice";
 import { login } from "../../store/reducers/login.slice";
 
 function Login({ setUserInfo }) {
-
   let navigate = useNavigate();
+
+  const [errorInfo, setErrorInfo] = useState({
+    emailError: "",
+    passwordError: "",
+  });
 
   const [loginCredentials, setLoginCredentials] = useState({
     email: "",
@@ -17,6 +28,17 @@ function Login({ setUserInfo }) {
   });
 
   const handleOnChangeEmail = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        emailError: "Email is empty",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        emailError: "",
+      });
+    }
     setLoginCredentials({
       ...loginCredentials,
       email: event.target.value,
@@ -24,6 +46,17 @@ function Login({ setUserInfo }) {
   };
 
   const handleOnChangePassword = (event) => {
+    if (!event.target.value) {
+      setErrorInfo({
+        ...errorInfo,
+        passwordError: "Password is empty",
+      });
+    } else {
+      setErrorInfo({
+        ...errorInfo,
+        passwordError: "",
+      });
+    }
     setLoginCredentials({
       ...loginCredentials,
       password: event.target.value,
@@ -31,56 +64,68 @@ function Login({ setUserInfo }) {
   };
 
   const loginUser = () => {
-    axios
-      .get(
-        `http://localhost:8080/api/v1/user/getUser/${loginCredentials.email}/${loginCredentials.password}`
-      )
-      .then((res) => {
-        if (res) {
-          res = res.data;
+    if (errorInfo.emailError === "" && errorInfo.passwordError === "") {
+      if (loginCredentials.email === "") {
+        setErrorInfo({
+          ...errorInfo,
+          emailError: "Email is empty",
+        });
+      } else if (loginCredentials.password === "") {
+        setErrorInfo({
+          ...errorInfo,
+          passwordError: "Password is empty",
+        });
+      } else {
+        axios
+          .get(
+            `http://localhost:8080/api/v1/user/getUser/${loginCredentials.email}/${loginCredentials.password}`
+          )
+          .then((res) => {
+            if (res) {
+              res = res.data;
 
-          if(res.responseCode === "00"){
-            dispatch(
-              login({
-                isLoggedIn: true,
-                userId: res.user.userId,
-                firstName: res.user.firstname,
-                lastName: res.user.lastname,
-                email: res.user.email,
-                userType: res.user.userType,
-                profileImageurl: res.user.profileImageurl,
-              }),
-            );
-            dispatch(
-              showAlert({
-                message: res.message,
-                isVisible: true,
-                severity:"success",
-              })
-            )
-  
-            if (res.user.userType === "NORMAL_USER") {
-              navigate("/home");
-            } else if (res.user.userType === "ADMIN_USER"){
-              navigate("/admin_home");
+              if (res.responseCode === "00") {
+                dispatch(
+                  login({
+                    isLoggedIn: true,
+                    userId: res.user.userId,
+                    firstName: res.user.firstname,
+                    lastName: res.user.lastname,
+                    email: res.user.email,
+                    userType: res.user.userType,
+                    profileImageurl: res.user.profileImageurl,
+                  })
+                );
+                dispatch(
+                  showAlert({
+                    message: res.message,
+                    isVisible: true,
+                    severity: "success",
+                  })
+                );
+
+                if (res.user.userType === "NORMAL_USER") {
+                  navigate("/home");
+                } else if (res.user.userType === "ADMIN_USER") {
+                  navigate("/admin_home");
+                }
+              } else if (res.responseCode === "1000") {
+                dispatch(
+                  showAlert({
+                    message: res.message,
+                    isVisible: true,
+                    severity: "error",
+                  })
+                );
+              }
             }
-          }
-          else if(res.responseCode === "1000"){
-            dispatch(
-              showAlert({
-                message: res.message,
-                isVisible: true,
-                severity:"error",
-              })
-            )
-          }
-        }
-
-      })
-      // should change later
-      .catch((err) => {
-        console.log(err);
-      });
+          })
+          // should change later
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
   };
 
   ////////
@@ -130,7 +175,7 @@ function Login({ setUserInfo }) {
             </Typography>
             <Box sx={{ width: "100%" }}>
               <TextField
-                sx={{ my: 1 }}
+                sx={{ mt: 2 }}
                 fullWidth
                 id="demo-helper-text-misaligned"
                 label="Email"
@@ -141,9 +186,16 @@ function Login({ setUserInfo }) {
                 onChange={handleOnChangeEmail}
                 value={loginCredentials.email}
               />
+              {errorInfo.emailError !== "" && (
+                <FormHelperText
+                  sx={{ mb: 1, color: "red", fontStyle: "italic" }}
+                >
+                  - {errorInfo.emailError}
+                </FormHelperText>
+              )}
 
               <TextField
-                sx={{ my: 1 }}
+                sx={{ mt: 2 }}
                 fullWidth
                 id="demo-helper-text-misaligned"
                 label="Password"
@@ -154,6 +206,13 @@ function Login({ setUserInfo }) {
                 onChange={handleOnChangePassword}
                 value={loginCredentials.password}
               />
+              {errorInfo.passwordError !== "" && (
+                <FormHelperText
+                  sx={{ mb: 1, color: "red", fontStyle: "italic" }}
+                >
+                  - {errorInfo.passwordError}
+                </FormHelperText>
+              )}
             </Box>
             <Button
               onClick={loginUser}
